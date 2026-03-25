@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rutina Mi Amor - Postparto</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fff5f7; }
+        
+        .exercise-card { transition: all 0.2s ease; border-radius: 20px; }
+        .exercise-card:active { transform: scale(0.98); }
+
+        /* Animación de la silueta */
+        .mannequin-container {
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #fdf2f8;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .silhouette {
+            width: 80px;
+            height: 150px;
+            background-color: #f472b6;
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+            -webkit-mask-size: contain;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            transition: transform 0.8s ease-in-out;
+        }
+
+        /* Simulación de animación de rango A -> B */
+        .animate-move { animation: moveRange 2s infinite alternate ease-in-out; }
+        @keyframes moveRange {
+            0% { transform: translateY(10px) scaleY(1); opacity: 0.6; }
+            100% { transform: translateY(-10px) scaleY(0.95); opacity: 1; }
+        }
+
+        .check-done:checked + label { text-decoration: line-through; opacity: 0.5; }
+    </style>
+</head>
+<body class="pb-24">
+
+    <!-- Header Elegante -->
+    <header class="bg-white p-8 rounded-b-[40px] shadow-sm text-center border-b border-pink-100">
+        <div class="inline-block bg-pink-100 text-pink-600 text-[10px] font-bold px-3 py-1 rounded-full mb-2 uppercase tracking-tighter">Plan Postparto 1 Mes</div>
+        <h1 class="text-3xl font-800 text-gray-800">🌸 Mi Amor</h1>
+        <p class="text-gray-400 text-sm mt-1">Enfoque: Tren Inferior y Rodillas</p>
+    </header>
+
+    <main class="p-6 max-w-md mx-auto space-y-10">
+        
+        <!-- LUNES -->
+        <section id="sec-lunes">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-800 text-gray-800">Lunes</h2>
+                <span class="text-[10px] font-bold text-pink-400 uppercase">Glúteo & Estabilidad</span>
+            </div>
+            <div id="lista-lunes" class="space-y-4"></div>
+        </section>
+
+        <!-- MARTES -->
+        <section id="sec-martes">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-800 text-gray-800">Martes</h2>
+                <span class="text-[10px] font-bold text-pink-400 uppercase">Fuerza & Postura</span>
+            </div>
+            <div id="lista-martes" class="space-y-4"></div>
+        </section>
+
+        <!-- MIERCOLES -->
+        <section id="sec-miercoles">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-xl font-800 text-gray-800">Miércoles</h2>
+                <span class="text-[10px] font-bold text-pink-400 uppercase">Balance & Rodilla</span>
+            </div>
+            <div id="lista-miercoles" class="space-y-4"></div>
+        </section>
+
+    </main>
+
+    <!-- Modal con Animación de Silueta -->
+    <div id="modal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-end sm:items-center justify-center hidden p-4">
+        <div class="bg-white w-full max-w-sm rounded-[32px] overflow-hidden shadow-2xl animate-slide-up">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h3 id="modal-title" class="text-2xl font-800 text-gray-900 leading-tight"></h3>
+                        <p id="modal-sets" class="text-pink-500 font-bold text-xs mt-1"></p>
+                    </div>
+                    <button onclick="closeModal()" class="bg-gray-100 text-gray-400 w-10 h-10 rounded-full flex items-center justify-center text-2xl">&times;</button>
+                </div>
+
+                <!-- Visualizador de Rango A-B -->
+                <div class="mannequin-container mb-6 border-2 border-pink-50">
+                    <div class="absolute inset-0 flex items-center justify-center opacity-10">
+                        <span class="text-8xl font-black">MOVE</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <!-- Iconografía representativa de la silueta -->
+                        <div class="w-16 h-16 bg-pink-500 rounded-full animate-move flex items-center justify-center shadow-lg shadow-pink-200">
+                             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <div class="mt-4 flex gap-8">
+                            <div class="text-center">
+                                <span class="block text-[10px] font-black text-gray-300 uppercase">Inicio (A)</span>
+                            </div>
+                            <div class="text-center">
+                                <span class="block text-[10px] font-black text-pink-500 uppercase">Final (B)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4 mb-8">
+                    <div class="flex gap-3">
+                        <div class="bg-gray-50 p-3 rounded-2xl flex-1">
+                            <span class="text-[9px] font-black text-gray-400 uppercase">Instrucción</span>
+                            <p id="modal-range" class="text-xs text-gray-700 mt-1 font-medium leading-relaxed"></p>
+                        </div>
+                    </div>
+                    <div class="bg-pink-50 p-3 rounded-2xl">
+                        <span class="text-[9px] font-black text-pink-400 uppercase">Consejo Jeremy Ethier</span>
+                        <p id="modal-tip" class="text-xs text-gray-800 mt-1 italic"></p>
+                    </div>
+                </div>
+
+                <button onclick="closeModal()" class="w-full bg-gray-900 text-white font-bold py-4 rounded-2xl shadow-xl active:scale-95 transition tracking-widest text-xs uppercase">Cerrar Guía</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const planElla = {
+            lunes: [
+                { id: 'l1', name: "Abducción de Cadera (Cable)", sets: "3 Series x 15 Reps", range: "Inicia con la pierna pegada al cable (A). Abre lateralmente hasta sentir el glúteo medio (B).", tip: "No permitas que tu torso se incline. Mantente erguida como una tabla." },
+                { id: 'l2', name: "Empuje de Cadera (1 Pierna)", sets: "3 Series x 12 Reps", range: "Baja la cadera casi al suelo (A). Sube apretando el glúteo hasta alinear con el torso (B).", tip: "No uses impulso. La fuerza sale del talón apoyado en el suelo." },
+                { id: 'l3', name: "Pantorrilla (Puntillas)", sets: "3 Series x 15 Reps", range: "Talones estirados abajo (A). Sube al máximo sobre tus puntas (B).", tip: "Mantén 1 segundo la contracción arriba para máxima estabilidad." },
+                { id: 'l4', name: "Aducción de Cadera (Cable)", sets: "3 Series x 15 Reps", range: "Pierna abierta lejos del cable (A). Cruza la pierna por delante de la otra (B).", tip: "Este es el secreto para que no te duelan las rodillas al caminar." }
+            ],
+            martes: [
+                { id: 'm1', name: "Acarreo (Farmer's Walk)", sets: "3 Series x 40 Pasos", range: "Inicia parada con pesas a los lados (A). Camina erguida sin balancear los hombros (B).", tip: "Imagina que un hilo tira de tu cabeza hacia el techo. Pecho fuera." },
+                { id: 'm2', name: "Facepull (Postura)", sets: "3 Series x 15 Reps", range: "Brazos estirados al frente (A). Tira hacia tu cara abriendo los codos en forma de 'W' (B).", tip: "Separa los hombros de tus orejas. Siente tus paletas juntarse." },
+                { id: 'm3', name: "Step-up Bajo (Escalón)", sets: "3 Series x 10 Reps", range: "Pie en el escalón (A). Sube sin saltar con la pierna de abajo (B).", tip: "Baja muy lento. La bajada es donde se construye la fuerza de rodilla." },
+                { id: 'm4', name: "Curl de Bíceps", sets: "3 Series x 12 Reps", range: "Brazos abajo (A). Dobla el codo llevando el peso al hombro (B).", tip: "Mantén tus codos pegados a las costillas todo el tiempo." }
+            ],
+            miercoles: [
+                { id: 'w1', name: "Sentadilla a Silla (Caja)", sets: "3 Series x 12 Reps", range: "Parada frente a una silla (A). Baja hasta tocarla apenas y sube de inmediato (B).", tip: "No te dejes caer. Controla el peso con tus piernas, no con la gravedad." },
+                { id: 'w2', name: "Hiperextensión de Cadera 45°", sets: "3 Series x 15 Reps", range: "Torso inclinado abajo (A). Sube hasta que tu espalda esté recta (B).", tip: "No hiperextendas la espalda hacia atrás. Para cuando estés recta." },
+                { id: 'w3', name: "Zancada Inversa Suave", sets: "3 Series x 10 Reps", range: "Parada (A). Da un paso atrás y baja la rodilla trasera suavemente (B).", tip: "Si te duele la rodilla, no bajes tanto. El rango vendrá con el tiempo." },
+                { id: 'w4', name: "Acarreo (Core Activo)", sets: "3 Series x 45 Seg", range: "Mantén el peso quieta o caminando (A). Respira profundo sin soltar el abdomen (B).", tip: "Excelente para recuperar la faja abdominal postparto." }
+            ]
+        };
+
+        function render() {
+            for(let day in planElla) {
+                const container = document.getElementById(`lista-${day}`);
+                container.innerHTML = planElla[day].map(ex => `
+                    <div class="bg-white p-5 exercise-card shadow-sm border border-gray-100 mb-4">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-4 cursor-pointer" onclick='openModal(${JSON.stringify(ex)})'>
+                                <div class="w-12 h-12 bg-pink-50 rounded-2xl flex items-center justify-center text-pink-500">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-sm leading-tight">${ex.name}</h4>
+                                    <p class="text-[10px] text-gray-400 font-bold mt-0.5 uppercase">${ex.sets}</p>
+                                </div>
+                            </div>
+                            <input type="checkbox" id="check-${ex.id}" class="check-done w-6 h-6 accent-pink-500 rounded-lg">
+                        </div>
+                        <div class="flex gap-2">
+                            <input type="text" placeholder="Peso (lb/kg)" class="flex-1 text-[10px] bg-gray-50 border-none rounded-xl p-3 focus:ring-2 focus:ring-pink-200 outline-none">
+                            <input type="text" placeholder="Reps logradas" class="flex-1 text-[10px] bg-gray-50 border-none rounded-xl p-3 focus:ring-2 focus:ring-pink-200 outline-none">
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function openModal(ex) {
+            document.getElementById('modal-title').innerText = ex.name;
+            document.getElementById('modal-sets').innerText = ex.sets;
+            document.getElementById('modal-range').innerText = ex.range;
+            document.getElementById('modal-tip').innerText = ex.tip;
+            document.getElementById('modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        render();
+    </script>
+</body>
+</html>
