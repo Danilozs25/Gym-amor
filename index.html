@@ -9,86 +9,94 @@
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fffafb; color: #1f2937; }
         
-        .card-shadow { box-shadow: 0 10px 25px -5px rgba(244, 114, 182, 0.1), 0 8px 10px -6px rgba(244, 114, 182, 0.05); }
+        .card-shadow { box-shadow: 0 10px 30px -5px rgba(244, 114, 182, 0.15); }
         
-        /* Articulaciones y esqueleto */
-        .joint { fill: #fff; stroke: #db2777; stroke-width: 1.5; }
-        .bone { stroke: #1f2937; stroke-width: 4; stroke-linecap: round; fill: none; }
-        .bone-motion { stroke: #db2777; stroke-width: 5; stroke-dasharray: 2 1; }
+        /* Estilos de Siluetas */
+        .ghost-bone { stroke: #e5e7eb; stroke-width: 4; stroke-linecap: round; fill: none; stroke-dasharray: 4; }
+        .active-bone { stroke: #db2777; stroke-width: 5; stroke-linecap: round; fill: none; }
+        .joint { fill: #fff; stroke: #db2777; stroke-width: 2; }
         .head { fill: #1f2937; }
+        .path-arrow { stroke: #f472b6; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
 
-        .btn-capture {
-            background: linear-gradient(135deg, #f472b6 0%, #db2777 100%);
+        .btn-youtube {
+            background: #FF0000;
             transition: transform 0.2s;
         }
-        .btn-capture:active { transform: scale(0.95); }
+        .btn-youtube:hover { transform: scale(1.02); }
+        
+        input::placeholder { color: #d1d5db; font-weight: 400; }
     </style>
 </head>
-<body class="pb-20">
+<body class="pb-24">
 
-    <header class="p-10 text-center bg-white border-b-2 border-pink-50 rounded-b-[40px] shadow-sm">
-        <h1 class="text-3xl font-800 text-gray-900 tracking-tight">Plan de entrenamiento, <span class="text-pink-500 italic">mi amor</span> 🌸</h1>
-        <div class="mt-4 max-w-xs mx-auto">
+    <!-- Encabezado Motivador -->
+    <header class="p-10 text-center bg-white border-b border-pink-100 rounded-b-[50px] shadow-sm">
+        <h1 class="text-3xl font-800 text-gray-900 tracking-tight">Plan de entrenamiento, <span class="text-pink-500 italic">amor</span> 🌸</h1>
+        <div class="mt-4 max-w-sm mx-auto">
             <p class="text-sm text-gray-600 font-medium leading-relaxed">
                 "Recuerda que el ejercicio te ayudará en tu salud física y mental, tú puedes, creo en ti..."
             </p>
         </div>
     </header>
 
-    <main class="max-w-md mx-auto p-5 space-y-8">
+    <main class="max-w-md mx-auto p-6 space-y-10">
         
-        <!-- Recordatorio de Seguridad -->
-        <div class="bg-pink-50 border border-pink-100 rounded-3xl p-5 flex items-start gap-4">
-            <span class="text-2xl">✨</span>
-            <div class="text-[11px] text-pink-700 font-bold leading-tight">
-                CONSEJO DE JEFF NIPPARD: Prioriza la técnica sobre el peso. Si sientes dolor en la rodilla, reduce el rango de movimiento.
-            </div>
-        </div>
+        <!-- Guía de Respiración y Seguridad -->
+        <section class="bg-indigo-50 border border-indigo-100 rounded-[2rem] p-6">
+            <h3 class="text-indigo-900 font-800 text-xs uppercase tracking-widest mb-3 flex items-center gap-2">
+                <span>🧘‍♀️</span> Guía de Seguridad Vital
+            </h3>
+            <ul class="text-[11px] text-indigo-800 space-y-2 leading-tight">
+                <li>• <b>Respiración:</b> Inhala al bajar (relajar), exhala fuerte por la boca al hacer el esfuerzo (subir).</li>
+                <li>• <b>Sensación:</b> Debes sentir un "calorcito" o cansancio muscular, nunca un pinchazo.</li>
+                <li>• <b>¡ALERTA!:</b> Si sientes una punzada aguda, dolor en la cicatriz o presión excesiva abajo, <b>PARA</b>, respira profundo y reduce el rango de movimiento.</li>
+            </ul>
+        </section>
 
-        <div id="app-content" class="space-y-10"></div>
+        <div id="app-content" class="space-y-12"></div>
 
         <!-- CUADRO DE CAPTURA FINAL -->
-        <div id="seccion-captura" class="bg-white border-4 border-pink-100 rounded-[2.5rem] p-8 card-shadow">
-            <div class="text-center mb-6">
-                <h3 class="font-800 text-xl text-gray-900 uppercase tracking-tighter">Resumen del Día</h3>
-                <p class="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-1" id="display-fecha"></p>
-            </div>
+        <div id="seccion-captura" class="bg-white border-4 border-pink-100 rounded-[3rem] p-8 card-shadow text-center">
+            <h3 class="font-800 text-xl text-gray-900 uppercase mb-2">Resumen de hoy</h3>
+            <p class="text-[11px] text-pink-500 font-bold mb-6">"Amor, acá toma un pantallazo para yo ir registrando tu progreso"</p>
             
-            <div id="tabla-resumen" class="space-y-3">
-                <p class="text-center text-xs text-gray-400 italic">Llena los datos arriba para ver el resumen aquí...</p>
+            <div id="tabla-resumen" class="space-y-3 mb-8 text-left">
+                <!-- Se llena con JS -->
             </div>
 
-            <div class="mt-8 pt-6 border-t border-dashed border-pink-200">
-                <button onclick="window.print()" class="w-full btn-capture text-white font-black py-4 rounded-2xl text-[11px] uppercase tracking-widest shadow-lg">
-                    Toma captura para Danilo 📸
+            <div class="space-y-4 pt-6 border-t border-dashed border-pink-200">
+                <button onclick="window.print()" class="w-full bg-pink-500 text-white font-black py-4 rounded-2xl text-[12px] uppercase tracking-widest shadow-lg active:scale-95 transition-transform">
+                    📸 Generar Reporte
                 </button>
+                <p class="text-xs text-gray-500 italic leading-relaxed px-4">
+                    "Recuerda que esto es un regalo que tu te das, disfrútalo, y exígete, te amo."
+                </p>
             </div>
         </div>
     </main>
 
-    <!-- Modal con Movimiento Detallado -->
-    <div id="modal" class="fixed inset-0 bg-gray-900/80 backdrop-blur-md z-50 flex items-end sm:items-center justify-center hidden p-4">
-        <div class="bg-white w-full max-w-sm rounded-[3rem] overflow-hidden shadow-2xl animate-in slide-in-from-bottom duration-300">
-            <div class="p-8 pb-4 flex justify-between items-center">
-                <h3 id="modal-title" class="font-800 text-2xl text-gray-900"></h3>
-                <button onclick="closeModal()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-xl font-bold">✕</button>
+    <!-- Modal de Ejercicio -->
+    <div id="modal" class="fixed inset-0 bg-gray-900/90 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white w-full max-w-sm rounded-[3.5rem] overflow-hidden shadow-2xl">
+            <div class="p-8 pb-2 flex justify-between items-center">
+                <h3 id="modal-title" class="font-800 text-2xl text-gray-900 tracking-tighter"></h3>
+                <button onclick="closeModal()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 font-bold">✕</button>
             </div>
             
-            <div class="p-8 pt-2">
-                <div class="flex gap-4 mb-8">
-                    <div class="flex-1 bg-gray-50 rounded-3xl p-4 text-center border border-gray-100">
-                        <span class="text-[9px] font-black text-gray-400 uppercase block mb-3">Inicio (Posición)</span>
-                        <div id="svg-a" class="h-40 flex items-center justify-center"></div>
-                    </div>
-                    <div class="flex-1 bg-pink-50 rounded-3xl p-4 text-center border border-pink-100">
-                        <span class="text-[9px] font-black text-pink-500 uppercase block mb-3">Movimiento (Final)</span>
-                        <div id="svg-b" class="h-40 flex items-center justify-center"></div>
-                    </div>
+            <div class="p-8">
+                <!-- Visualización de Rango -->
+                <div class="bg-gray-50 rounded-[2.5rem] p-6 mb-6 border border-gray-100 relative">
+                    <span class="absolute top-4 left-6 text-[9px] font-black text-gray-400 uppercase">Rango de Movimiento</span>
+                    <div id="svg-display" class="h-48 w-full flex items-center justify-center"></div>
                 </div>
 
-                <div class="space-y-4">
-                    <div class="bg-pink-50/50 p-4 rounded-2xl border border-pink-50">
-                        <h4 class="text-[10px] font-black text-pink-600 uppercase mb-2">💡 Tips de Oro</h4>
+                <div class="space-y-4 h-48 overflow-y-auto pr-2 custom-scrollbar">
+                    <div class="bg-pink-50 p-4 rounded-2xl">
+                        <h4 class="text-[10px] font-black text-pink-600 uppercase mb-2">¿Cómo se siente?</h4>
+                        <p id="modal-feel" class="text-xs text-gray-700 leading-relaxed"></p>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-2xl">
+                        <h4 class="text-[10px] font-black text-indigo-600 uppercase mb-2">Tips Pro</h4>
                         <ul id="modal-tips" class="text-xs text-gray-700 space-y-2"></ul>
                     </div>
                 </div>
@@ -100,91 +108,141 @@
         const routine = [
             {
                 day: "Lunes",
-                goal: "Suelo Pélvico y Glúteos",
+                type: "workout",
+                goal: "Core & Glúteo",
                 exercises: [
-                    { name: "Puente de Glúteo", sets: "2x15", svg: "bridge", tips: ["Apoya solo los talones para más glúteo", "Exhala al subir", "No dejes que las rodillas se junten"] },
-                    { name: "Deadbug (Bicho Muerto)", sets: "2x10", svg: "deadbug", tips: ["Espalda pegada al piso como un sello", "Mueve brazos lento, control total", "Si te duele la espalda, no bajes tanto las piernas"] },
-                    { name: "Sentadilla a Silla", sets: "2x12", svg: "squat", tips: ["Baja lento (3 segundos)", "Toca la silla apenas", "Empuja con los talones al subir"] },
-                    { name: "Bird-Dog", sets: "2x10", svg: "birddog", tips: ["Mantén el cuello recto mirando abajo", "Imagina que tienes un vaso de agua en la espalda y no debe caerse"] },
-                    { name: "Acarreo (Farmer Walk)", sets: "2x40s", svg: "carry", tips: ["Camina con pesas pequeñas", "Mantén los hombros atrás y el ombligo adentro", "Pasos cortos y firmes"] }
+                    { name: "Puente de Glúteo", sets: "2x15", svg: "bridge", feel: "Debes sentir presión en los glúteos y parte de atrás de las piernas. No debe doler la espalda baja.", tips: ["Empuja con los talones", "No subas demasiado la pelvis", "Exhala al subir"] },
+                    { name: "Deadbug Controlado", sets: "2x10", svg: "deadbug", feel: "Debes sentir el abdomen profundo (como un corsé). Si tu espalda se arquea, detente.", tips: ["Pega el ombligo al piso", "Mueve solo un brazo a la vez si es difícil", "Lento es mejor"] },
+                    { name: "Sentadilla a Silla", sets: "2x12", svg: "squat", feel: "Carga el peso en los talones. Las rodillas deben seguir la línea de tus pies.", tips: ["Baja en 3 segundos", "Toca la silla y sube de inmediato", "No cierres las rodillas"] },
+                    { name: "Bird-Dog", sets: "2x10", svg: "birddog", feel: "Sentirás trabajo en glúteo y estabilidad en hombros.", tips: ["Imagina que alargas el cuerpo", "No mires al frente, mira al piso"] },
+                    { name: "Acarreo (Farmer Walk)", sets: "2x40s", svg: "carry", feel: "Todo el cuerpo debe estar firme. Sentirás los brazos y el core trabajando.", tips: ["Hombros abajo y atrás", "Pasos muy pequeños", "Respira corto y constante"] }
+                ]
+            },
+            {
+                day: "Martes",
+                type: "recovery",
+                title: "Movilidad y Suelo Pélvico",
+                links: [
+                    { name: "Cadera y Rodilla", url: "https://www.youtube.com/watch?v=OGJWlGhToWQ&t=475s" },
+                    { name: "Suelo Pélvico Postparto", url: "https://www.youtube.com/watch?v=6YhS23I0v-w" }
                 ]
             },
             {
                 day: "Miércoles",
-                goal: "Postura y Rodilla",
+                type: "workout",
+                goal: "Postura & Fuerza",
                 exercises: [
-                    { name: "Step Up (Escalón)", sets: "2x10", svg: "step", tips: ["Usa un escalón bajito", "Todo el peso en la pierna de arriba", "Baja muy despacio"] },
-                    { name: "Paso Lateral (Banda)", sets: "2x15", svg: "sidestep", tips: ["Rodillas siempre flexionadas", "Mantén tensión en la banda", "Cuerpo erguido"] },
-                    { name: "Wall Slides (Pared)", sets: "2x12", svg: "wall", tips: ["Pega glúteos y hombros a la pared", "Sube brazos formando una 'W'", "Ideal para el dolor de espalda baja"] },
-                    { name: "Remo con Banda", sets: "2x15", svg: "row", tips: ["Saca el pecho al tirar", "Junta las paletas atrás", "No subas los hombros a las orejas"] }
+                    { name: "Paso Lateral", sets: "2x15", svg: "sidestep", feel: "Sentirás quemazón en los laterales de la cadera.", tips: ["Mantén rodillas flexionadas", "No arrastres los pies"] },
+                    { name: "Wall Slides", sets: "2x12", svg: "wall", feel: "Sentirás que tus hombros 'se abren'. Ayuda mucho a la postura de lactancia.", tips: ["No despegues la espalda de la pared", "Codos siempre pegados"] },
+                    { name: "Remo con Banda", sets: "2x15", svg: "row", feel: "Sentirás las 'paletas' de la espalda juntándose.", tips: ["Saca el pecho", "Codos pasan rozando las costillas"] },
+                    { name: "Step Up Bajo", sets: "2x10", svg: "step", feel: "Trabajo en el cuádriceps (muslo).", tips: ["No te impulses con el pie de abajo", "Mira un punto fijo"] }
+                ]
+            },
+            {
+                day: "Jueves",
+                type: "recovery",
+                title: "Día de Alivio y Estiramiento",
+                links: [
+                    { name: "Movilidad Total", url: "https://www.youtube.com/watch?v=OGJWlGhToWQ&t=475s" },
+                    { name: "Relajación Pélvica", url: "https://www.youtube.com/watch?v=6YhS23I0v-w" }
                 ]
             },
             {
                 day: "Viernes",
-                goal: "Fuerza y Estabilidad",
+                type: "workout",
+                goal: "Final de Semana",
                 exercises: [
-                    { name: "Copenhague Suave", sets: "2x15s", svg: "copen", tips: ["Para fortalecer la pelvis", "Rodilla apoyada en el suelo", "Mantén la cadera arriba"] },
-                    { name: "Facepull (Postura)", sets: "2x15", svg: "face", tips: ["Lleva la banda hacia tu frente", "Separa los codos", "Corrige la postura de lactancia"] },
-                    { name: "Plancha Inclinada", sets: "2x20s", svg: "plank", tips: ["Apoya las manos en un sofá", "Cuerpo recto como una tabla", "Aprieta el glúteo"] },
-                    { name: "Elevación de Talones", sets: "2x20", svg: "calves", tips: ["Sube lo más que puedas", "Baja lento", "Usa una pared para equilibrio"] },
-                    { name: "Acarreo de Maleta", sets: "2x30s", svg: "carry", tips: ["Peso solo en una mano", "El cuerpo no debe inclinarse", "Cambia de mano a mitad de tiempo"] }
+                    { name: "Copenhague Suave", sets: "2x15s", svg: "copen", feel: "Sentirás la entrepierna trabajando fuerte.", tips: ["Mantén la rodilla de abajo apoyada", "Cuerpo en línea recta"] },
+                    { name: "Plancha Inclinada", sets: "2x20s", svg: "plank", feel: "Todo el abdomen debe estar tenso. No dejes caer la cadera.", tips: ["Apóyate en algo alto (sofá/mesa)", "Aprieta glúteos"] },
+                    { name: "Elevación de Talones", sets: "2x20", svg: "calves", feel: "Sentirás los gemelos/pantorrillas.", tips: ["Sube explosivo", "Baja muy lento"] },
+                    { name: "Facepull", sets: "2x15", svg: "face", feel: "Trabajo en la parte posterior del hombro.", tips: ["Banda a la altura de los ojos", "Separa los puños al final"] },
+                    { name: "Acarreo Maleta", sets: "2x40s", svg: "carry", feel: "Sentirás un lado del abdomen resistiendo el peso.", tips: ["No te inclines", "Cambia de mano a los 20s"] }
                 ]
             }
         ];
 
         const graphics = {
-            bridge: {
-                a: `<circle cx="20" cy="160" r="10" class="head"/><path d="M30 160 L60 160 L90 160" class="bone"/><circle cx="60" cy="160" r="4" class="joint"/><circle cx="90" cy="160" r="4" class="joint"/>`,
-                b: `<circle cx="20" cy="160" r="10" class="head"/><path d="M30 160 L60 110 L90 160" class="bone-motion"/><circle cx="60" cy="110" r="4" class="joint"/><circle cx="90" cy="160" r="4" class="joint"/>`
-            },
-            squat: {
-                a: `<circle cx="50" cy="40" r="10" class="head"/><path d="M50 50 L50 100 L50 140 L50 180" class="bone"/><circle cx="50" cy="100" r="4" class="joint"/><circle cx="50" cy="140" r="4" class="joint"/>`,
-                b: `<circle cx="40" cy="90" r="10" class="head"/><path d="M40 100 L40 140 L80 140 L80 180" class="bone-motion"/><circle cx="40" cy="140" r="4" class="joint"/><circle cx="80" cy="140" r="4" class="joint"/>`
-            },
-            carry: {
-                a: `<circle cx="50" cy="40" r="10" class="head"/><path d="M50 50 L50 120 M40 180 L50 120 L60 180 M35 70 L35 110" class="bone"/><circle cx="50" cy="120" r="4" class="joint"/><rect x="30" y="110" width="10" height="15" fill="#db2777" rx="2"/>`,
-                b: `<circle cx="60" cy="40" r="10" class="head"/><path d="M60 50 L60 120 M50 180 L60 120 L70 180 M45 70 L45 110" class="bone-motion"/><circle cx="60" cy="120" r="4" class="joint"/><rect x="40" y="110" width="10" height="15" fill="#db2777" rx="2"/>`
-            },
-            deadbug: {
-                a: `<circle cx="20" cy="120" r="10" class="head"/><path d="M30 120 H80 M45 120 V80 M65 120 V80" class="bone"/><circle cx="45" cy="120" r="4" class="joint"/><circle cx="65" cy="120" r="4" class="joint"/>`,
-                b: `<circle cx="20" cy="120" r="10" class="head"/><path d="M30 120 H80 M45 120 V150 M65 120 V90" class="bone-motion"/><circle cx="45" cy="120" r="4" class="joint"/><circle cx="65" cy="120" r="4" class="joint"/>`
-            }
+            bridge: `<svg viewBox="0 0 100 120" class="w-full h-full"><defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#f472b6"/></marker></defs>
+                <path d="M10 100 H90" class="ghost-bone"/>
+                <circle cx="20" cy="90" r="8" class="head" opacity="0.3"/>
+                <path d="M20 100 L55 100 L90 100" class="ghost-bone"/>
+                <path d="M20 100 L55 60 L90 100" class="active-bone"/>
+                <circle cx="55" cy="60" r="4" class="joint"/>
+                <path d="M55 95 V70" class="path-arrow" marker-end="url(#arrowhead)"/>
+            </svg>`,
+            squat: `<svg viewBox="0 0 100 120" class="w-full h-full">
+                <path d="M50 20 L50 90 L50 115" class="ghost-bone"/>
+                <circle cx="50" cy="15" r="8" class="head" opacity="0.3"/>
+                <path d="M50 55 L35 85 L35 115" class="active-bone"/>
+                <circle cx="50" cy="55" r="4" class="joint"/>
+                <circle cx="35" cy="85" r="4" class="joint"/>
+                <path d="M45 40 Q30 60 30 80" class="path-arrow"/>
+            </svg>`,
+            deadbug: `<svg viewBox="0 0 100 120" class="w-full h-full">
+                <path d="M20 80 H80 M40 80 V50 M60 80 V50" class="ghost-bone"/>
+                <path d="M20 80 H80 M40 80 V105 M60 80 V55" class="active-bone"/>
+                <circle cx="40" cy="80" r="3" class="joint"/><circle cx="60" cy="80" r="3" class="joint"/>
+            </svg>`,
+            carry: `<svg viewBox="0 0 100 120" class="w-full h-full">
+                <path d="M50 20 L50 110 M40 50 L40 90" class="active-bone"/>
+                <rect x="35" y="90" width="10" height="15" fill="#db2777" rx="2"/>
+                <circle cx="50" cy="15" r="8" class="head"/>
+                <path d="M60 80 L70 100 M60 80 L50 100" class="active-bone" stroke-width="3"/>
+            </svg>`
         };
 
-        function renderApp() {
+        function render() {
             const container = document.getElementById('app-content');
-            document.getElementById('display-fecha').innerText = new Date().toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-            
             routine.forEach(day => {
-                let html = `
-                <div class="bg-white rounded-[2.5rem] p-8 card-shadow border border-pink-50">
-                    <div class="flex justify-between items-center mb-6">
-                        <div>
-                            <h2 class="text-2xl font-800 text-gray-900">${day.day}</h2>
-                            <p class="text-[10px] text-pink-500 font-black uppercase tracking-widest">${day.goal}</p>
-                        </div>
-                        <span class="text-3xl text-pink-100">🌸</span>
-                    </div>
-                    <div class="space-y-6">`;
-
-                day.exercises.forEach(ex => {
-                    html += `
-                    <div class="exercise-row pb-6 border-b border-gray-50 last:border-0 last:pb-0">
-                        <div class="flex justify-between items-start mb-3">
-                            <div class="cursor-pointer group" onclick='openModal(${JSON.stringify(ex)})'>
-                                <h4 class="text-[14px] font-bold text-gray-800 group-hover:text-pink-500 transition-colors">${ex.name}</h4>
-                                <span class="text-[10px] font-black text-pink-400 uppercase tracking-tighter">${ex.sets}</span>
+                if(day.type === 'workout') {
+                    let html = `
+                    <div class="bg-white rounded-[3rem] p-8 card-shadow border border-pink-50">
+                        <div class="flex justify-between items-center mb-6">
+                            <div>
+                                <h2 class="text-2xl font-800 text-gray-900">${day.day}</h2>
+                                <p class="text-[10px] text-pink-500 font-black uppercase tracking-widest">${day.goal}</p>
                             </div>
-                            <div class="flex gap-2">
-                                <input type="number" placeholder="Kg" oninput="updateSummary()" data-ex="${ex.name}" class="w-14 bg-gray-50 border-none rounded-xl p-2 text-[11px] font-bold text-center focus:ring-1 focus:ring-pink-300">
-                                <input type="number" placeholder="Reps" oninput="updateSummary()" data-ex="${ex.name}" class="w-14 bg-gray-50 border-none rounded-xl p-2 text-[11px] font-bold text-center focus:ring-1 focus:ring-pink-300">
-                            </div>
+                            <span class="text-3xl">💪</span>
                         </div>
-                    </div>`;
-                });
+                        <div class="space-y-5">`;
 
-                html += `</div></div>`;
-                container.innerHTML += html;
+                    day.exercises.forEach(ex => {
+                        html += `
+                        <div class="pb-5 border-b border-gray-50 last:border-0 last:pb-0">
+                            <div class="flex justify-between items-start mb-2">
+                                <div class="cursor-pointer" onclick='openModal(${JSON.stringify(ex)})'>
+                                    <h4 class="text-[13px] font-bold text-gray-800">${ex.name}</h4>
+                                    <span class="text-[10px] font-black text-pink-400 uppercase">${ex.sets}</span>
+                                </div>
+                                <div class="flex gap-2">
+                                    <input type="number" placeholder="Kg" oninput="updateSummary()" data-ex="${ex.name}" class="w-12 bg-gray-50 rounded-xl p-2 text-[10px] font-bold text-center">
+                                    <input type="number" placeholder="Reps" oninput="updateSummary()" data-ex="${ex.name}" class="w-12 bg-gray-50 rounded-xl p-2 text-[10px] font-bold text-center">
+                                </div>
+                            </div>
+                        </div>`;
+                    });
+                    html += `</div></div>`;
+                    container.innerHTML += html;
+                } else {
+                    let html = `
+                    <div class="bg-indigo-900 rounded-[3rem] p-8 shadow-xl text-white">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-2xl font-800">${day.day}</h2>
+                            <span class="text-3xl">🌊</span>
+                        </div>
+                        <p class="text-[11px] text-indigo-200 font-bold uppercase mb-6 tracking-widest">${day.title}</p>
+                        <div class="grid grid-cols-1 gap-3">`;
+                    
+                    day.links.forEach(link => {
+                        html += `
+                        <a href="${link.url}" target="_blank" class="btn-youtube flex items-center justify-between p-4 rounded-2xl no-underline">
+                            <span class="text-xs font-bold">${link.name}</span>
+                            <span class="text-[10px] bg-white/20 px-2 py-1 rounded-full uppercase">Ver Video</span>
+                        </a>`;
+                    });
+                    html += `</div></div>`;
+                    container.innerHTML += html;
+                }
             });
         }
 
@@ -192,36 +250,30 @@
             const inputs = document.querySelectorAll('input');
             const summaryDiv = document.getElementById('tabla-resumen');
             let data = {};
-
             inputs.forEach(input => {
                 const name = input.getAttribute('data-ex');
-                if (!data[name]) data[name] = { kg: '', reps: '' };
-                if (input.placeholder === 'Kg') data[name].kg = input.value;
+                if(!data[name]) data[name] = { kg: '', reps: '' };
+                if(input.placeholder === 'Kg') data[name].kg = input.value;
                 else data[name].reps = input.value;
             });
 
             let html = '';
-            for (let ex in data) {
-                if (data[ex].kg || data[ex].reps) {
-                    html += `
-                    <div class="flex justify-between items-center py-2 border-b border-pink-50">
-                        <span class="text-[11px] font-bold text-gray-700">${ex}</span>
-                        <span class="text-[11px] font-black text-pink-600">${data[ex].kg || 0}kg x ${data[ex].reps || 0}</span>
+            for(let ex in data) {
+                if(data[ex].kg || data[ex].reps) {
+                    html += `<div class="flex justify-between py-2 border-b border-pink-50 text-[11px]">
+                        <span class="font-bold text-gray-600">${ex}</span>
+                        <span class="font-black text-pink-500">${data[ex].kg || 0}kg x ${data[ex].reps || 0}</span>
                     </div>`;
                 }
             }
-            summaryDiv.innerHTML = html || '<p class="text-center text-xs text-gray-400 italic">Llena los datos arriba para ver el resumen aquí...</p>';
+            summaryDiv.innerHTML = html || '<p class="text-center text-xs text-gray-400 italic">Aquí aparecerá tu progreso...</p>';
         }
 
         function openModal(ex) {
             document.getElementById('modal-title').innerText = ex.name;
-            const tipsList = document.getElementById('modal-tips');
-            tipsList.innerHTML = ex.tips.map(t => `<li>✨ ${t}</li>`).join('');
-            
-            const g = graphics[ex.svg] || graphics.squat;
-            document.getElementById('svg-a').innerHTML = `<svg viewBox="0 0 100 200" class="w-full h-full">${g.a}</svg>`;
-            document.getElementById('svg-b').innerHTML = `<svg viewBox="0 0 100 200" class="w-full h-full">${g.b}</svg>`;
-            
+            document.getElementById('modal-feel').innerText = ex.feel;
+            document.getElementById('modal-tips').innerHTML = ex.tips.map(t => `<li>• ${t}</li>`).join('');
+            document.getElementById('svg-display').innerHTML = graphics[ex.svg] || graphics.squat;
             document.getElementById('modal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
@@ -231,7 +283,7 @@
             document.body.style.overflow = 'auto';
         }
 
-        renderApp();
+        render();
     </script>
 </body>
 </html>
