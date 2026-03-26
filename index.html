@@ -3,51 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rutina Mi Amor - Guía Visual</title>
+    <title>Rutina Mi Amor - Guía 3D</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fffafb; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfafb; color: #1f2937; }
         
-        .card-inner { transition: transform 0.2s; border-radius: 24px; }
-        .card-inner:active { transform: scale(0.97); }
+        /* Estilo para las Biseries (Línea lateral rosa) */
+        .biserie-block {
+            border-left: 5px solid #f472b6;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0 24px 24px 0;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+        }
 
-        /* Contenedor de la Animación de la Silueta */
-        .preview-box {
+        .exercise-item { transition: all 0.2s ease; cursor: pointer; }
+        .exercise-item:active { transform: scale(0.98); }
+
+        /* Contenedor de la Animación de Siluetas */
+        .viz-container {
             height: 220px;
             background: #fff;
-            border-radius: 20px;
-            position: relative;
+            border-radius: 24px;
             display: flex;
             justify-content: center;
             align-items: center;
+            gap: 2rem;
             border: 2px solid #fee2e2;
+            position: relative;
             overflow: hidden;
         }
 
-        .mannequin {
-            width: 120px;
-            height: 180px;
-            transition: all 0.8s ease-in-out;
-            position: relative;
-        }
-
-        /* Estilos de las fases A y B */
-        .phase-label {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 10px;
-            font-weight: 800;
-            padding: 4px 8px;
-            border-radius: 6px;
-            text-transform: uppercase;
-        }
-
-        .phase-a { background: #f3f4f6; color: #9ca3af; }
+        .mannequin-part { fill: #f472b6; transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+        .tag-phase { position: absolute; top: 12px; left: 12px; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 8px; text-transform: uppercase; }
+        
+        .phase-a { background: #f3f4f6; color: #6b7280; }
         .phase-b { background: #fdf2f8; color: #db2777; }
 
-        .hidden-phase { display: none; }
+        input[type="checkbox"]:checked + label { text-decoration: line-through; opacity: 0.6; }
     </style>
 </head>
 <body class="pb-20">
@@ -55,73 +49,73 @@
     <header class="bg-white p-8 rounded-b-[40px] shadow-sm border-b border-pink-100 text-center">
         <div class="inline-block bg-pink-100 text-pink-600 text-[10px] font-bold px-4 py-1.5 rounded-full mb-3 uppercase tracking-widest">Plan Postparto & Rodillas</div>
         <h1 class="text-3xl font-800 text-gray-900 tracking-tight">🌸 Mi Amor</h1>
-        <p class="text-gray-400 text-sm mt-1 font-medium italic">"Entrena con ciencia, progresa con paciencia"</p>
+        <p class="text-gray-500 text-sm mt-2 font-semibold">"Inicio de tu cambio corporal, ¡tú puedes amor!"</p>
     </header>
 
     <main class="p-6 max-w-md mx-auto space-y-12">
         
-        <!-- LUNES -->
-        <section>
-            <div class="flex items-center justify-between mb-5 px-2">
-                <h2 class="text-2xl font-800 text-gray-800">Lunes</h2>
-                <div class="h-1 w-12 bg-pink-200 rounded-full"></div>
-            </div>
-            <div id="lista-lunes" class="space-y-4"></div>
+        <section id="lunes">
+            <h2 class="text-xl font-800 mb-5 flex items-center gap-3">
+                <span class="w-2.5 h-8 bg-pink-500 rounded-full"></span> Lunes: Glúteo & Soporte Lumbar
+            </h2>
+            <div id="lista-lunes" class="space-y-6"></div>
         </section>
 
-        <!-- MARTES -->
-        <section>
-            <div class="flex items-center justify-between mb-5 px-2">
-                <h2 class="text-2xl font-800 text-gray-800">Martes</h2>
-                <div class="h-1 w-12 bg-pink-200 rounded-full"></div>
-            </div>
-            <div id="lista-martes" class="space-y-4"></div>
+        <section id="martes">
+            <h2 class="text-xl font-800 mb-5 flex items-center gap-3">
+                <span class="w-2.5 h-8 bg-blue-400 rounded-full"></span> Martes: Fuerza Controlada
+            </h2>
+            <div id="lista-martes" class="space-y-6"></div>
         </section>
 
-        <!-- MIERCOLES -->
-        <section>
-            <div class="flex items-center justify-between mb-5 px-2">
-                <h2 class="text-2xl font-800 text-gray-800">Miércoles</h2>
-                <div class="h-1 w-12 bg-pink-200 rounded-full"></div>
-            </div>
-            <div id="lista-miercoles" class="space-y-4"></div>
+        <section id="miercoles">
+            <h2 class="text-xl font-800 mb-5 flex items-center gap-3">
+                <span class="w-2.5 h-8 bg-purple-500 rounded-full"></span> Miércoles: Balance & Estabilidad
+            </h2>
+            <div id="lista-miercoles" class="space-y-6"></div>
         </section>
+
     </main>
 
-    <!-- Modal de Guía Visual -->
-    <div id="modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-end sm:items-center justify-center hidden p-4">
-        <div class="bg-white w-full max-w-md rounded-[32px] overflow-hidden shadow-2xl animate-slide-up">
+    <div id="modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-end sm:items-center justify-center hidden p-4 overflow-y-auto">
+        <div class="bg-white w-full max-w-md rounded-[32px] overflow-hidden shadow-2xl animate-slide-up my-8">
             <div class="p-8">
                 <div class="flex justify-between items-start mb-6">
                     <div>
-                        <h3 id="modal-title" class="text-2xl font-800 text-gray-900"></h3>
-                        <p id="modal-sets" class="text-pink-500 font-bold text-xs mt-1 uppercase tracking-widest"></p>
+                        <h3 id="modal-title" class="text-2xl font-800 text-gray-900 leading-tight"></h3>
+                        <p id="modal-meta" class="text-pink-500 font-bold text-xs mt-1 uppercase tracking-widest"></p>
                     </div>
-                    <button onclick="closeModal()" class="bg-gray-100 text-gray-400 w-10 h-10 rounded-full flex items-center justify-center text-2xl font-light">&times;</button>
+                    <button onclick="closeModal()" class="text-gray-400 bg-gray-100 w-10 h-10 rounded-full flex items-center justify-center text-3xl font-light">&times;</button>
                 </div>
 
-                <!-- Visualizador Dinámico de Silueta -->
-                <div class="preview-box mb-6" id="visual-container">
-                    <div id="phase-tag" class="phase-label phase-a">Posición Inicial</div>
-                    <!-- SVG de Silueta Humana que se anima -->
-                    <svg id="human-svg" class="mannequin" viewBox="0 0 100 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="50" cy="30" r="15" fill="#f472b6" /> <!-- Cabeza -->
-                        <path id="body-path" d="M35 50 H65 V120 H35 Z" fill="#f472b6" /> <!-- Torso -->
-                        <path id="leg-l" d="M40 120 V180" stroke="#f472b6" stroke-width="12" stroke-linecap="round" /> <!-- Pierna Izq -->
-                        <path id="leg-r" d="M60 120 V180" stroke="#f472b6" stroke-width="12" stroke-linecap="round" /> <!-- Pierna Der -->
-                        <path id="arm-l" d="M35 60 V110" stroke="#f472b6" stroke-width="8" stroke-linecap="round" /> <!-- Brazo Izq -->
-                        <path id="arm-r" d="M65 60 V110" stroke="#f472b6" stroke-width="8" stroke-linecap="round" /> <!-- Brazo Der -->
+                <div class="viz-container mb-6" id="viz-box">
+                    <div id="tag" class="tag-phase phase-a">Posición Inicial</div>
+                    
+                    <svg id="svg-front" width="80" height="180" viewBox="0 0 100 200">
+                        <circle cx="50" cy="30" r="15" class="mannequin-part" />
+                        <rect x="30" y="50" width="40" height="70" rx="10" class="mannequin-part" />
+                        <path d="M40 120 V180" stroke="#f472b6" stroke-width="12" stroke-linecap="round" />
+                        <path id="leg-front-r" d="M60 120 V180" stroke="#f472b6" stroke-width="12" stroke-linecap="round" />
+                        <path d="M25 60 V110" stroke="#f472b6" stroke-width="8" stroke-linecap="round" />
+                        <path d="M75 60 V110" stroke="#f472b6" stroke-width="8" stroke-linecap="round" />
+                    </svg>
+
+                    <svg id="svg-side" width="80" height="180" viewBox="0 0 100 200">
+                        <circle cx="50" cy="30" r="15" class="mannequin-part" />
+                        <path d="M35 50 H65 V120 H35 Z" fill="#f472b6" />
+                        <path d="M50 120 V180" stroke="#f472b6" stroke-width="12" stroke-linecap="round" />
+                        <path id="arm-side" d="M50 60 V110" stroke="#f472b6" stroke-width="8" stroke-linecap="round" />
                     </svg>
                 </div>
 
-                <div class="space-y-4">
+                <div class="space-y-4 max-h-[250px] overflow-y-auto pr-2">
                     <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100">
                         <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Cómo hacerlo correctamente</span>
-                        <p id="modal-range" class="text-xs text-gray-700 mt-2 leading-relaxed font-medium"></p>
+                        <p id="modal-desc" class="text-xs text-gray-700 mt-2 leading-relaxed font-medium"></p>
                     </div>
                     <div class="bg-pink-50 p-4 rounded-2xl border border-pink-100">
-                        <span class="text-[10px] font-black text-pink-400 uppercase tracking-widest">Consejo de Experto (Ethier/Athlean)</span>
-                        <p id="modal-tip" class="text-xs text-gray-800 mt-2 leading-relaxed italic"></p>
+                        <span class="text-[10px] font-black text-pink-400 uppercase tracking-widest">Consejo de Seguridad Lumbar</span>
+                        <p id="modal-safe" class="text-xs text-gray-800 mt-2 italic leading-relaxed"></p>
                     </div>
                 </div>
 
@@ -131,49 +125,77 @@
     </div>
 
     <script>
-        const planElla = {
+        const plan = {
             lunes: [
-                { id: 'l1', name: "Abducción de Cadera (Cable)", sets: "3 Series x 15 Reps", range: "Párate de lado a la polea. La pierna que trabaja se desplaza hacia afuera lateralmente (Fase B) y regresa controlada (Fase A).", tip: "Evita compensar inclinando el tronco. Mantén el abdomen contraído para que el movimiento nazca solo del glúteo medio.", type: 'side' },
-                { id: 'l2', name: "Empuje de Cadera (1 Pierna)", sets: "3 Series x 12 Reps", range: "Apoya la espalda alta en un banco o el suelo. Baja la cadera (Fase A) y elévala apretando el glúteo hasta que el torso y muslo formen una línea recta (Fase B).", tip: "El secreto está en el talón. Empuja el suelo con fuerza y no dejes que la rodilla se caiga hacia adentro.", type: 'updown' },
-                { id: 'l3', name: "Aducción de Cadera (Cable)", sets: "3 Series x 15 Reps", range: "Párate de lado. La pierna que trabaja cruza por delante de la otra hacia el centro (Fase B). Regresa al punto de origen (Fase A).", tip: "Crucial para equilibrar la articulación de la rodilla. Hazlo lento, sintiendo la cara interna del muslo.", type: 'side-in' },
-                { id: 'l4', name: "Acarreo de Pesas (Farmer's Walk)", sets: "3 Series x 45 Seg", range: "Sujeta una pesa en cada mano. Camina erguida manteniendo los hombros abajo y atrás. Fase A es posición estática, Fase B es el paso.", tip: "Es el mejor ejercicio de 'Core' para postparto. Imagina que el peso no te puede mover ni un milímetro del centro.", type: 'walk' }
+                { title: "Biserie 1: Glúteo Aislado (Cero Espalda)", exercises: [
+                    { id: 'l1a', name: "Abducción en Cable", sets: "3x15", desc: "Párate de lado a la polea baja. Abre la pierna externa lateralmente (B) manteniendo el torso completamente firme (A). Regresa controlado.", safety: "Imagina que eres un bloque de hielo del ombligo para arriba; nada se mueve excepto tu cadera. Esto aísla el glúteo medio y protege la lumbar.", type: 'side' },
+                    { id: 'l1b', name: "Aducción en Cable", sets: "3x15", desc: "Sujeta el cable en la pierna interna. Cruza la pierna por delante de la otra hacia el centro (B).", safety: "Equilibrar la fuerza interna del muslo es crucial para que la rótula de la rodilla se mueva sin dolor.", type: 'cross' }
+                ]},
+                { title: "Biserie 2: Cadera Segura", exercises: [
+                    { id: 'l2a', name: "Puente de Glúteo (Suelo)", sets: "3x15", desc: "Tumbada boca arriba, rodillas dobladas. Eleva la pelvis apretando fuerte los glúteos (B) hasta alinear muslos y torso.", safety: "Alternativa segura a la hiperextensión. No arquees la espalda al subir; el movimiento para cuando el glúteo está al máximo de contracción.", type: 'updown' },
+                    { id: 'l2b', name: "Pantorrilla de Pie", sets: "3x15", desc: "Eleva talones al máximo rítmicamente. Pausa de 1 seg arriba.", safety: "Tobillos fuertes absorben el impacto que de otro modo iría a tus rodillas.", type: 'updown' }
+                ]},
+                { title: "Final: Estabilidad Lumbar", exercises: [
+                    { id: 'l3', name: "Acarreo (Farmer's Walk)", sets: "3x45 seg", desc: "Sujeta pesas a los lados, pecho alto, hombros atrás. Camina con pasos cortos y firmes.", safety: "Obliga a toda tu faja abdominal a activarse para mantener la columna recta, sin flexiones dañinas.", type: 'walk' }
+                ]}
             ],
             martes: [
-                { id: 'm1', name: "Facepull (Polea Alta)", sets: "3 Series x 15 Reps", range: "Tira de la cuerda hacia tu rostro. Al final del movimiento (Fase B), tus manos deben estar a los lados de tus orejas y tus codos altos.", tip: "No pienses en tirar con los bíceps, piensa en separar la cuerda con tus manos mientras juntas tus escápulas.", type: 'pull' },
-                { id: 'm2', name: "Step-up (Escalón Bajo)", sets: "3 Series x 10 Reps", range: "Pon un pie en el escalón (A). Sube todo tu cuerpo usando solo la pierna que está arriba (B). Baja con extremo control.", tip: "Jeff Cavaliere dice: 'No saltes con el pie de abajo'. El pie que está en el suelo es solo un apoyo, no un motor.", type: 'updown' },
-                { id: 'm3', name: "Acarreo a una mano (Maleta)", sets: "3 Series x 30 Seg c/lado", range: "Sujeta una sola pesa. Camina intentando que el peso no te incline hacia un lado. Fase A es inicio, Fase B es equilibrio.", tip: "Tus oblicuos trabajarán al máximo para mantenerte recta. Es salud pura para tu columna.", type: 'walk' },
-                { id: 'm4', name: "Curl de Bíceps (Pausado)", sets: "3 Series x 12 Reps", range: "Inicia con brazos estirados (A). Flexiona hasta el pecho (B) y sostén un segundo.", tip: "No balancees el cuerpo. Si necesitas mover la espalda para subir, el peso es demasiado alto.", type: 'pull' }
+                { title: "Biserie 1: Fuerza y Postura", exercises: [
+                    { id: 'm1a', name: "Sentadilla a Silla (Caja)", sets: "3x12", desc: "Pies ancho de hombros. Baja controladamente hasta que tus glúteos rocen la silla (A) y sube.", safety: "La silla previene que bajes demasiado arqueando la lumbar. Mantén el peso en los talones.", type: 'updown' },
+                    { id: 'm1b', name: "Facepull (Polea Alta)", sets: "3x15", desc: "Tira de la cuerda hacia tu rostro, abriendo codos en forma de 'W' (B). Junta escápulas.", safety: "Fortalece la espalda alta, contrarrestando la postura jorobada que causa dolor lumbar por desuso de la musculatura erguida.", type: 'pull' }
+                ]},
+                { title: "Biserie 2: Control Unilateral", exercises: [
+                    { id: 'm2a', name: "Step-up Bajo", sets: "3x10", desc: "Usa un escalón bajo. Sube usando solo la pierna de arriba, sin impulsarte con el pie de abajo.", safety: "Al bajar, hazlo muy lento. El control excéntrico es lo que más fortalece la rodilla.", type: 'updown' },
+                    { id: 'm2b', name: "Curl Bíceps (Pausado)", sets: "3x12", desc: "Flexiona codos con control. Sostén 1 seg arriba.", safety: "Si balanceas el cuerpo para subir, estás cargando la lumbar. Usa menos peso y técnica perfecta.", type: 'pull' }
+                ]},
+                { title: "Final: Recuperación Lumbar", exercises: [
+                    { id: 'm3', name: "Bird-Dog (Estabilidad)", sets: "3x10 reps lento", desc: "En 4 puntos. Estira brazo derecho y pierna izquierda a la vez hasta que queden rectos. Alterna.", safety: "El ejercicio estrella para dolor lumbar. El objetivo no es subir mucho, sino mantener el torso como una tabla quieta.", type: 'bird' }
+                ]}
             ],
             miercoles: [
-                { id: 'w1', name: "Sentadilla a Silla", sets: "3 Series x 12 Reps", range: "Pies ancho de hombros. Baja hasta que tus glúteos apenas rocen la silla (A) y sube con fuerza (B).", tip: "Mantén el peso en los talones. Tus rodillas deben seguir la dirección de tus pies, nunca hacia adentro.", type: 'updown' },
-                { id: 'w2', name: "Hiperextensión a 45°", sets: "3 Series x 15 Reps", range: "Baja el torso controladamente (A). Sube hasta que tu cuerpo esté alineado, apretando fuerte los glúteos (B).", tip: "No hiperextendas la espalda lumbar hacia atrás. El movimiento debe terminar cuando estés recta.", type: 'updown' },
-                { id: 'w3', name: "Zancada Inversa (Asistida)", sets: "3 Series x 10 Reps", range: "Da un paso atrás y baja la rodilla trasera (A). Regresa a la posición inicial (B). Puedes apoyarte en algo para equilibrio.", tip: "Enfócate en bajar verticalmente. No dejes que la rodilla delantera sobrepase demasiado la punta del pie.", type: 'updown' },
-                { id: 'w4', name: "Acarreo Frontal (Copa)", sets: "3 Series x 45 Seg", range: "Sostén una pesa frente a tu pecho con ambas manos. Camina manteniendo el pecho alto y abdomen firme.", tip: "Este ejercicio enseña a tu espalda a mantenerse erguida bajo carga, ideal para cuando cargues al bebé.", type: 'walk' }
+                { title: "Biserie 1: Cadera y Balance", exercises: [
+                    { id: 'w1a', name: "Zancada Inversa Asistida", sets: "3x10", desc: "Paso atrás rítmico. Baja rodilla trasera suavemente. Apóyate en pared si necesitas equilibrio.", safety: "La zancada atrás es mucho más segura para la rótula que la zancada frontal.", type: 'updown' },
+                    { id: 'w1b', name: "Abducción Sentada (Banda)", sets: "3x20", desc: "Sentada en banco. Abre las rodillas contra la resistencia de una banda elástica.", safety: "Sentada eliminamos cualquier riesgo de balanceo de la zona lumbar.", type: 'side' }
+                ]},
+                { title: "Biserie 2: Core Seguro", exercises: [
+                    { id: 'w2a', name: "Puente 1 Pierna (Suelo)", sets: "3x10 c/lado", desc: "Como el puente normal, pero una pierna estirada al aire. Eleva pelvis.", safety: "Usas menos peso que el puente a 2 piernas, pero desafías más la estabilidad de la pelvis.", type: 'updown' },
+                    { id: 'w2b', name: "Aducción en Suelo", sets: "3x15", desc: "Tumbada de lado, eleva la pierna inferior apretando el aductor.", safety: "Aísla el aductor sin ninguna carga axial sobre la columna lumbar.", type: 'side' }
+                ]},
+                { title: "Final: Postura Funcional", exercises: [
+                    { id: 'w3', name: "Acarreo Frontal (Copa)", sets: "3x30 seg", desc: "Sostén una pesa frente al pecho rítmicamente. Camina erguida.", safety: "Fortalece la espalda alta y enseña a tu core a estabilizar la carga frontal (como cargar al bebé).", type: 'walk' }
+                ]}
             ]
         };
 
-        let animationInterval;
+        let interval;
 
         function render() {
-            for(let day in planElla) {
+            for(let day in plan) {
                 const container = document.getElementById(`lista-${day}`);
-                container.innerHTML = planElla[day].map(ex => `
-                    <div class="bg-white p-5 card-inner shadow-sm border border-gray-100 flex flex-col gap-4">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-4 cursor-pointer" onclick='openModal(${JSON.stringify(ex)})'>
-                                <div class="w-12 h-12 bg-pink-50 rounded-2xl flex items-center justify-center text-pink-500">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                container.innerHTML = plan[day].map(block => `
+                    <div class="biserie-block">
+                        <h4 class="text-[10px] font-black text-pink-400 uppercase mb-4 tracking-widest">${block.title}</h4>
+                        <div class="space-y-4">
+                            ${block.exercises.map(ex => `
+                                <div class="exercise-item group" onclick='openModal(${JSON.stringify(ex)})'>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-3.5">
+                                            <div class="w-10 h-10 rounded-xl bg-pink-50 flex items-center justify-center text-pink-500 text-xs font-bold">
+                                                ${ex.type === 'walk' ? '🚶‍♀️' : '✨'}
+                                            </div>
+                                            <div>
+                                                <p id="label-${ex.id}" class="text-sm font-bold text-gray-800 group-hover:text-pink-600 transition leading-tight">${ex.name}</p>
+                                                <p class="text-[10px] text-pink-500 font-bold uppercase tracking-tight">${ex.sets}</p>
+                                            </div>
+                                        </div>
+                                        <input type="checkbox" id="${ex.id}" class="w-6 h-6 accent-pink-500 border-gray-200 rounded-lg">
+                                    </div>
+                                    <div class="flex gap-2.5 mt-3.5 pl-1.5">
+                                        <input type="text" placeholder="Peso (lb/kg)" class="flex-1 text-[10px] bg-gray-50 border border-gray-100 rounded-xl p-3 outline-none focus:ring-1 focus:ring-pink-200">
+                                        <input type="text" placeholder="Reps logradas" class="flex-1 text-[10px] bg-gray-50 border border-gray-100 rounded-xl p-3 outline-none focus:ring-1 focus:ring-pink-200">
+                                    </div>
                                 </div>
-                                <div>
-                                    <h4 class="font-bold text-gray-800 text-sm leading-tight">${ex.name}</h4>
-                                    <p class="text-[10px] text-pink-500 font-bold mt-1 uppercase tracking-tighter">${ex.sets}</p>
-                                </div>
-                            </div>
-                            <input type="checkbox" class="w-6 h-6 accent-pink-500 rounded-lg">
-                        </div>
-                        <div class="grid grid-cols-2 gap-2">
-                            <input type="text" placeholder="Peso (lb)" class="text-[10px] bg-gray-50 border-none rounded-xl p-3 outline-none focus:ring-1 focus:ring-pink-200">
-                            <input type="text" placeholder="Reps" class="text-[10px] bg-gray-50 border-none rounded-xl p-3 outline-none focus:ring-1 focus:ring-pink-200">
+                            `).join('')}
                         </div>
                     </div>
                 `).join('');
@@ -182,64 +204,66 @@
 
         function openModal(ex) {
             document.getElementById('modal-title').innerText = ex.name;
-            document.getElementById('modal-sets').innerText = ex.sets;
-            document.getElementById('modal-range').innerText = ex.range;
-            document.getElementById('modal-tip').innerText = ex.tip;
+            document.getElementById('modal-meta').innerText = ex.sets;
+            document.getElementById('modal-desc').innerText = ex.desc;
+            document.getElementById('modal-safe').innerText = ex.safety;
             document.getElementById('modal').classList.remove('hidden');
-            
-            startAnimation(ex.type);
+            document.body.style.overflow = 'hidden';
+            animate(ex.type);
         }
 
-        function startAnimation(type) {
-            const svg = document.getElementById('human-svg');
-            const legL = document.getElementById('leg-l');
-            const legR = document.getElementById('leg-r');
-            const armL = document.getElementById('arm-l');
-            const armR = document.getElementById('arm-r');
-            const tag = document.getElementById('phase-tag');
-            
-            let phaseA = true;
-            
-            clearInterval(animationInterval);
-            animationInterval = setInterval(() => {
-                phaseA = !phaseA;
-                tag.innerText = phaseA ? "Posición Inicial (A)" : "Fase de Esfuerzo (B)";
-                tag.className = `phase-label ${phaseA ? 'phase-a' : 'phase-b'}`;
+        function animate(type) {
+            const legFrontR = document.getElementById('leg-front-r');
+            const svgFront = document.getElementById('svg-front');
+            const svgSide = document.getElementById('svg-side');
+            const armSide = document.getElementById('arm-side');
+            const tag = document.getElementById('tag');
+            let phase = true;
 
-                // Reiniciar transformaciones
-                svg.style.transform = '';
-                legL.setAttribute('d', 'M40 120 V180');
-                legR.setAttribute('d', 'M60 120 V180');
-                armL.setAttribute('d', 'M35 60 V110');
-                armR.setAttribute('d', 'M65 60 V110');
+            clearInterval(interval);
+            interval = setInterval(() => {
+                phase = !phase;
+                tag.innerText = phase ? "Posición Inicial (A)" : "Fase de Esfuerzo (B)";
+                tag.className = `tag-phase ${phase ? 'phase-a' : 'phase-b'}`;
 
-                if (!phaseA) {
-                    switch(type) {
-                        case 'side':
-                            legR.setAttribute('d', 'M60 120 L90 170');
-                            break;
-                        case 'updown':
-                            svg.style.transform = 'translateY(15px) scaleY(0.9)';
-                            break;
-                        case 'side-in':
-                            legR.setAttribute('d', 'M60 120 L30 170');
-                            break;
-                        case 'pull':
-                            armL.setAttribute('d', 'M35 60 L15 50');
-                            armR.setAttribute('d', 'M65 60 L85 50');
-                            break;
-                        case 'walk':
-                            legL.setAttribute('d', 'M40 120 L50 170');
-                            legR.setAttribute('d', 'M60 120 L40 175');
-                            break;
+                // Reset de transformaciones
+                svgFront.style.transform = '';
+                svgSide.style.transform = '';
+                legFrontR.setAttribute('d', 'M60 120 V180');
+                armSide.setAttribute('d', 'M50 60 V110');
+
+                if(!phase) {
+                    if(type === 'side') {
+                        legFrontR.setAttribute('d', 'M60 120 L90 160');
+                        svgSide.style.transform = 'scaleY(1.02)';
+                    }
+                    if(type === 'cross') {
+                        legFrontR.setAttribute('d', 'M60 120 L30 160');
+                    }
+                    if(type === 'updown') {
+                        svgFront.style.transform = 'translateY(15px) scaleY(0.9)';
+                        svgSide.style.transform = 'translateY(15px) scaleY(0.9)';
+                    }
+                    if(type === 'pull') {
+                        armSide.setAttribute('d', 'M50 60 L70 50');
+                        svgFront.style.transform = 'scaleY(0.98)';
+                    }
+                    if(type === 'walk') {
+                        svgFront.style.transform = 'translateY(5px)';
+                        svgSide.style.transform = 'translateY(5px) translateX(5px)';
+                    }
+                    if(type === 'bird') {
+                        svgFront.style.transform = 'rotate(-5deg)';
+                        svgSide.style.transform = 'scaleX(1.1)';
                     }
                 }
-            }, 1000);
+            }, 900);
         }
 
         function closeModal() {
             document.getElementById('modal').classList.add('hidden');
-            clearInterval(animationInterval);
+            document.body.style.overflow = 'auto';
+            clearInterval(interval);
         }
 
         render();
