@@ -3,374 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rutina Mi Amor - Guía Definitiva</title>
+    <title>Plan de Entrenamiento Amor - Cathe</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fafafa; color: #1f2937; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fffafb; color: #1f2937; }
         
-        .biserie-block {
-            border-left: 5px solid #f472b6;
-            background: white;
-            padding: 1.5rem;
-            border-radius: 0 24px 24px 0;
-            box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.05);
-            margin-bottom: 2rem;
-        }
-
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #fbcfe8; border-radius: 10px; }
-
-        .viz-box {
-            background: #fff;
-            border: 2px solid #fce7f3;
-            border-radius: 20px;
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 48%;
-            position: relative;
-        }
-
-        .viz-label {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            padding: 4px 8px;
-            border-radius: 6px;
-        }
-        .label-a { background: #f3f4f6; color: #6b7280; }
-        .label-b { background: #fdf2f8; color: #db2777; }
-
-        .svg-figure { width: 100%; max-height: 140px; }
+        .card-shadow { box-shadow: 0 10px 25px -5px rgba(244, 114, 182, 0.1), 0 8px 10px -6px rgba(244, 114, 182, 0.05); }
         
-        input[type="checkbox"]:checked + div p.ex-name { text-decoration: line-through; color: #9ca3af; }
+        /* Articulaciones y esqueleto */
+        .joint { fill: #fff; stroke: #db2777; stroke-width: 1.5; }
+        .bone { stroke: #1f2937; stroke-width: 4; stroke-linecap: round; fill: none; }
+        .bone-motion { stroke: #db2777; stroke-width: 5; stroke-dasharray: 2 1; }
+        .head { fill: #1f2937; }
 
-        .form-input {
-            font-size: 11px;
-            background: #f9fafb;
-            border: 1px solid #e5e7eb;
-            border-radius: 10px;
-            padding: 10px 10px 10px 45px;
-            width: 100%;
-            outline: none;
-            transition: all 0.2s;
-            font-weight: 600;
+        .btn-capture {
+            background: linear-gradient(135deg, #f472b6 0%, #db2777 100%);
+            transition: transform 0.2s;
         }
-        .form-input:focus { border-color: #f472b6; background: #fff; box-shadow: 0 0 0 3px rgba(244,114,182,0.1); }
-        .input-icon-label { position: absolute; left: 12px; top: 11px; font-size: 9px; font-weight: 800; color: #9ca3af; text-transform: uppercase; }
+        .btn-capture:active { transform: scale(0.95); }
     </style>
 </head>
-<body class="pb-24">
+<body class="pb-20">
 
-    <!-- CABECERA -->
-    <header class="bg-white p-8 rounded-b-[40px] shadow-sm border-b border-pink-100 text-center relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-pink-300 via-pink-500 to-purple-400"></div>
-        <div class="inline-block bg-pink-50 text-pink-600 text-[10px] font-black px-4 py-1.5 rounded-full mb-3 uppercase tracking-widest border border-pink-100">
-            Fase 1: Reconexión
+    <header class="p-10 text-center bg-white border-b-2 border-pink-50 rounded-b-[40px] shadow-sm">
+        <h1 class="text-3xl font-800 text-gray-900 tracking-tight">Plan de entrenamiento, <span class="text-pink-500 italic">mi amor</span> 🌸</h1>
+        <div class="mt-4 max-w-xs mx-auto">
+            <p class="text-sm text-gray-600 font-medium leading-relaxed">
+                "Recuerda que el ejercicio te ayudará en tu salud física y mental, tú puedes, creo en ti..."
+            </p>
         </div>
-        <h1 class="text-3xl font-800 text-gray-900 tracking-tight leading-tight">🌸 Mi Amor</h1>
-        <p class="text-gray-500 text-sm mt-2 font-semibold italic">"Inicio de tu cambio corporal, ¡tú puedes amor!"</p>
     </header>
 
-    <!-- CONSEJOS GENERALES -->
-    <section class="max-w-md mx-auto mt-6 px-6">
-        <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-6 text-white shadow-xl">
-            <h3 class="font-800 text-sm flex items-center gap-2 mb-4">
-                <span class="text-xl">💡</span> Reglas de Oro (Postparto & Salud)
-            </h3>
-            <ul class="space-y-3 text-xs text-gray-300 font-medium">
-                <li class="flex items-start gap-2"><span class="text-pink-400">1.</span> <b>Regla de 2 Series:</b> Las primeras 2 semanas haz SOLO 2 series. No quemes tu sistema nervioso.</li>
-                <li class="flex items-start gap-2"><span class="text-pink-400">2.</span> <b>Respiración (Suelo Pélvico):</b> Inhala al bajar, EXHALA al hacer el esfuerzo (subir). Nunca aguantes el aire.</li>
-                <li class="flex items-start gap-2"><span class="text-pink-400">3.</span> <b>Dolor vs Esfuerzo:</b> Si sientes "quemazón" en el glúteo, es bueno. Si sientes "pinchazo" en rodilla o lumbar, PARA y baja el peso.</li>
-            </ul>
+    <main class="max-w-md mx-auto p-5 space-y-8">
+        
+        <!-- Recordatorio de Seguridad -->
+        <div class="bg-pink-50 border border-pink-100 rounded-3xl p-5 flex items-start gap-4">
+            <span class="text-2xl">✨</span>
+            <div class="text-[11px] text-pink-700 font-bold leading-tight">
+                CONSEJO DE JEFF NIPPARD: Prioriza la técnica sobre el peso. Si sientes dolor en la rodilla, reduce el rango de movimiento.
+            </div>
         </div>
-    </section>
 
-    <!-- CONTENEDOR DE LA RUTINA -->
-    <main class="p-6 max-w-md mx-auto mt-2" id="rutina-container">
-        <!-- Generado dinámicamente -->
+        <div id="app-content" class="space-y-10"></div>
+
+        <!-- CUADRO DE CAPTURA FINAL -->
+        <div id="seccion-captura" class="bg-white border-4 border-pink-100 rounded-[2.5rem] p-8 card-shadow">
+            <div class="text-center mb-6">
+                <h3 class="font-800 text-xl text-gray-900 uppercase tracking-tighter">Resumen del Día</h3>
+                <p class="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-1" id="display-fecha"></p>
+            </div>
+            
+            <div id="tabla-resumen" class="space-y-3">
+                <p class="text-center text-xs text-gray-400 italic">Llena los datos arriba para ver el resumen aquí...</p>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-dashed border-pink-200">
+                <button onclick="window.print()" class="w-full btn-capture text-white font-black py-4 rounded-2xl text-[11px] uppercase tracking-widest shadow-lg">
+                    Toma captura para Danilo 📸
+                </button>
+            </div>
+        </div>
     </main>
 
-    <!-- MODAL DE EJERCICIO Y VISUALIZACIÓN -->
-    <div id="modal" class="fixed inset-0 bg-gray-900/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center hidden p-4 overflow-hidden">
-        <div class="bg-white w-full max-w-md rounded-[32px] overflow-hidden shadow-2xl flex flex-col max-h-[90vh]">
-            
-            <div class="p-6 flex-shrink-0 border-b border-gray-100 flex justify-between items-start">
-                <div>
-                    <h3 id="modal-title" class="text-xl font-800 text-gray-900 leading-tight"></h3>
-                    <p id="modal-meta" class="text-pink-500 font-black text-[10px] mt-1 uppercase tracking-widest"></p>
-                </div>
-                <button onclick="closeModal()" class="text-gray-400 bg-gray-50 w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold hover:bg-gray-200 hover:text-gray-700 transition">&times;</button>
+    <!-- Modal con Movimiento Detallado -->
+    <div id="modal" class="fixed inset-0 bg-gray-900/80 backdrop-blur-md z-50 flex items-end sm:items-center justify-center hidden p-4">
+        <div class="bg-white w-full max-w-sm rounded-[3rem] overflow-hidden shadow-2xl animate-in slide-in-from-bottom duration-300">
+            <div class="p-8 pb-4 flex justify-between items-center">
+                <h3 id="modal-title" class="font-800 text-2xl text-gray-900"></h3>
+                <button onclick="closeModal()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-xl font-bold">✕</button>
             </div>
-
-            <div class="p-6 overflow-y-auto custom-scrollbar flex-1 space-y-6">
-                
-                <!-- VISUALIZADOR DOBLE (A / B) -->
-                <div class="flex justify-between gap-3">
-                    <div class="viz-box">
-                        <span class="viz-label label-a">Inicio (A)</span>
-                        <div id="svg-container-a" class="w-full flex items-center justify-center mt-6"></div>
+            
+            <div class="p-8 pt-2">
+                <div class="flex gap-4 mb-8">
+                    <div class="flex-1 bg-gray-50 rounded-3xl p-4 text-center border border-gray-100">
+                        <span class="text-[9px] font-black text-gray-400 uppercase block mb-3">Inicio (Posición)</span>
+                        <div id="svg-a" class="h-40 flex items-center justify-center"></div>
                     </div>
-                    <div class="viz-box">
-                        <span class="viz-label label-b">Final (B)</span>
-                        <div id="svg-container-b" class="w-full flex items-center justify-center mt-6"></div>
+                    <div class="flex-1 bg-pink-50 rounded-3xl p-4 text-center border border-pink-100">
+                        <span class="text-[9px] font-black text-pink-500 uppercase block mb-3">Movimiento (Final)</span>
+                        <div id="svg-b" class="h-40 flex items-center justify-center"></div>
                     </div>
                 </div>
 
-                <!-- DESCRIPCIÓN TÉCNICA -->
-                <div class="bg-gray-50 p-4 rounded-2xl border border-gray-200">
-                    <h4 class="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-2 flex items-center gap-1">📍 Cómo hacerlo</h4>
-                    <p id="modal-desc" class="text-xs text-gray-700 leading-relaxed font-medium"></p>
+                <div class="space-y-4">
+                    <div class="bg-pink-50/50 p-4 rounded-2xl border border-pink-50">
+                        <h4 class="text-[10px] font-black text-pink-600 uppercase mb-2">💡 Tips de Oro</h4>
+                        <ul id="modal-tips" class="text-xs text-gray-700 space-y-2"></ul>
+                    </div>
                 </div>
-
-                <!-- TIPS EXPERTOS -->
-                <div class="bg-pink-50/50 p-4 rounded-2xl border border-pink-100">
-                    <h4 class="text-[10px] font-black text-pink-500 uppercase tracking-widest mb-3 flex items-center gap-1">🛡️ Tips Biomecánicos</h4>
-                    <ul id="modal-tips" class="space-y-2.5"></ul>
-                </div>
-
-            </div>
-            
-            <div class="p-5 flex-shrink-0 border-t border-gray-100 bg-white">
-                <button onclick="closeModal()" class="w-full bg-gray-900 text-white font-bold py-4 rounded-2xl shadow-lg active:scale-95 transition text-xs uppercase tracking-widest">Cerrar Guía</button>
             </div>
         </div>
     </div>
 
     <script>
-        // BASE DE DATOS DE LA RUTINA Y CONSEJOS (Actualizada con directrices Saiyan Kiwi, McGill, Ethier)
-        const plan = [
+        const routine = [
             {
                 day: "Lunes",
-                focus: "Glúteos & Estabilidad",
-                color: "pink-500",
-                blocks: [
-                    { title: "Biserie 1: Activación Glútea", exercises: [
-                        { id: 'l1a', name: "Abducción en Cable", sets: "2-3 series x 15 reps", desc: "De pie, apóyate ligeramente en la máquina. Abre la pierna hacia un lado controlando el movimiento. La punta del pie mira ligeramente hacia adentro.", safety: ["Saiyan Kiwi: Siente el glúteo lateral. Si duele la espalda, estás abriendo demasiado la pierna.", "McGill: Mantén el torso rígido como un bloque de cemento."], svgType: 'abduction' },
-                        { id: 'l1b', name: "Puente Glúteo en Suelo", sets: "2-3 series x 15 reps", desc: "Acostada boca arriba. Apoya SOLO los talones. Eleva la cadera apretando los glúteos al máximo en la parte alta.", safety: ["Saiyan Kiwi: Exhala por la boca al subir. Inhala al bajar.", "Ethier: Imagina que quieres arrastrar los talones hacia tus glúteos para activar isquios."], svgType: 'bridge' }
-                    ]},
-                    { title: "Biserie 2: Control", exercises: [
-                        { id: 'l2a', name: "Aducción en Cable", sets: "2-3 series x 15 reps", desc: "Cruza la pierna activa por delante de la pierna de apoyo hacia adentro.", safety: ["Balancear la parte interna del muslo previene que la rodilla colapse en las sentadillas."], svgType: 'adduction' },
-                        { id: 'l2b', name: "Pantorrilla de Pie", sets: "2-3 series x 15 reps", desc: "Sube de puntillas lo más alto posible. Baja en 3 segundos (muy lento).", safety: ["Ethier: La bajada lenta (excéntrica) construye tendones de Aquiles fuertes, quitando carga a tus rodillas."], svgType: 'calf' }
-                    ]},
-                    { title: "Finisher: Core de Hierro", exercises: [
-                        { id: 'l3', name: "Acarreo (Farmer's Walk)", sets: "3 series x 40 seg", desc: "Sujeta una mancuerna pesada en cada mano. Pecho arriba. Camina despacio.", safety: ["McGill: Cierra las costillas (no saques pecho exagerado).", "Saiyan: Este es el mejor ejercicio abdominal sin dañar tu suelo pélvico ni diástasis."], svgType: 'walk' }
-                    ]}
-                ]
-            },
-            {
-                day: "Martes",
-                focus: "Postura & Fuerza",
-                color: "blue-500",
-                blocks: [
-                    { title: "Biserie 1: Funcional", exercises: [
-                        { id: 'm1a', name: "Sentadilla Goblet", sets: "2-3 series x 12 reps", desc: "Sujeta una mancuerna pegada a tu pecho. Baja abriendo las rodillas hacia afuera.", safety: ["Saiyan Kiwi: La pesa al frente te obliga a tener la espalda recta y protege tu lumbar.", "Baja solo hasta donde no se encorve tu espalda baja (evita el guiño de glúteo)."], svgType: 'goblet' },
-                        { id: 'm1b', name: "Facepull", sets: "2-3 series x 15 reps", desc: "Polea a la altura de los ojos. Tira de la cuerda hacia tu nariz, separando las manos y abriendo codos.", safety: ["Athlean-X: El ejercicio más importante. Contrarresta la postura jorobada de cargar al bebé.", "Asegúrate de rotar las manos hacia atrás al final."], svgType: 'facepull' }
-                    ]},
-                    { title: "Biserie 2: Pierna Posterior", exercises: [
-                        { id: 'm2a', name: "Step-up (Cajón Bajo)", sets: "2-3 series x 10 c/p", desc: "Apoya un pie en el cajón. Sube empujando solo con la pierna de arriba, sin impulsarte con la de abajo.", safety: ["Ethier: Controla la bajada en 3 segundos. Si te dejas caer, lastimas la rodilla."], svgType: 'stepup' },
-                        { id: 'm2b', name: "Curl Femoral (Deslizante)", sets: "2-3 series x 12 reps", desc: "Acostada, puente arriba. Desliza los talones alejándolos de ti y luego atráelos.", safety: ["Saiyan: Isquios fuertes equilibran la pelvis postparto.", "Si es muy duro, hazlo en máquina pero con peso muy ligero."], svgType: 'hamcurl' }
-                    ]},
-                    { title: "Finisher: Salud Lumbar", exercises: [
-                        { id: 'm3', name: "Bird-Dog", sets: "3 series x 10 lentas", desc: "En 4 puntos (rodillas y manos). Estira brazo y pierna contraria simultáneamente.", safety: ["McGill: El rey para el dolor de espalda. No levantes la pierna más arriba de tus glúteos, el objetivo es alargar, no arquear la espalda."], svgType: 'birddog' }
-                    ]}
+                goal: "Suelo Pélvico y Glúteos",
+                exercises: [
+                    { name: "Puente de Glúteo", sets: "2x15", svg: "bridge", tips: ["Apoya solo los talones para más glúteo", "Exhala al subir", "No dejes que las rodillas se junten"] },
+                    { name: "Deadbug (Bicho Muerto)", sets: "2x10", svg: "deadbug", tips: ["Espalda pegada al piso como un sello", "Mueve brazos lento, control total", "Si te duele la espalda, no bajes tanto las piernas"] },
+                    { name: "Sentadilla a Silla", sets: "2x12", svg: "squat", tips: ["Baja lento (3 segundos)", "Toca la silla apenas", "Empuja con los talones al subir"] },
+                    { name: "Bird-Dog", sets: "2x10", svg: "birddog", tips: ["Mantén el cuello recto mirando abajo", "Imagina que tienes un vaso de agua en la espalda y no debe caerse"] },
+                    { name: "Acarreo (Farmer Walk)", sets: "2x40s", svg: "carry", tips: ["Camina con pesas pequeñas", "Mantén los hombros atrás y el ombligo adentro", "Pasos cortos y firmes"] }
                 ]
             },
             {
                 day: "Miércoles",
-                focus: "Balance Frontal",
-                color: "purple-500",
-                blocks: [
-                    { title: "Biserie 1: Cero Impacto", exercises: [
-                        { id: 'w1a', name: "Zancada Inversa", sets: "2-3 series x 10 c/p", desc: "Da un paso grande hacia atrás. Baja la cadera en línea recta.", safety: ["Saiyan Kiwi: Inclina el torso un poco hacia adelante para enfocar el trabajo en el glúteo y proteger la rodilla delantera."], svgType: 'lunge' },
-                        { id: 'w1b', name: "Abducción Sentada", sets: "2-3 series x 20 reps", desc: "Sentada en máquina o con banda. Separa las rodillas.", safety: ["Apoya bien la espalda en el respaldo para aislar el glúteo y relajar la lumbar completamente."], svgType: 'seatedabd' }
-                    ]},
-                    { title: "Biserie 2: Suelo Pélvico", exercises: [
-                        { id: 'w2a', name: "Puente a 1 Pierna", sets: "2-3 series x 10 c/p", desc: "Posición de puente, pero levanta una pierna estirada al techo y empuja con la otra.", safety: ["Ethier: Si tu cadera se cae hacia un lado, estás usando mucho peso. Mantén la pelvis nivelada como una mesa."], svgType: 'bridge1' },
-                        { id: 'w2b', name: "Aducción en Suelo", sets: "2-3 series x 15 reps", desc: "Acostada de lado. La pierna de arriba se dobla y apoya adelante. Levanta la pierna que quedó estirada abajo.", safety: ["Cero estrés espinal. Movimiento corto y controlado."], svgType: 'flooradd' }
-                    ]},
-                    { title: "Finisher: Carga Funcional", exercises: [
-                        { id: 'w3', name: "Acarreo Frontal (Copa)", sets: "3 series x 30 seg", desc: "Abraza una pesa frente a tu pecho. Camina erguida.", safety: ["Te prepara para cargar cosas al frente (ej. el bebé) sin que la lumbar sufra.", "Hombros abajo, lejos de las orejas."], svgType: 'walkfront' }
-                    ]}
+                goal: "Postura y Rodilla",
+                exercises: [
+                    { name: "Step Up (Escalón)", sets: "2x10", svg: "step", tips: ["Usa un escalón bajito", "Todo el peso en la pierna de arriba", "Baja muy despacio"] },
+                    { name: "Paso Lateral (Banda)", sets: "2x15", svg: "sidestep", tips: ["Rodillas siempre flexionadas", "Mantén tensión en la banda", "Cuerpo erguido"] },
+                    { name: "Wall Slides (Pared)", sets: "2x12", svg: "wall", tips: ["Pega glúteos y hombros a la pared", "Sube brazos formando una 'W'", "Ideal para el dolor de espalda baja"] },
+                    { name: "Remo con Banda", sets: "2x15", svg: "row", tips: ["Saca el pecho al tirar", "Junta las paletas atrás", "No subas los hombros a las orejas"] }
+                ]
+            },
+            {
+                day: "Viernes",
+                goal: "Fuerza y Estabilidad",
+                exercises: [
+                    { name: "Copenhague Suave", sets: "2x15s", svg: "copen", tips: ["Para fortalecer la pelvis", "Rodilla apoyada en el suelo", "Mantén la cadera arriba"] },
+                    { name: "Facepull (Postura)", sets: "2x15", svg: "face", tips: ["Lleva la banda hacia tu frente", "Separa los codos", "Corrige la postura de lactancia"] },
+                    { name: "Plancha Inclinada", sets: "2x20s", svg: "plank", tips: ["Apoya las manos en un sofá", "Cuerpo recto como una tabla", "Aprieta el glúteo"] },
+                    { name: "Elevación de Talones", sets: "2x20", svg: "calves", tips: ["Sube lo más que puedas", "Baja lento", "Usa una pared para equilibrio"] },
+                    { name: "Acarreo de Maleta", sets: "2x30s", svg: "carry", tips: ["Peso solo en una mano", "El cuerpo no debe inclinarse", "Cambia de mano a mitad de tiempo"] }
                 ]
             }
         ];
 
-        // DIBUJOS SVG HARDCODED PARA ASEGURAR COMPRENSIÓN (A = Inicio, B = Fin)
-        // Utilizando un diseño técnico minimalista (Stickman avanzado)
-        const svgLibrary = {
-            abduction: {
-                a: `<path d="M50 80 V140 M50 140 L40 190 M50 140 L60 190 M50 100 L30 130" stroke="#9ca3af" stroke-width="8" stroke-linecap="round"/><circle cx="50" cy="50" r="15" fill="#9ca3af"/><path d="M10 190 H90" stroke="#e5e7eb" stroke-width="4"/>`,
-                b: `<path d="M50 80 V140 M50 140 L35 190" stroke="#f472b6" stroke-width="8" stroke-linecap="round"/><path d="M50 140 L85 180" stroke="#db2777" stroke-width="10" stroke-linecap="round"/><path d="M50 100 L30 130" stroke="#f472b6" stroke-width="8" stroke-linecap="round"/><circle cx="50" cy="50" r="15" fill="#f472b6"/><path d="M10 190 H90" stroke="#e5e7eb" stroke-width="4"/>`
-            },
-            adduction: {
-                a: `<path d="M50 80 V140 M50 140 L60 190 M50 100 L30 130" stroke="#9ca3af" stroke-width="8" stroke-linecap="round"/><path d="M50 140 L30 180" stroke="#9ca3af" stroke-width="8" stroke-linecap="round"/><circle cx="50" cy="50" r="15" fill="#9ca3af"/><path d="M10 190 H90" stroke="#e5e7eb" stroke-width="4"/>`,
-                b: `<path d="M50 80 V140 M50 140 L60 190 M50 100 L30 130" stroke="#f472b6" stroke-width="8" stroke-linecap="round"/><path d="M50 140 L70 185" stroke="#db2777" stroke-width="10" stroke-linecap="round"/><circle cx="50" cy="50" r="15" fill="#f472b6"/><path d="M10 190 H90" stroke="#e5e7eb" stroke-width="4"/>`
-            },
+        const graphics = {
             bridge: {
-                a: `<path d="M10 160 H90" stroke="#e5e7eb" stroke-width="4"/><circle cx="20" cy="150" r="12" fill="#9ca3af"/><path d="M25 150 H60 L80 120 L85 160 M40 150 L60 130" stroke="#9ca3af" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/>`,
-                b: `<path d="M10 160 H90" stroke="#e5e7eb" stroke-width="4"/><circle cx="20" cy="150" r="12" fill="#f472b6"/><path d="M25 150 L65 110 L85 160 M40 140 L60 110" stroke="#db2777" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/>`
+                a: `<circle cx="20" cy="160" r="10" class="head"/><path d="M30 160 L60 160 L90 160" class="bone"/><circle cx="60" cy="160" r="4" class="joint"/><circle cx="90" cy="160" r="4" class="joint"/>`,
+                b: `<circle cx="20" cy="160" r="10" class="head"/><path d="M30 160 L60 110 L90 160" class="bone-motion"/><circle cx="60" cy="110" r="4" class="joint"/><circle cx="90" cy="160" r="4" class="joint"/>`
             },
-            calf: {
-                a: `<path d="M50 80 V150 M50 150 V190 M50 100 L30 80" stroke="#9ca3af" stroke-width="8" stroke-linecap="round"/><circle cx="50" cy="50" r="15" fill="#9ca3af"/><path d="M20 190 H80" stroke="#e5e7eb" stroke-width="4"/>`,
-                b: `<path d="M50 70 V140 M50 140 L55 185 M50 90 L30 70" stroke="#db2777" stroke-width="9" stroke-linecap="round"/><circle cx="50" cy="40" r="15" fill="#f472b6"/><path d="M20 190 H80" stroke="#e5e7eb" stroke-width="4"/>`
+            squat: {
+                a: `<circle cx="50" cy="40" r="10" class="head"/><path d="M50 50 L50 100 L50 140 L50 180" class="bone"/><circle cx="50" cy="100" r="4" class="joint"/><circle cx="50" cy="140" r="4" class="joint"/>`,
+                b: `<circle cx="40" cy="90" r="10" class="head"/><path d="M40 100 L40 140 L80 140 L80 180" class="bone-motion"/><circle cx="40" cy="140" r="4" class="joint"/><circle cx="80" cy="140" r="4" class="joint"/>`
             },
-            walk: {
-                a: `<path d="M50 80 V140 M50 140 L45 190 M50 140 L55 190 M50 90 V130" stroke="#9ca3af" stroke-width="8" stroke-linecap="round"/><circle cx="50" cy="50" r="15" fill="#9ca3af"/><rect x="42" y="125" width="16" height="25" fill="#6b7280" rx="3"/><path d="M10 190 H90" stroke="#e5e7eb" stroke-width="4"/>`,
-                b: `<path d="M55 80 V140 M55 140 L40 190 M55 140 L70 190 M55 90 V130" stroke="#db2777" stroke-width="9" stroke-linecap="round"/><circle cx="55" cy="50" r="15" fill="#f472b6"/><rect x="47" y="125" width="16" height="25" fill="#4b5563" rx="3"/><path d="M10 190 H90" stroke="#e5e7eb" stroke-width="4"/>`
+            carry: {
+                a: `<circle cx="50" cy="40" r="10" class="head"/><path d="M50 50 L50 120 M40 180 L50 120 L60 180 M35 70 L35 110" class="bone"/><circle cx="50" cy="120" r="4" class="joint"/><rect x="30" y="110" width="10" height="15" fill="#db2777" rx="2"/>`,
+                b: `<circle cx="60" cy="40" r="10" class="head"/><path d="M60 50 L60 120 M50 180 L60 120 L70 180 M45 70 L45 110" class="bone-motion"/><circle cx="60" cy="120" r="4" class="joint"/><rect x="40" y="110" width="10" height="15" fill="#db2777" rx="2"/>`
             },
-            goblet: {
-                a: `<path d="M50 80 V140 M50 140 L45 190 M50 140 L55 190 M50 90 L60 110" stroke="#9ca3af" stroke-width="8" stroke-linecap="round"/><circle cx="50" cy="50" r="15" fill="#9ca3af"/><circle cx="60" cy="110" r="8" fill="#4b5563"/><path d="M20 190 H80" stroke="#e5e7eb" stroke-width="4"/>`,
-                b: `<path d="M40 100 L30 140 L50 190 M40 100 L45 130 L55 190 M40 110 L50 120" stroke="#db2777" stroke-width="9" stroke-linecap="round"/><circle cx="45" cy="70" r="15" fill="#f472b6"/><circle cx="55" cy="120" r="8" fill="#4b5563"/><path d="M20 190 H80" stroke="#e5e7eb" stroke-width="4"/>`
-            },
-            facepull: {
-                a: `<path d="M40 80 V140 M40 140 L30 190 M40 140 L50 190 M40 90 L75 90" stroke="#9ca3af" stroke-width="8" stroke-linecap="round"/><circle cx="40" cy="50" r="15" fill="#9ca3af"/><path d="M75 90 L95 70" stroke="#d1d5db" stroke-width="4"/><path d="M10 190 H90" stroke="#e5e7eb" stroke-width="4"/>`,
-                b: `<path d="M35 80 V140 M35 140 L25 190 M35 140 L45 190 M35 90 L55 70 L65 55" stroke="#db2777" stroke-width="9" stroke-linecap="round"/><circle cx="35" cy="50" r="15" fill="#f472b6"/><path d="M65 55 L95 70" stroke="#d1d5db" stroke-width="4"/><path d="M10 190 H90" stroke="#e5e7eb" stroke-width="4"/>`
-            },
-            stepup: {
-                a: `<rect x="60" y="150" width="30" height="40" fill="#e5e7eb"/><path d="M40 80 V140 M40 140 V190 M40 140 L65 140 L70 150 M40 100 L50 120" stroke="#9ca3af" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="40" cy="50" r="15" fill="#9ca3af"/><path d="M10 190 H90" stroke="#e5e7eb" stroke-width="4"/>`,
-                b: `<rect x="60" y="150" width="30" height="40" fill="#e5e7eb"/><path d="M65 40 V100 M65 100 V150 M65 100 L45 120 M65 60 L75 80" stroke="#db2777" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><circle cx="65" cy="10" r="15" fill="#f472b6"/><path d="M10 190 H90" stroke="#e5e7eb" stroke-width="4"/>`
-            },
-            hamcurl: {
-                a: `<path d="M10 160 H90" stroke="#e5e7eb" stroke-width="4"/><circle cx="20" cy="150" r="12" fill="#9ca3af"/><path d="M25 150 H55 L90 155 M40 150 L60 140" stroke="#9ca3af" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/>`,
-                b: `<path d="M10 160 H90" stroke="#e5e7eb" stroke-width="4"/><circle cx="20" cy="150" r="12" fill="#f472b6"/><path d="M25 150 L65 110 L75 155 M40 140 L60 110" stroke="#db2777" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/>`
-            },
-            birddog: {
-                a: `<path d="M10 160 H90" stroke="#e5e7eb" stroke-width="4"/><circle cx="75" cy="110" r="12" fill="#9ca3af"/><path d="M65 120 H35 L30 160 M35 120 L40 160 M65 120 L60 160 M65 120 L70 160" stroke="#9ca3af" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/>`,
-                b: `<path d="M10 160 H90" stroke="#e5e7eb" stroke-width="4"/><circle cx="75" cy="110" r="12" fill="#f472b6"/><path d="M65 120 H35 L30 160 M35 120 L10 120 M65 120 L60 160 M65 120 L95 105" stroke="#db2777" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/>`
-            },
-            lunge: {
-                a: `<path d="M50 80 V140 M50 140 L45 190 M50 140 L55 190 M50 100 L60 120" stroke="#9ca3af" stroke-width="8" stroke-linecap="round"/><circle cx="50" cy="50" r="15" fill="#9ca3af"/><path d="M10 190 H90" stroke="#e5e7eb" stroke-width="4"/>`,
-                b: `<path d="M40 90 L35 140 M35 140 L35 190 M35 140 L70 140 L70 190 M40 100 L50 120" stroke="#db2777" stroke-width="9" fill="none" stroke-linejoin="round" stroke-linecap="round"/><circle cx="45" cy="60" r="15" fill="#f472b6"/><path d="M10 190 H90" stroke="#e5e7eb" stroke-width="4"/>`
-            },
-            seatedabd: {
-                a: `<rect x="20" y="110" width="30" height="80" fill="#e5e7eb"/><path d="M40 50 V110 M40 110 L70 110 L70 190 M40 70 L60 90" stroke="#9ca3af" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><circle cx="40" cy="20" r="15" fill="#9ca3af"/><path d="M10 190 H90" stroke="#e5e7eb" stroke-width="4"/>`,
-                b: `<rect x="20" y="110" width="30" height="80" fill="#e5e7eb"/><path d="M40 50 V110 M40 110 L80 120 L80 190 M40 110 L60 110 L60 190 M40 70 L60 90" stroke="#db2777" stroke-width="9" fill="none" stroke-linejoin="round" stroke-linecap="round"/><circle cx="40" cy="20" r="15" fill="#f472b6"/><path d="M10 190 H90" stroke="#e5e7eb" stroke-width="4"/>`
-            },
-            bridge1: {
-                a: `<path d="M10 160 H90" stroke="#e5e7eb" stroke-width="4"/><circle cx="20" cy="150" r="12" fill="#9ca3af"/><path d="M25 150 H60 L80 120 L85 160 M40 150 L60 130" stroke="#9ca3af" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/>`,
-                b: `<path d="M10 160 H90" stroke="#e5e7eb" stroke-width="4"/><circle cx="20" cy="150" r="12" fill="#f472b6"/><path d="M25 150 L65 110 L85 160 M65 110 L80 50 M40 140 L60 110" stroke="#db2777" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/>`
-            },
-            flooradd: {
-                a: `<path d="M10 160 H90" stroke="#e5e7eb" stroke-width="4"/><circle cx="80" cy="150" r="12" fill="#9ca3af"/><path d="M70 150 H30 L10 155 M50 150 L30 120 L20 160" stroke="#9ca3af" stroke-width="8" fill="none" stroke-linejoin="round" stroke-linecap="round"/>`,
-                b: `<path d="M10 160 H90" stroke="#e5e7eb" stroke-width="4"/><circle cx="80" cy="150" r="12" fill="#f472b6"/><path d="M70 150 L35 120 L15 125 M50 150 L30 120 L20 160" stroke="#db2777" stroke-width="10" fill="none" stroke-linejoin="round" stroke-linecap="round"/>`
-            },
-            walkfront: {
-                a: `<path d="M50 80 V140 M50 140 L45 190 M50 140 L55 190 M50 90 L60 110" stroke="#9ca3af" stroke-width="8" stroke-linecap="round"/><circle cx="50" cy="50" r="15" fill="#9ca3af"/><rect x="55" y="100" width="10" height="20" fill="#6b7280" rx="2"/><path d="M10 190 H90" stroke="#e5e7eb" stroke-width="4"/>`,
-                b: `<path d="M55 80 V140 M55 140 L40 190 M55 140 L70 190 M55 90 L65 110" stroke="#db2777" stroke-width="9" stroke-linecap="round"/><circle cx="55" cy="50" r="15" fill="#f472b6"/><rect x="60" y="100" width="10" height="20" fill="#4b5563" rx="2"/><path d="M10 190 H90" stroke="#e5e7eb" stroke-width="4"/>`
+            deadbug: {
+                a: `<circle cx="20" cy="120" r="10" class="head"/><path d="M30 120 H80 M45 120 V80 M65 120 V80" class="bone"/><circle cx="45" cy="120" r="4" class="joint"/><circle cx="65" cy="120" r="4" class="joint"/>`,
+                b: `<circle cx="20" cy="120" r="10" class="head"/><path d="M30 120 H80 M45 120 V150 M65 120 V90" class="bone-motion"/><circle cx="45" cy="120" r="4" class="joint"/><circle cx="65" cy="120" r="4" class="joint"/>`
             }
         };
 
-        function renderRoutine() {
-            const container = document.getElementById('rutina-container');
-            let html = '';
-
-            plan.forEach(dayInfo => {
-                html += `
-                <div class="mb-10">
-                    <div class="flex justify-between items-end mb-4 border-b-2 border-gray-100 pb-2">
-                        <h2 class="text-2xl font-800 flex items-center gap-2 text-gray-800">
-                            <div class="w-3 h-8 bg-${dayInfo.color} rounded-full"></div>
-                            ${dayInfo.day}
-                        </h2>
-                        <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">${dayInfo.focus}</span>
-                    </div>
-                `;
-
-                dayInfo.blocks.forEach(block => {
-                    html += `
-                    <div class="biserie-block">
-                        <h4 class="text-[10px] font-black text-${dayInfo.color} uppercase mb-5 tracking-[0.1em] border-b border-pink-50 pb-2 inline-block">${block.title}</h4>
-                        <div class="space-y-6">
-                            ${block.exercises.map(ex => `
-                                <div class="relative">
-                                    <div class="flex items-start justify-between">
-                                        <!-- Check y Título -->
-                                        <label class="flex items-start gap-4 cursor-pointer group flex-1">
-                                            <div class="mt-1">
-                                                <input type="checkbox" class="w-6 h-6 accent-pink-500 rounded-lg cursor-pointer transition">
-                                            </div>
-                                            <div class="flex-1">
-                                                <p class="ex-name text-[15px] font-bold text-gray-800 leading-tight group-hover:text-pink-600 transition">${ex.name}</p>
-                                                <p class="text-[10px] text-pink-400 font-extrabold uppercase mt-1 tracking-tighter">${ex.sets}</p>
-                                            </div>
-                                        </label>
-                                        
-                                        <!-- Botón Ver Guía -->
-                                        <button onclick='openModal(${JSON.stringify(ex)})' class="ml-2 bg-pink-50 text-pink-600 p-2.5 rounded-xl text-xs font-bold hover:bg-pink-100 transition flex flex-col items-center justify-center min-w-[50px]">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-                                            <span class="text-[8px] uppercase tracking-widest">Guía</span>
-                                        </button>
-                                    </div>
-                                    
-                                    <!-- Inputs de Registro -->
-                                    <div class="grid grid-cols-2 gap-3 mt-4 pl-10">
-                                        <div class="relative">
-                                            <span class="input-icon-label">PESO</span>
-                                            <input type="text" placeholder="lb/kg" class="form-input">
-                                        </div>
-                                        <div class="relative">
-                                            <span class="input-icon-label">REPS</span>
-                                            <input type="text" placeholder="logradas" class="form-input">
-                                        </div>
-                                    </div>
-                                </div>
-                            `).join('')}
+        function renderApp() {
+            const container = document.getElementById('app-content');
+            document.getElementById('display-fecha').innerText = new Date().toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            
+            routine.forEach(day => {
+                let html = `
+                <div class="bg-white rounded-[2.5rem] p-8 card-shadow border border-pink-50">
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <h2 class="text-2xl font-800 text-gray-900">${day.day}</h2>
+                            <p class="text-[10px] text-pink-500 font-black uppercase tracking-widest">${day.goal}</p>
                         </div>
+                        <span class="text-3xl text-pink-100">🌸</span>
                     </div>
-                    `;
+                    <div class="space-y-6">`;
+
+                day.exercises.forEach(ex => {
+                    html += `
+                    <div class="exercise-row pb-6 border-b border-gray-50 last:border-0 last:pb-0">
+                        <div class="flex justify-between items-start mb-3">
+                            <div class="cursor-pointer group" onclick='openModal(${JSON.stringify(ex)})'>
+                                <h4 class="text-[14px] font-bold text-gray-800 group-hover:text-pink-500 transition-colors">${ex.name}</h4>
+                                <span class="text-[10px] font-black text-pink-400 uppercase tracking-tighter">${ex.sets}</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <input type="number" placeholder="Kg" oninput="updateSummary()" data-ex="${ex.name}" class="w-14 bg-gray-50 border-none rounded-xl p-2 text-[11px] font-bold text-center focus:ring-1 focus:ring-pink-300">
+                                <input type="number" placeholder="Reps" oninput="updateSummary()" data-ex="${ex.name}" class="w-14 bg-gray-50 border-none rounded-xl p-2 text-[11px] font-bold text-center focus:ring-1 focus:ring-pink-300">
+                            </div>
+                        </div>
+                    </div>`;
                 });
-                html += `</div>`;
+
+                html += `</div></div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        function updateSummary() {
+            const inputs = document.querySelectorAll('input');
+            const summaryDiv = document.getElementById('tabla-resumen');
+            let data = {};
+
+            inputs.forEach(input => {
+                const name = input.getAttribute('data-ex');
+                if (!data[name]) data[name] = { kg: '', reps: '' };
+                if (input.placeholder === 'Kg') data[name].kg = input.value;
+                else data[name].reps = input.value;
             });
 
-            container.innerHTML = html;
+            let html = '';
+            for (let ex in data) {
+                if (data[ex].kg || data[ex].reps) {
+                    html += `
+                    <div class="flex justify-between items-center py-2 border-b border-pink-50">
+                        <span class="text-[11px] font-bold text-gray-700">${ex}</span>
+                        <span class="text-[11px] font-black text-pink-600">${data[ex].kg || 0}kg x ${data[ex].reps || 0}</span>
+                    </div>`;
+                }
+            }
+            summaryDiv.innerHTML = html || '<p class="text-center text-xs text-gray-400 italic">Llena los datos arriba para ver el resumen aquí...</p>';
         }
 
         function openModal(ex) {
             document.getElementById('modal-title').innerText = ex.name;
-            document.getElementById('modal-meta').innerText = ex.sets;
-            document.getElementById('modal-desc').innerText = ex.desc;
+            const tipsList = document.getElementById('modal-tips');
+            tipsList.innerHTML = ex.tips.map(t => `<li>✨ ${t}</li>`).join('');
             
-            // Render tips
-            const tipsContainer = document.getElementById('modal-tips');
-            tipsContainer.innerHTML = ex.safety.map(s => {
-                let text = s;
-                let boldPart = "";
-                if(s.includes(":")) {
-                    boldPart = s.split(":")[0] + ":";
-                    text = s.split(":")[1];
-                }
-                return `
-                <li class="flex items-start gap-2 text-[11px] text-gray-700 leading-relaxed font-medium">
-                    <span class="text-pink-500 mt-0.5">✔</span> 
-                    <span>${boldPart ? `<strong class="text-pink-600">${boldPart}</strong>` : ''} ${text}</span>
-                </li>`;
-            }).join('');
-
-            // Render SVGs (Posición A y Posición B)
-            const svgs = svgLibrary[ex.svgType] || svgLibrary['walk']; // Fallback
+            const g = graphics[ex.svg] || graphics.squat;
+            document.getElementById('svg-a').innerHTML = `<svg viewBox="0 0 100 200" class="w-full h-full">${g.a}</svg>`;
+            document.getElementById('svg-b').innerHTML = `<svg viewBox="0 0 100 200" class="w-full h-full">${g.b}</svg>`;
             
-            document.getElementById('svg-container-a').innerHTML = `
-                <svg viewBox="0 0 100 200" class="svg-figure">
-                    ${svgs.a}
-                </svg>
-            `;
-            
-            document.getElementById('svg-container-b').innerHTML = `
-                <svg viewBox="0 0 100 200" class="svg-figure">
-                    ${svgs.b}
-                </svg>
-            `;
-
             document.getElementById('modal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Evita scroll de fondo
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
@@ -378,8 +231,7 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Inicializar
-        renderRoutine();
+        renderApp();
     </script>
 </body>
 </html>
