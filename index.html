@@ -8,32 +8,19 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fffafb; color: #1f2937; }
-        
         .card-shadow { box-shadow: 0 10px 30px -5px rgba(244, 114, 182, 0.15); }
-        
-        /* Estilos de Siluetas */
-        .ghost-bone { stroke: #e5e7eb; stroke-width: 4; stroke-linecap: round; fill: none; stroke-dasharray: 4; }
-        .active-bone { stroke: #db2777; stroke-width: 5; stroke-linecap: round; fill: none; }
-        .joint { fill: #fff; stroke: #db2777; stroke-width: 2; }
-        .head { fill: #1f2937; }
-        .path-arrow { stroke: #f472b6; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
-
-        .btn-youtube {
-            background: #FF0000;
-            transition: transform 0.2s;
-        }
-        .btn-youtube:hover { transform: scale(1.02); }
-        
-        input::placeholder { color: #d1d5db; font-weight: 400; }
+        .biserie-tag { background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); }
+        .img-container { aspect-ratio: 1/1; overflow: hidden; border-radius: 1.5rem; background: #f3f4f6; display: flex; align-items: center; justify-content: center; }
+        .img-container img { width: 100%; height: 100%; object-fit: contain; }
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
     </style>
 </head>
 <body class="pb-24">
 
-    <!-- Encabezado Motivador -->
     <header class="p-10 text-center bg-white border-b border-pink-100 rounded-b-[50px] shadow-sm">
         <h1 class="text-3xl font-800 text-gray-900 tracking-tight">Plan de entrenamiento, <span class="text-pink-500 italic">amor</span> 🌸</h1>
         <div class="mt-4 max-w-sm mx-auto">
-            <p class="text-sm text-gray-600 font-medium leading-relaxed">
+            <p class="text-sm text-gray-600 font-medium leading-relaxed italic">
                 "Recuerda que el ejercicio te ayudará en tu salud física y mental, tú puedes, creo en ti..."
             </p>
         </div>
@@ -41,63 +28,56 @@
 
     <main class="max-w-md mx-auto p-6 space-y-10">
         
-        <!-- Guía de Respiración y Seguridad -->
-        <section class="bg-indigo-50 border border-indigo-100 rounded-[2rem] p-6">
-            <h3 class="text-indigo-900 font-800 text-xs uppercase tracking-widest mb-3 flex items-center gap-2">
-                <span>🧘‍♀️</span> Guía de Seguridad Vital
+        <section class="bg-indigo-50 border border-indigo-100 rounded-[2rem] p-6 text-[11px] text-indigo-800 space-y-2">
+            <h3 class="text-indigo-900 font-800 uppercase tracking-widest mb-3 flex items-center gap-2">
+                <span>🧘‍♀️</span> Método de Entrenamiento
             </h3>
-            <ul class="text-[11px] text-indigo-800 space-y-2 leading-tight">
-                <li>• <b>Respiración:</b> Inhala al bajar (relajar), exhala fuerte por la boca al hacer el esfuerzo (subir).</li>
-                <li>• <b>Sensación:</b> Debes sentir un "calorcito" o cansancio muscular, nunca un pinchazo.</li>
-                <li>• <b>¡ALERTA!:</b> Si sientes una punzada aguda, dolor en la cicatriz o presión excesiva abajo, <b>PARA</b>, respira profundo y reduce el rango de movimiento.</li>
-            </ul>
+            <p><b>Biseries:</b> Haz el ejercicio 1, luego el 2 sin descanso. Reposa 1 minuto al terminar ambos.</p>
+            <p>• <b>Respiración:</b> Exhala por la boca en el esfuerzo máximo.</p>
+            <p>• <b>Seguridad:</b> Si sientes dolor agudo o molestia en la cicatriz, detente de inmediato.</p>
         </section>
 
         <div id="app-content" class="space-y-12"></div>
 
-        <!-- CUADRO DE CAPTURA FINAL -->
         <div id="seccion-captura" class="bg-white border-4 border-pink-100 rounded-[3rem] p-8 card-shadow text-center">
-            <h3 class="font-800 text-xl text-gray-900 uppercase mb-2">Resumen de hoy</h3>
-            <p class="text-[11px] text-pink-500 font-bold mb-6">"Amor, acá toma un pantallazo para yo ir registrando tu progreso"</p>
+            <h3 class="font-800 text-xl text-gray-900 uppercase mb-2">Mi Progreso</h3>
+            <p class="text-[11px] text-pink-500 font-bold mb-6 italic">"amor, acá toma un pantallazo para yo ir registrando tu progreso"</p>
             
-            <div id="tabla-resumen" class="space-y-3 mb-8 text-left">
-                <!-- Se llena con JS -->
-            </div>
+            <div id="tabla-resumen" class="space-y-3 mb-8 text-left"></div>
 
             <div class="space-y-4 pt-6 border-t border-dashed border-pink-200">
                 <button onclick="window.print()" class="w-full bg-pink-500 text-white font-black py-4 rounded-2xl text-[12px] uppercase tracking-widest shadow-lg active:scale-95 transition-transform">
                     📸 Generar Reporte
                 </button>
-                <p class="text-xs text-gray-500 italic leading-relaxed px-4">
-                    "Recuerda que esto es un regalo que tu te das, disfrútalo, y exígete, te amo."
-                </p>
+                <div class="bg-pink-50 p-4 rounded-2xl border border-pink-100">
+                    <p class="text-[11px] text-pink-700 font-medium leading-relaxed italic">
+                        "Recuerda que esto es un regalo que tú te das, disfrútalo, y exígete, te amo."
+                    </p>
+                </div>
             </div>
         </div>
     </main>
 
-    <!-- Modal de Ejercicio -->
     <div id="modal" class="fixed inset-0 bg-gray-900/90 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
         <div class="bg-white w-full max-w-sm rounded-[3.5rem] overflow-hidden shadow-2xl">
             <div class="p-8 pb-2 flex justify-between items-center">
-                <h3 id="modal-title" class="font-800 text-2xl text-gray-900 tracking-tighter"></h3>
+                <h3 id="modal-title" class="font-800 text-xl text-gray-900 tracking-tighter uppercase"></h3>
                 <button onclick="closeModal()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 font-bold">✕</button>
             </div>
             
             <div class="p-8">
-                <!-- Visualización de Rango -->
-                <div class="bg-gray-50 rounded-[2.5rem] p-6 mb-6 border border-gray-100 relative">
-                    <span class="absolute top-4 left-6 text-[9px] font-black text-gray-400 uppercase">Rango de Movimiento</span>
-                    <div id="svg-display" class="h-48 w-full flex items-center justify-center"></div>
+                <div class="img-container mb-6 shadow-inner border border-gray-100">
+                    <img id="modal-img" src="" alt="Demostración">
                 </div>
 
-                <div class="space-y-4 h-48 overflow-y-auto pr-2 custom-scrollbar">
+                <div class="space-y-4 h-48 overflow-y-auto pr-2">
                     <div class="bg-pink-50 p-4 rounded-2xl">
-                        <h4 class="text-[10px] font-black text-pink-600 uppercase mb-2">¿Cómo se siente?</h4>
-                        <p id="modal-feel" class="text-xs text-gray-700 leading-relaxed"></p>
+                        <h4 class="text-[9px] font-black text-pink-600 uppercase mb-2 text-left">Sensación esperada</h4>
+                        <p id="modal-feel" class="text-xs text-gray-700 leading-relaxed text-left"></p>
                     </div>
                     <div class="bg-indigo-50 p-4 rounded-2xl">
-                        <h4 class="text-[10px] font-black text-indigo-600 uppercase mb-2">Tips Pro</h4>
-                        <ul id="modal-tips" class="text-xs text-gray-700 space-y-2"></ul>
+                        <h4 class="text-[9px] font-black text-indigo-600 uppercase mb-2 text-left">Tips de Danilo</h4>
+                        <ul id="modal-tips" class="text-xs text-gray-700 space-y-2 text-left"></ul>
                     </div>
                 </div>
             </div>
@@ -109,87 +89,97 @@
             {
                 day: "Lunes",
                 type: "workout",
-                goal: "Core & Glúteo",
-                exercises: [
-                    { name: "Puente de Glúteo", sets: "2x15", svg: "bridge", feel: "Debes sentir presión en los glúteos y parte de atrás de las piernas. No debe doler la espalda baja.", tips: ["Empuja con los talones", "No subas demasiado la pelvis", "Exhala al subir"] },
-                    { name: "Deadbug Controlado", sets: "2x10", svg: "deadbug", feel: "Debes sentir el abdomen profundo (como un corsé). Si tu espalda se arquea, detente.", tips: ["Pega el ombligo al piso", "Mueve solo un brazo a la vez si es difícil", "Lento es mejor"] },
-                    { name: "Sentadilla a Silla", sets: "2x12", svg: "squat", feel: "Carga el peso en los talones. Las rodillas deben seguir la línea de tus pies.", tips: ["Baja en 3 segundos", "Toca la silla y sube de inmediato", "No cierres las rodillas"] },
-                    { name: "Bird-Dog", sets: "2x10", svg: "birddog", feel: "Sentirás trabajo en glúteo y estabilidad en hombros.", tips: ["Imagina que alargas el cuerpo", "No mires al frente, mira al piso"] },
-                    { name: "Acarreo (Farmer Walk)", sets: "2x40s", svg: "carry", feel: "Todo el cuerpo debe estar firme. Sentirás los brazos y el core trabajando.", tips: ["Hombros abajo y atrás", "Pasos muy pequeños", "Respira corto y constante"] }
+                goal: "Core & Tren Inferior",
+                blocks: [
+                    {
+                        tag: "Biserie A",
+                        exercises: [
+                            { name: "Hipthrust", sets: "3x15", img: "image_6b32d9.png", feel: "Contracción intensa en glúteos. Mantén el mentón hacia el pecho.", tips: ["Empuja con los talones", "Aprieta glúteos arriba 1 seg"] },
+                            { name: "Deadbug Controlado", sets: "3x10", img: "image_6b2e9b.png", feel: "Abdomen firme, espalda siempre pegada al suelo.", tips: ["Baja brazo y pierna contraria lento", "Controla la respiración"] }
+                        ]
+                    },
+                    {
+                        tag: "Biserie B",
+                        exercises: [
+                            { name: "Sentadilla a Silla", sets: "3x12", img: "image_6b363c.png", feel: "Trabajo en muslos. Peso equilibrado en pies.", tips: ["Toca la silla suavemente y sube", "Saca el pecho al bajar"] },
+                            { name: "Bird-Dog", sets: "3x10", img: "image_6b3985.png", feel: "Estabilidad lumbar y equilibrio.", tips: ["No arquees la espalda", "Mira al suelo para alinear el cuello"] }
+                        ]
+                    },
+                    {
+                        tag: "Final",
+                        exercises: [
+                            { name: "Acarreo (2 Mancuernas)", sets: "2x40s", img: "image_6b4585.png", feel: "Postura erguida y core estable.", tips: ["Mancuerna en cada mano", "Aprieta abdomen y glúteo", "Cabeza levemente hacia atrás"] }
+                        ]
+                    }
                 ]
             },
             {
                 day: "Martes",
                 type: "recovery",
-                title: "Movilidad y Suelo Pélvico",
+                title: "Movilidad & Suelo Pélvico",
                 links: [
                     { name: "Cadera y Rodilla", url: "https://www.youtube.com/watch?v=OGJWlGhToWQ&t=475s" },
-                    { name: "Suelo Pélvico Postparto", url: "https://www.youtube.com/watch?v=6YhS23I0v-w" }
+                    { name: "Suelo Pélvico", url: "https://www.youtube.com/watch?v=6YhS23I0v-w" }
                 ]
             },
             {
                 day: "Miércoles",
                 type: "workout",
                 goal: "Postura & Fuerza",
-                exercises: [
-                    { name: "Paso Lateral", sets: "2x15", svg: "sidestep", feel: "Sentirás quemazón en los laterales de la cadera.", tips: ["Mantén rodillas flexionadas", "No arrastres los pies"] },
-                    { name: "Wall Slides", sets: "2x12", svg: "wall", feel: "Sentirás que tus hombros 'se abren'. Ayuda mucho a la postura de lactancia.", tips: ["No despegues la espalda de la pared", "Codos siempre pegados"] },
-                    { name: "Remo con Banda", sets: "2x15", svg: "row", feel: "Sentirás las 'paletas' de la espalda juntándose.", tips: ["Saca el pecho", "Codos pasan rozando las costillas"] },
-                    { name: "Step Up Bajo", sets: "2x10", svg: "step", feel: "Trabajo en el cuádriceps (muslo).", tips: ["No te impulses con el pie de abajo", "Mira un punto fijo"] }
+                blocks: [
+                    {
+                        tag: "Biserie A",
+                        exercises: [
+                            { name: "Paso Lateral", sets: "3x15", img: "image_6ba2fd.jpg", feel: "Sentirás el trabajo en los laterales de la cadera.", tips: ["Mantén rodillas flexionadas", "No juntes los pies del todo"] },
+                            { name: "Wall Slides", sets: "3x12", img: "image_6bb542.png", feel: "Movilidad de hombros. Espalda contra la pared.", tips: ["Codos y manos pegados a la pared", "Sube sin despegar la espalda"] }
+                        ]
+                    },
+                    {
+                        tag: "Biserie B",
+                        exercises: [
+                            { name: "Remo con Banda", sets: "3x15", img: "image_6bb9be.png", feel: "Espalda media. Junta las paletas atrás.", tips: ["Hombros lejos de las orejas", "Codos hacia atrás"] },
+                            { name: "Escalón con MC", sets: "3x10", img: "image_6bbd44.png", feel: "Fuerza en una sola pierna.", tips: ["Usa mancuernas para balance", "Sube derecho, no te inclines"] }
+                        ]
+                    }
                 ]
             },
             {
                 day: "Jueves",
                 type: "recovery",
-                title: "Día de Alivio y Estiramiento",
+                title: "Día de Alivio",
                 links: [
-                    { name: "Movilidad Total", url: "https://www.youtube.com/watch?v=OGJWlGhToWQ&t=475s" },
-                    { name: "Relajación Pélvica", url: "https://www.youtube.com/watch?v=6YhS23I0v-w" }
+                    { name: "Estiramientos Suaves", url: "https://www.youtube.com/watch?v=OGJWlGhToWQ&t=475s" },
+                    { name: "Respiración Diafragmática", url: "https://www.youtube.com/watch?v=6YhS23I0v-w" }
                 ]
             },
             {
                 day: "Viernes",
                 type: "workout",
-                goal: "Final de Semana",
-                exercises: [
-                    { name: "Copenhague Suave", sets: "2x15s", svg: "copen", feel: "Sentirás la entrepierna trabajando fuerte.", tips: ["Mantén la rodilla de abajo apoyada", "Cuerpo en línea recta"] },
-                    { name: "Plancha Inclinada", sets: "2x20s", svg: "plank", feel: "Todo el abdomen debe estar tenso. No dejes caer la cadera.", tips: ["Apóyate en algo alto (sofá/mesa)", "Aprieta glúteos"] },
-                    { name: "Elevación de Talones", sets: "2x20", svg: "calves", feel: "Sentirás los gemelos/pantorrillas.", tips: ["Sube explosivo", "Baja muy lento"] },
-                    { name: "Facepull", sets: "2x15", svg: "face", feel: "Trabajo en la parte posterior del hombro.", tips: ["Banda a la altura de los ojos", "Separa los puños al final"] },
-                    { name: "Acarreo Maleta", sets: "2x40s", svg: "carry", feel: "Sentirás un lado del abdomen resistiendo el peso.", tips: ["No te inclines", "Cambia de mano a los 20s"] }
+                goal: "Estabilidad Final",
+                blocks: [
+                    {
+                        tag: "Biserie A",
+                        exercises: [
+                            { name: "Copenhague Suave", sets: "3x15s", img: "image_6b4d1d.jpg", feel: "Parte interna del muslo activa.", tips: ["Cuerpo alineado", "Apoya la rodilla en sofá"] },
+                            { name: "Plancha Inclinada", sets: "3x20s", img: "image_6b4585.png", feel: "Abdomen fuerte. Sin dolor lumbar.", tips: ["Usa una mesa o sofá estable", "Aprieta glúteos"] }
+                        ]
+                    },
+                    {
+                        tag: "Biserie B",
+                        exercises: [
+                            { name: "Facepull (Banda)", sets: "3x15", img: "image_6bb9be.png", feel: "Hombros y espalda alta.", tips: ["Lleva la banda hacia tu cara", "Abre los codos"] },
+                            { name: "Elevación de Talones", sets: "3x20", img: "image_6b363c.png", feel: "Trabajo en pantorrillas.", tips: ["Sube lento y controlado", "Sostente de algo para equilibrio"] }
+                        ]
+                    },
+                    {
+                        tag: "Final",
+                        exercises: [
+                            { name: "Acarreo (2 Mancuernas)", sets: "2x40s", img: "image_6b4585.png", tips: ["Pasos firmes", "Apretar abdomen y glúteo", "Cabeza levemente hacia atrás"] }
+                        ]
+                    }
                 ]
             }
         ];
-
-        const graphics = {
-            bridge: `<svg viewBox="0 0 100 120" class="w-full h-full"><defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#f472b6"/></marker></defs>
-                <path d="M10 100 H90" class="ghost-bone"/>
-                <circle cx="20" cy="90" r="8" class="head" opacity="0.3"/>
-                <path d="M20 100 L55 100 L90 100" class="ghost-bone"/>
-                <path d="M20 100 L55 60 L90 100" class="active-bone"/>
-                <circle cx="55" cy="60" r="4" class="joint"/>
-                <path d="M55 95 V70" class="path-arrow" marker-end="url(#arrowhead)"/>
-            </svg>`,
-            squat: `<svg viewBox="0 0 100 120" class="w-full h-full">
-                <path d="M50 20 L50 90 L50 115" class="ghost-bone"/>
-                <circle cx="50" cy="15" r="8" class="head" opacity="0.3"/>
-                <path d="M50 55 L35 85 L35 115" class="active-bone"/>
-                <circle cx="50" cy="55" r="4" class="joint"/>
-                <circle cx="35" cy="85" r="4" class="joint"/>
-                <path d="M45 40 Q30 60 30 80" class="path-arrow"/>
-            </svg>`,
-            deadbug: `<svg viewBox="0 0 100 120" class="w-full h-full">
-                <path d="M20 80 H80 M40 80 V50 M60 80 V50" class="ghost-bone"/>
-                <path d="M20 80 H80 M40 80 V105 M60 80 V55" class="active-bone"/>
-                <circle cx="40" cy="80" r="3" class="joint"/><circle cx="60" cy="80" r="3" class="joint"/>
-            </svg>`,
-            carry: `<svg viewBox="0 0 100 120" class="w-full h-full">
-                <path d="M50 20 L50 110 M40 50 L40 90" class="active-bone"/>
-                <rect x="35" y="90" width="10" height="15" fill="#db2777" rx="2"/>
-                <circle cx="50" cy="15" r="8" class="head"/>
-                <path d="M60 80 L70 100 M60 80 L50 100" class="active-bone" stroke-width="3"/>
-            </svg>`
-        };
 
         function render() {
             const container = document.getElementById('app-content');
@@ -197,47 +187,46 @@
                 if(day.type === 'workout') {
                     let html = `
                     <div class="bg-white rounded-[3rem] p-8 card-shadow border border-pink-50">
-                        <div class="flex justify-between items-center mb-6">
-                            <div>
-                                <h2 class="text-2xl font-800 text-gray-900">${day.day}</h2>
-                                <p class="text-[10px] text-pink-500 font-black uppercase tracking-widest">${day.goal}</p>
-                            </div>
-                            <span class="text-3xl">💪</span>
+                        <div class="mb-8">
+                            <h2 class="text-2xl font-800 text-gray-900">${day.day}</h2>
+                            <p class="text-[10px] text-pink-500 font-black uppercase tracking-widest">${day.goal}</p>
                         </div>
-                        <div class="space-y-5">`;
+                        <div class="space-y-10">`;
 
-                    day.exercises.forEach(ex => {
+                    day.blocks.forEach(block => {
                         html += `
-                        <div class="pb-5 border-b border-gray-50 last:border-0 last:pb-0">
-                            <div class="flex justify-between items-start mb-2">
-                                <div class="cursor-pointer" onclick='openModal(${JSON.stringify(ex)})'>
-                                    <h4 class="text-[13px] font-bold text-gray-800">${ex.name}</h4>
-                                    <span class="text-[10px] font-black text-pink-400 uppercase">${ex.sets}</span>
+                        <div class="space-y-4 text-left">
+                            <span class="biserie-tag text-white text-[9px] font-black px-4 py-1.5 rounded-full uppercase tracking-tighter">${block.tag}</span>
+                            <div class="space-y-5 pt-2">`;
+                        
+                        block.exercises.forEach(ex => {
+                            html += `
+                            <div class="flex justify-between items-center pb-4 border-b border-gray-50 last:border-0 last:pb-0">
+                                <div class="cursor-pointer group flex-1 text-left" onclick='openModal(${JSON.stringify(ex)})'>
+                                    <h4 class="text-[13px] font-bold text-gray-800 group-hover:text-pink-500 transition-colors">${ex.name}</h4>
+                                    <span class="text-[9px] font-black text-pink-400 uppercase tracking-tighter">${ex.sets}</span>
                                 </div>
                                 <div class="flex gap-2">
-                                    <input type="number" placeholder="Kg" oninput="updateSummary()" data-ex="${ex.name}" class="w-12 bg-gray-50 rounded-xl p-2 text-[10px] font-bold text-center">
-                                    <input type="number" placeholder="Reps" oninput="updateSummary()" data-ex="${ex.name}" class="w-12 bg-gray-50 rounded-xl p-2 text-[10px] font-bold text-center">
+                                    <input type="number" placeholder="Kg" oninput="updateSummary()" data-ex="${ex.name}" class="w-12 bg-gray-50 rounded-xl p-2.5 text-[10px] font-bold text-center border-none">
+                                    <input type="number" placeholder="Reps" oninput="updateSummary()" data-ex="${ex.name}" class="w-12 bg-gray-50 rounded-xl p-2.5 text-[10px] font-bold text-center border-none">
                                 </div>
-                            </div>
-                        </div>`;
+                            </div>`;
+                        });
+                        html += `</div></div>`;
                     });
                     html += `</div></div>`;
                     container.innerHTML += html;
                 } else {
                     let html = `
                     <div class="bg-indigo-900 rounded-[3rem] p-8 shadow-xl text-white">
-                        <div class="flex justify-between items-center mb-4">
-                            <h2 class="text-2xl font-800">${day.day}</h2>
-                            <span class="text-3xl">🌊</span>
-                        </div>
-                        <p class="text-[11px] text-indigo-200 font-bold uppercase mb-6 tracking-widest">${day.title}</p>
-                        <div class="grid grid-cols-1 gap-3">`;
-                    
+                        <h2 class="text-2xl font-800 mb-1">${day.day}</h2>
+                        <p class="text-[10px] text-indigo-200 font-bold uppercase mb-6 tracking-widest">${day.title}</p>
+                        <div class="space-y-3">`;
                     day.links.forEach(link => {
                         html += `
-                        <a href="${link.url}" target="_blank" class="btn-youtube flex items-center justify-between p-4 rounded-2xl no-underline">
-                            <span class="text-xs font-bold">${link.name}</span>
-                            <span class="text-[10px] bg-white/20 px-2 py-1 rounded-full uppercase">Ver Video</span>
+                        <a href="${link.url}" target="_blank" class="bg-white/10 flex items-center justify-between p-5 rounded-3xl no-underline border border-white/5 hover:bg-white/20 transition-all active:scale-95">
+                            <span class="text-[12px] font-bold">${link.name}</span>
+                            <span class="text-[9px] bg-red-600 px-3 py-1.5 rounded-full font-black uppercase tracking-tighter">YouTube</span>
                         </a>`;
                     });
                     html += `</div></div>`;
@@ -256,24 +245,23 @@
                 if(input.placeholder === 'Kg') data[name].kg = input.value;
                 else data[name].reps = input.value;
             });
-
             let html = '';
             for(let ex in data) {
                 if(data[ex].kg || data[ex].reps) {
-                    html += `<div class="flex justify-between py-2 border-b border-pink-50 text-[11px]">
+                    html += `<div class="flex justify-between py-2.5 border-b border-pink-50 text-[11px]">
                         <span class="font-bold text-gray-600">${ex}</span>
                         <span class="font-black text-pink-500">${data[ex].kg || 0}kg x ${data[ex].reps || 0}</span>
                     </div>`;
                 }
             }
-            summaryDiv.innerHTML = html || '<p class="text-center text-xs text-gray-400 italic">Aquí aparecerá tu progreso...</p>';
+            summaryDiv.innerHTML = html || '<p class="text-center text-xs text-gray-400 italic">Los datos aparecerán aquí...</p>';
         }
 
         function openModal(ex) {
             document.getElementById('modal-title').innerText = ex.name;
-            document.getElementById('modal-feel').innerText = ex.feel;
-            document.getElementById('modal-tips').innerHTML = ex.tips.map(t => `<li>• ${t}</li>`).join('');
-            document.getElementById('svg-display').innerHTML = graphics[ex.svg] || graphics.squat;
+            document.getElementById('modal-feel').innerText = ex.feel || "Movimiento controlado.";
+            document.getElementById('modal-tips').innerHTML = (ex.tips || []).map(t => `<li>• ${t}</li>`).join('');
+            document.getElementById('modal-img').src = ex.img;
             document.getElementById('modal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
