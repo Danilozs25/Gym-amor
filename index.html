@@ -10,11 +10,46 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fffafb; color: #1f2937; }
         .card-shadow { box-shadow: 0 10px 30px -5px rgba(244, 114, 182, 0.15); }
         .biserie-tag { background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); }
-        .img-container { width: 100%; aspect-ratio: 1/1; overflow: hidden; border-radius: 2rem; background: #f3f4f6; display: flex; align-items: center; justify-content: center; }
-        .img-container img { width: 100%; height: 100%; object-fit: contain; }
+        .img-container { 
+            width: 100%; 
+            aspect-ratio: 1/1; 
+            overflow: hidden; 
+            border-radius: 2rem; 
+            background: #f3f4f6; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+        }
+        .img-container img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; 
+            transition: transform 0.2s ease;
+        }
+        .placeholder-img {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #eef2ff;
+            color: #4f46e5;
+            font-weight: bold;
+            text-align: center;
+            font-size: 14px;
+            padding: 1rem;
+        }
         input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         .custom-scrollbar::-webkit-scrollbar { width: 5px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #fbcfe8; border-radius: 10px; }
+        .exercise-item {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .exercise-item:hover {
+            transform: translateX(4px);
+        }
     </style>
 </head>
 <body class="pb-24">
@@ -30,17 +65,24 @@
 
     <main class="max-w-md mx-auto p-6 space-y-10">
         
-        <!-- Bloque de instrucciones -->
-        <section class="bg-indigo-50 border border-indigo-100 rounded-[2.5rem] p-7 text-[11px] text-indigo-800 space-y-3">
-            <h3 class="text-indigo-900 font-800 uppercase tracking-widest flex items-center gap-2">
-                <span>📖</span> ¿Cómo leer tu rutina?
+        <!-- Bloque de instrucciones MEJORADO -->
+        <section class="bg-indigo-50 border border-indigo-100 rounded-[2.5rem] p-7 text-indigo-800 space-y-4">
+            <h3 class="text-indigo-900 font-800 uppercase tracking-widest flex items-center gap-2 text-sm">
+                <span>📖</span> Método de entrenamiento
             </h3>
-            <p>He organizado esto en <b>Biseries</b> para que sea más dinámico:</p>
-            <ul class="space-y-1 list-disc list-inside">
-                <li>Haz el primer ejercicio de la biserie.</li>
-                <li>Pasa al segundo ejercicio <b>sin descanso</b>.</li>
-                <li>Al terminar ambos, descansa 1 minuto y repite.</li>
-            </ul>
+            <p class="text-[12px] leading-relaxed"><b>Biseries:</b> realiza el primer ejercicio, luego el segundo sin descanso. Descansa 1 minuto y repite 3 veces (salvo que se indique otro número).</p>
+            <div class="border-l-4 border-pink-400 pl-4 text-[11px] space-y-1 italic">
+                <p>✨ <b>Para tu recuperación postparto:</b></p>
+                <p>• Escucha a tu cuerpo: si sientes dolor en la espalda baja o rodillas, <b>detente</b> y revisa tu técnica.</p>
+                <p>• Activa siempre el suelo pélvico y el abdomen antes de cada movimiento (como si fueras a cerrar un corsé).</p>
+                <p>• No fuerces el arco lumbar; mantén la pelvis neutra especialmente en puentes y sentadillas.</p>
+                <p>• La progresión es la clave: empieza con 2 series y aumenta cuando domines la técnica sin molestias.</p>
+                <p>• Respira: exhala en el esfuerzo, inhala en la vuelta. Nunca contengas la respiración.</p>
+                <p>• Si usas peso, que sea ligero; prioriza la calidad del movimiento sobre la cantidad de kilos.</p>
+            </div>
+            <div class="bg-pink-100 p-3 rounded-xl text-[11px] text-pink-800">
+                💡 <b>Tips adicionales:</b> Realiza estos ejercicios con ropa cómoda y ten a la mano una banda elástica si lo deseas. El descanso entre biseries es de 60 segundos. ¡Hidrátate bien!
+            </div>
         </section>
 
         <div id="app-content" class="space-y-12"></div>
@@ -66,16 +108,16 @@
     </main>
 
     <!-- Modal con Detalle -->
-    <div id="modal" class="fixed inset-0 bg-gray-900/95 backdrop-blur-md z-50 flex items-center justify-center hidden p-4">
-        <div class="bg-white w-full max-w-sm rounded-[3.5rem] overflow-hidden shadow-2xl border border-pink-50">
+    <div id="modal" class="fixed inset-0 bg-gray-900/95 backdrop-blur-md z-50 flex items-center justify-center hidden p-4 transition-all">
+        <div class="bg-white w-full max-w-sm rounded-[3.5rem] overflow-hidden shadow-2xl border border-pink-50 animate-scale-in">
             <div class="p-8 pb-4 flex justify-between items-center border-b border-gray-50">
                 <h3 id="modal-title" class="font-800 text-xl text-gray-900 tracking-tighter uppercase"></h3>
-                <button onclick="closeModal()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 font-bold hover:bg-gray-200">✕</button>
+                <button onclick="closeModal()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 font-bold hover:bg-gray-200 transition-colors">✕</button>
             </div>
             
-            <div class="p-8">
-                <div class="img-container mb-6 shadow-md">
-                    <img id="modal-img" src="" alt="Demostración">
+            <div class="p-8 pt-4">
+                <div class="img-container mb-6 shadow-md bg-white border border-gray-100" id="modal-img-container">
+                    <img id="modal-img" src="" alt="Demostración del ejercicio" style="width:100%; height:100%; object-fit:contain;">
                 </div>
 
                 <div class="space-y-5 h-64 overflow-y-auto pr-3 custom-scrollbar text-left">
@@ -85,7 +127,7 @@
                     </div>
                     <div class="bg-indigo-50 p-5 rounded-[2rem]">
                         <h4 class="text-[10px] font-black text-indigo-600 uppercase mb-2 tracking-widest">Tips de Danilo</h4>
-                        <ul id="modal-tips" class="text-[11px] text-gray-700 space-y-2"></ul>
+                        <ul id="modal-tips" class="text-[11px] text-gray-700 space-y-2 list-disc list-inside"></ul>
                     </div>
                 </div>
             </div>
@@ -93,6 +135,52 @@
     </div>
 
     <script>
+        // ============================================================
+        // MAPA DE IMÁGENES REALES (REEMPLAZAR CON TUS URLs)
+        // ============================================================
+        // Aquí debes colocar las rutas de las imágenes correctas para cada ejercicio.
+        // Si no tienes la imagen, el código mostrará un placeholder descriptivo.
+        const EXERCISE_IMAGES = {
+            "Hipthrust": "https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Bodyweight-Glute-Bridge_600x600.png?v=1655224288",   
+            "Deadbug Controlado": "https://www.gofitnessplan.com/images/exercises/mixed/dead-bug.jpg",
+            "Sentadilla a Silla": "https://cdn.shopify.com/s/files/1/0083/4630/4597/files/Fitness_-_Exercises_To_Strengthen_Glutes_Squats_1_1024x1024.jpg?v=1673232026",
+            "Bird-Dog": "https://scontent.feoh4-4.fna.fbcdn.net/v/t1.6435-9/62455439_1084684478385610_3620793585286250496_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=108&ccb=1-7&_nc_sid=0327a3&_nc_eui2=AeHIjWDMMjgEYFFZqRdY6LhF_X1YKTDOFTT9fVgpMM4VNDPz64stl-PQhdJPvsBGy7o-250nIZXsLIlne32eWEA-&_nc_ohc=I-KUeUE3PZoQ7kNvwHmhyKc&_nc_oc=AdqVFCQSelnLAbRm0gPG4W4VbR8bb60_--1WQnuUAfhXgeIYTOzVb4zwCxazMXh6PS3JYtAW15hxLo2jMHm21qYO&_nc_zt=23&_nc_ht=scontent.feoh4-4.fna&_nc_gid=8nbwD47HkoG_cDnQXbd42A&_nc_ss=7a32e&oh=00_AfwqcbV8V0x7Zy_rRcdTioYbLlYLAnl6-ykNTLzLZF7vcw&oe=69ED82B5",
+            "Acarreo (2 Mancuernas)": "https://www.hsefitness.com/wp-content/uploads/2024/11/Standing-Dumbbell-Farmers-Walk-600x230.png.webp",
+            "Paso Lateral": "https://thumbs.dreamstime.com/b/mujer-haciendo-ejercicio-de-pasos-laterales-banda-resistencia-ilustraci%C3%B3n-vectorial-plana-aislada-en-fondo-blanco-224774169.jpg?w=768",
+            "Wall Slides": "https://s3assets.skimble.com/assets/2412859/image_iphone.jpg",
+            "Remo con Banda": "https://assets.grooveapps.com/images/5f42b0507141fd00375f3799/1628159383_posici%C3%B3n%20correcta%20del%20remo%20con%20banda%20el%C3%A1stica.png",
+            "Escalón con MC": "https://mejorconsalud.as.com/wp-content/uploads/2026/01/step-up-frontal.jpg?auto=format%2Ccompress&quality=75&width=640&height=360&fit=cover&gravity=center&sharp=true&progressive=true",
+            "Copenhague Suave": "https://scontent.feoh4-3.fna.fbcdn.net/v/t39.30808-6/476754403_7816077278517154_3303775323210254560_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=100&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeG6GjbtQPXqUyBTCXnchBTL6SJraEJiTxXpImtoQmJPFZHxOX7ZRlEu2ndJJA-ZnRXkkYg4bJ0tMbl5rUMZTYC7&_nc_ohc=kbYXJHdFGj8Q7kNvwE9wT1d&_nc_oc=AdqZJOFqDTdluweQ_DI4ABAjRjxGFYuMYuRBJwXZZ0Lzus6odf7sY6kgFvH8xhtQ_kSli2fQBBx6rZQcw4k_-210&_nc_zt=23&_nc_ht=scontent.feoh4-3.fna&_nc_gid=v6JRL7X6QgG8R8vFtnG3vg&_nc_ss=7a32e&oh=00_Afwalg3KmrqXYZFDtN37rEJy1lznq22_cM6RCa-4NLA6oQ&oe=69CBC25D",
+            "Plancha Inclinada": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVv6ZLTiov_vib9nSdadqUSkfmCAS_TMM6zenFrG7pbw&s",
+            "Facepull (Banda)": "data:image/png;base64,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",
+            "Elevación de Talones": "https://eresfitness.com/wp-content/uploads/Levantamiento-de-pantorrillas-en-maquina-Costurera.webp",
+            "Acarreo Final": "https://www.hsefitness.com/wp-content/uploads/2024/11/Standing-Dumbbell-Farmers-Walk-600x230.png.webp"
+        };
+
+        // Función para obtener la imagen o un placeholder personalizado
+        function getImageForExercise(exerciseName) {
+            const realUrl = EXERCISE_IMAGES[exerciseName];
+            if (realUrl && realUrl.trim() !== "") {
+                return realUrl;
+            }
+            // Placeholder con información del ejercicio
+            // Creamos un canvas en memoria o retornamos una imagen generada con texto
+            // Como alternativa, devolvemos un data URL con SVG
+            let extraInfo = "";
+            if (exerciseName === "Hipthrust") extraInfo = " (peso corporal)";
+            if (exerciseName.includes("Acarreo")) extraInfo = " (dos mancuernas)";
+            const svg = `
+            <svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="400" fill="#eef2ff" />
+                <text x="200" y="180" font-size="20" text-anchor="middle" fill="#4f46e5" font-weight="bold">${exerciseName}${extraInfo}</text>
+                <text x="200" y="240" font-size="14" text-anchor="middle" fill="#6366f1">🔜 Imagen próxima</text>
+                <text x="200" y="280" font-size="12" text-anchor="middle" fill="#6366f1">(reemplázala en el código)</text>
+            </svg>
+            `;
+            return "data:image/svg+xml," + encodeURIComponent(svg);
+        }
+
+        // Datos de la rutina
         const routine = [
             {
                 day: "Lunes",
@@ -103,12 +191,12 @@
                         tag: "Biserie A",
                         exercises: [
                             { 
-                                name: "Hipthrust", sets: "3x15", img: "image_6b32d9.png", 
-                                desc: "Apoya la parte superior de tu espalda en un sofá o banca. Con los pies apoyados al ancho de hombros, baja la cadera y elévala empujando fuerte con los talones. Arriba debes formar una línea recta.",
+                                name: "Hipthrust", sets: "3x15", 
+                                desc: "Apoya la parte superior de tu espalda en un sofá o banca. Con los pies apoyados al ancho de hombros, baja la cadera y elévala empujando fuerte con los talones. Arriba debes formar una línea recta. Realízalo solo con peso corporal.",
                                 tips: ["No mires al techo, mira siempre hacia adelante", "Aprieta glúteos fuerte al subir", "Inhala al bajar, exhala al subir"] 
                             },
                             { 
-                                name: "Deadbug Controlado", sets: "3x10", img: "image_6b2e9b.png", 
+                                name: "Deadbug Controlado", sets: "3x10", 
                                 desc: "Boca arriba, levanta piernas y brazos. Baja brazo y pierna contraria lentamente hacia el suelo. El secreto es que tu espalda baja nunca se despegue del piso.",
                                 tips: ["Mueve las extremidades muy lento", "Mantén el abdomen apretado", "Si duele la espalda, no bajes tanto la pierna"] 
                             }
@@ -118,12 +206,12 @@
                         tag: "Biserie B",
                         exercises: [
                             { 
-                                name: "Sentadilla a Silla", sets: "3x12", img: "image_6b363c.png", 
+                                name: "Sentadilla a Silla", sets: "3x12", 
                                 desc: "Párate derecha frente a una silla. Baja la cadera como si te fueras a sentar, manteniendo el pecho afuera. Toca la silla levemente y vuelve a subir.",
                                 tips: ["El peso va en los talones", "No dejes que las rodillas se cierren", "Saca el pecho siempre"] 
                             },
                             { 
-                                name: "Bird-Dog", sets: "3x10", img: "image_6b3985.png", 
+                                name: "Bird-Dog", sets: "3x10", 
                                 desc: "En cuatro apoyos, estira brazo y pierna contraria. Debes quedar como una mesa larga y recta. Vuelve al centro y cambia.",
                                 tips: ["Mira al piso para no lastimar el cuello", "No gires la cadera", "Mantén el equilibrio apretando el core"] 
                             }
@@ -133,7 +221,7 @@
                         tag: "Cierre",
                         exercises: [
                             { 
-                                name: "Acarreo (2 Mancuernas)", sets: "2x40s", img: "image_6b4585.png", 
+                                name: "Acarreo (2 Mancuernas)", sets: "2x40s", 
                                 desc: "Camina con una mancuerna en cada mano. Debes mantener una postura perfecta, como si te estuvieran halando de la cabeza hacia arriba.",
                                 tips: ["Aprieta glúteos y abdomen mientras caminas", "Cabeza levemente hacia atrás", "Pasos firmes y controlados"] 
                             }
@@ -159,12 +247,12 @@
                         tag: "Biserie A",
                         exercises: [
                             { 
-                                name: "Paso Lateral", sets: "3x15", img: "image_6ba2fd.jpg", 
+                                name: "Paso Lateral", sets: "3x15", 
                                 desc: "Con rodillas un poco flexionadas, da pasos laterales controlados. Si tienes banda, ponla arriba de tus rodillas.",
                                 tips: ["No juntes los pies del todo para mantener tensión", "Puntas de pies siempre al frente", "No te endereces del todo"] 
                             },
                             { 
-                                name: "Wall Slides", sets: "3x12", img: "image_6bb542.png", 
+                                name: "Wall Slides", sets: "3x12", 
                                 desc: "Pégate a la pared. Con codos y manos tocando la pared, deslízalos hacia arriba y abajo simulando una 'W' y una 'I'.",
                                 tips: ["Mantén toda la espalda contra la pared", "No dejes que los codos se despeguen", "Movimiento suave"] 
                             }
@@ -174,12 +262,12 @@
                         tag: "Biserie B",
                         exercises: [
                             { 
-                                name: "Remo con Banda", sets: "3x15", img: "image_6bb9be.png", 
+                                name: "Remo con Banda", sets: "3x15", 
                                 desc: "Sujeta la banda y tira de ella llevando los codos hacia atrás, pegados a tus costados. Siente cómo se juntan las paletas de tu espalda.",
                                 tips: ["Hombros abajo, no los subas a las orejas", "Saca el pecho", "Aprieta la espalda atrás"] 
                             },
                             { 
-                                name: "Escalón con MC", sets: "3x10", img: "image_6bbd44.png", 
+                                name: "Escalón con MC", sets: "3x10", 
                                 desc: "Sube un pie a un escalón. Sube todo tu cuerpo usando solo la fuerza de esa pierna. Baja con mucho control.",
                                 tips: ["Pisa con toda la planta del pie", "No te impulses con el pie de atrás", "Usa las mancuernas para equilibrio"] 
                             }
@@ -204,12 +292,12 @@
                         tag: "Biserie A",
                         exercises: [
                             { 
-                                name: "Copenhague Suave", sets: "3x15s", img: "image_6b4d1d.jpg", 
+                                name: "Copenhague Suave", sets: "3x15s", 
                                 desc: "Apoya la rodilla de la pierna superior en un sofá. Mantén tu cuerpo recto en el aire apoyada en tu antebrazo.",
                                 tips: ["Siente el trabajo en la parte interna del muslo", "Cuerpo recto como una flecha", "Respira lento"] 
                             },
                             { 
-                                name: "Plancha Inclinada", sets: "3x20s", img: "image_6b4585.png", 
+                                name: "Plancha Inclinada", sets: "3x20s", 
                                 desc: "Apoya manos en una superficie alta. Mantén el cuerpo recto apretando abdomen y glúteos. Es una plancha pero más segura para tu abdomen.",
                                 tips: ["No dejes que la cadera se caiga", "Aprieta los glúteos fuerte", "Empuja el suelo con las manos"] 
                             }
@@ -219,12 +307,12 @@
                         tag: "Biserie B",
                         exercises: [
                             { 
-                                name: "Facepull (Banda)", sets: "3x15", img: "image_6bb9be.png", 
+                                name: "Facepull (Banda)", sets: "3x15", 
                                 desc: "Tira de la banda hacia tu frente. Los codos deben quedar altos y hacia afuera al terminar el movimiento.",
                                 tips: ["Controla el regreso de la banda", "No uses el cuello, usa los hombros", "Párate derecha"] 
                             },
                             { 
-                                name: "Elevación de Talones", sets: "3x20", img: "image_6b363c.png", 
+                                name: "Elevación de Talones", sets: "3x20", 
                                 desc: "De pie, levanta los talones lo más que puedas. Quédate arriba un segundo y baja lentamente.",
                                 tips: ["Sube rápido, baja lento", "Sostente de algo si pierdes balance", "Trabajo puro de pantorrilla"] 
                             }
@@ -234,7 +322,7 @@
                         tag: "Finalizador de Semana",
                         exercises: [
                             { 
-                                name: "Acarreo Final", sets: "2x40s", img: "image_6b4585.png", 
+                                name: "Acarreo Final", sets: "2x40s", 
                                 desc: "Último esfuerzo. Camina con tus mancuernas manteniendo la máxima estabilidad posible en tu abdomen.",
                                 tips: ["Pasos cortos", "Pecho inflado de orgullo", "Aprieta abdomen"] 
                             }
@@ -246,6 +334,7 @@
 
         function render() {
             const container = document.getElementById('app-content');
+            container.innerHTML = '';
             routine.forEach(day => {
                 if(day.type === 'workout') {
                     let html = `
@@ -265,7 +354,7 @@
                         block.exercises.forEach(ex => {
                             html += `
                             <div class="flex justify-between items-center pb-5 border-b border-gray-50 last:border-0 last:pb-0">
-                                <div class="cursor-pointer group flex-1 text-left" onclick='openModal(${JSON.stringify(ex).replace(/'/g, "&apos;")})'>
+                                <div class="exercise-item flex-1 text-left" data-exercise-name="${ex.name.replace(/['"]/g, '')}" onclick="openModalByName('${ex.name.replace(/['"]/g, "\\'")}')">
                                     <h4 class="text-[14px] font-bold text-gray-800 group-hover:text-pink-500 transition-colors">${ex.name}</h4>
                                     <span class="text-[10px] font-black text-pink-400 uppercase tracking-tighter">${ex.sets}</span>
                                 </div>
@@ -298,15 +387,50 @@
             });
         }
 
-        function updateSummary() {
-            const inputs = document.querySelectorAll('input');
+        function findExerciseByName(name) {
+            for (let day of routine) {
+                if (day.blocks) {
+                    for (let block of day.blocks) {
+                        for (let ex of block.exercises) {
+                            if (ex.name === name) return ex;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        window.openModalByName = function(exerciseName) {
+            const exercise = findExerciseByName(exerciseName);
+            if (!exercise) return;
+            document.getElementById('modal-title').innerText = exercise.name;
+            document.getElementById('modal-desc').innerText = exercise.desc;
+            const tipsList = document.getElementById('modal-tips');
+            tipsList.innerHTML = '';
+            exercise.tips.forEach(tip => {
+                const li = document.createElement('li');
+                li.textContent = tip;
+                tipsList.appendChild(li);
+            });
+            
+            const imgUrl = getImageForExercise(exercise.name);
+            const modalImg = document.getElementById('modal-img');
+            modalImg.src = imgUrl;
+            modalImg.alt = `Demostración de ${exercise.name}`;
+            
+            document.getElementById('modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.updateSummary = function() {
+            const inputs = document.querySelectorAll('input[data-ex]');
             const summaryDiv = document.getElementById('tabla-resumen');
             let data = {};
             inputs.forEach(input => {
                 const name = input.getAttribute('data-ex');
                 if(!data[name]) data[name] = { kg: '', reps: '' };
                 if(input.placeholder === 'Kg') data[name].kg = input.value;
-                else data[name].reps = input.value;
+                else if(input.placeholder === 'Rps') data[name].reps = input.value;
             });
             let html = '';
             for(let ex in data) {
@@ -318,26 +442,19 @@
                 }
             }
             summaryDiv.innerHTML = html || '<p class="text-center text-xs text-gray-400 italic py-4">Tus pesos registrados aparecerán aquí...</p>';
-        }
+        };
 
-        function openModal(ex) {
-            document.getElementById('modal-title').innerText = ex.name;
-            document.getElementById('modal-desc').innerText = ex.desc;
-            document.getElementById('modal-tips').innerHTML = ex.tips.map(t => `<li>• ${t}</li>`).join('');
-            
-            // Ruta para cargar imágenes en este entorno
-            document.getElementById('modal-img').src = ex.img;
-            
-            document.getElementById('modal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
+        window.closeModal = function() {
             document.getElementById('modal').classList.add('hidden');
             document.body.style.overflow = 'auto';
-        }
+        };
+
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
 
         render();
+        updateSummary();
     </script>
 </body>
 </html>
