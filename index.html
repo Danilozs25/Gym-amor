@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan de Entrenamiento Amor - Cathe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Plan de Entrenamiento Amor - Cathe | Smart Tracker</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
@@ -11,32 +11,17 @@
         .card-shadow { box-shadow: 0 10px 30px -5px rgba(244, 114, 182, 0.15); }
         .biserie-tag { background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); }
         .recovery-tag { background: linear-gradient(135deg, #ec489a 0%, #db2777 100%); }
-        .img-container { 
-            width: 100%; 
-            aspect-ratio: 1/1; 
-            overflow: hidden; 
-            border-radius: 2rem; 
-            background: #f3f4f6; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-        }
-        .img-container img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: contain; 
-            transition: transform 0.2s ease;
-        }
+        .img-container { width: 100%; aspect-ratio: 1/1; overflow: hidden; border-radius: 2rem; background: #f3f4f6; display: flex; align-items: center; justify-content: center; }
+        .img-container img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.2s ease; }
         input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
         .custom-scrollbar::-webkit-scrollbar { width: 5px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #fbcfe8; border-radius: 10px; }
-        .exercise-item {
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .exercise-item:hover {
-            transform: translateX(4px);
-        }
+        .exercise-item { cursor: pointer; transition: all 0.2s ease; }
+        .exercise-item:hover { transform: translateX(4px); }
+        .tab-active { background-color: #ec489a; color: white; border-color: #ec489a; box-shadow: 0 6px 12px -4px rgba(236,72,153,0.3); }
+        .tab-inactive { background-color: white; color: #9ca3af; border-color: #fce7f3; }
+        .progress-card { transition: all 0.2s; }
+        .water-btn { transition: 0.1s ease; }
     </style>
 </head>
 <body class="pb-24">
@@ -51,12 +36,9 @@
     </header>
 
     <main class="max-w-md mx-auto p-6 space-y-10">
-        
-        <!-- Bloque de instrucciones MEJORADO -->
+        <!-- Instrucciones mejoradas (sin cambios) -->
         <section class="bg-indigo-50 border border-indigo-100 rounded-[2.5rem] p-7 text-indigo-800 space-y-4">
-            <h3 class="text-indigo-900 font-800 uppercase tracking-widest flex items-center gap-2 text-sm">
-                <span>📖</span> Método de entrenamiento
-            </h3>
+            <h3 class="text-indigo-900 font-800 uppercase tracking-widest flex items-center gap-2 text-sm"><span>📖</span> Método de entrenamiento</h3>
             <p class="text-[12px] leading-relaxed"><b>Biseries:</b> realiza el primer ejercicio, luego el segundo sin descanso. Descansa 1 minuto y repite 3 veces (salvo que se indique otro número).</p>
             <div class="border-l-4 border-pink-400 pl-4 text-[11px] space-y-1 italic">
                 <p>✨ <b>Para tu recuperación postparto:</b></p>
@@ -67,288 +49,163 @@
                 <p>• Respira: exhala en el esfuerzo, inhala en la vuelta. Nunca contengas la respiración.</p>
                 <p>• Si usas peso, que sea ligero; prioriza la calidad del movimiento sobre la cantidad de kilos.</p>
             </div>
-            <div class="bg-pink-100 p-3 rounded-xl text-[11px] text-pink-800">
-                💡 <b>Tips adicionales:</b> Realiza estos ejercicios con ropa cómoda y ten a la mano una banda elástica si lo deseas. El descanso entre biseries es de 60 segundos. ¡Hidrátate bien!
-            </div>
+            <div class="bg-pink-100 p-3 rounded-xl text-[11px] text-pink-800">💡 <b>Tips adicionales:</b> Realiza estos ejercicios con ropa cómoda y ten a la mano una banda elástica si lo deseas. El descanso entre biseries es de 60 segundos. ¡Hidrátate bien!</div>
         </section>
 
-        <div id="app-content" class="space-y-12"></div>
+        <!-- TABS DÍAS (click para mostrar cada día) -->
+        <div class="flex flex-wrap gap-2 justify-center bg-white/70 p-3 rounded-3xl sticky top-2 z-20 backdrop-blur-md shadow-sm border border-pink-100">
+            <button data-day="Lunes" class="day-tab px-5 py-2 rounded-full text-xs font-black uppercase tracking-wider transition-all tab-active">Lun</button>
+            <button data-day="Martes" class="day-tab px-5 py-2 rounded-full text-xs font-black uppercase tracking-wider tab-inactive">Mar</button>
+            <button data-day="Miércoles" class="day-tab px-5 py-2 rounded-full text-xs font-black uppercase tracking-wider tab-inactive">Mié</button>
+            <button data-day="Jueves" class="day-tab px-5 py-2 rounded-full text-xs font-black uppercase tracking-wider tab-inactive">Jue</button>
+            <button data-day="Viernes" class="day-tab px-5 py-2 rounded-full text-xs font-black uppercase tracking-wider tab-inactive">Vie</button>
+            <button data-day="Sábado / Domingo" class="day-tab px-5 py-2 rounded-full text-xs font-black uppercase tracking-wider tab-inactive">Fin Sem</button>
+        </div>
 
-        <!-- Registro de Progreso -->
+        <!-- CONTENEDOR DINÁMICO DEL DÍA SELECCIONADO -->
+        <div id="day-content" class="space-y-6"></div>
+
+        <!-- SECCIÓN IMC + AGUA + PROGRESO RÁPIDO (mejora) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Bloque IMC + Peso/Estatura -->
+            <div class="bg-white rounded-3xl p-6 card-shadow border border-pink-100">
+                <h3 class="font-800 text-lg text-gray-900 flex items-center gap-2">⚖️ Mi composición</h3>
+                <div class="mt-4 space-y-4">
+                    <div class="flex gap-3">
+                        <div class="flex-1"><label class="text-[10px] font-black text-pink-500">Peso (kg)</label><input type="number" id="peso-input" step="0.1" class="w-full p-3 border border-gray-200 rounded-2xl text-sm font-bold"></div>
+                        <div class="flex-1"><label class="text-[10px] font-black text-pink-500">Altura (cm)</label><input type="number" id="altura-input" step="1" class="w-full p-3 border border-gray-200 rounded-2xl text-sm font-bold"></div>
+                    </div>
+                    <div id="imc-status" class="bg-pink-50 p-4 rounded-2xl text-center text-sm font-semibold"></div>
+                    <div id="imc-message" class="text-xs text-gray-600 italic bg-indigo-50 p-3 rounded-xl"></div>
+                </div>
+            </div>
+
+            <!-- Bloque Agua diaria -->
+            <div class="bg-white rounded-3xl p-6 card-shadow border border-pink-100">
+                <h3 class="font-800 text-lg text-gray-900 flex items-center gap-2">💧 Hidratación</h3>
+                <div class="mt-3">
+                    <div class="flex justify-between text-xs font-bold"><span>🥤 Vasos tomados</span><span id="water-counter-display">0</span><span>/ <span id="water-goal-display">8</span> vasos</span></div>
+                    <div class="w-full bg-gray-200 rounded-full h-4 mt-2"><div id="water-progress-bar" class="bg-pink-400 h-4 rounded-full w-0"></div></div>
+                    <div class="flex justify-between gap-2 mt-4">
+                        <button id="water-minus" class="bg-gray-100 px-5 py-2 rounded-2xl text-pink-600 font-bold text-xl">-</button>
+                        <button id="water-plus" class="bg-pink-500 text-white px-5 py-2 rounded-2xl font-bold text-xl shadow-sm">+</button>
+                    </div>
+                    <p id="water-message" class="text-[11px] text-gray-500 mt-3 text-center italic"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BLOQUE PROGRESO MENSUAL + MENSAJE SEMANAL -->
+        <div class="bg-gradient-to-r from-fuchsia-50 to-indigo-50 rounded-3xl p-6 border border-pink-200">
+            <div class="flex justify-between items-center flex-wrap gap-2">
+                <h3 class="font-800 text-gray-800">📆 Progreso mensual</h3>
+                <select id="mes-selector" class="text-xs bg-white rounded-full px-4 py-2 border border-pink-200 font-bold"></select>
+            </div>
+            <div id="resumen-mensual" class="mt-4 text-xs max-h-48 overflow-y-auto space-y-2 custom-scrollbar"></div>
+            <button id="ver-mes-detalle" class="mt-3 text-[10px] font-black text-pink-600 underline">Actualizar resumen</button>
+        </div>
+
+        <!-- MENSAJE SEMANAL (sábado/domingo o evaluación) -->
+        <div id="weekly-message-container" class="bg-white rounded-3xl p-6 border-l-8 border-pink-400 shadow-sm">
+            <h4 class="font-black text-pink-600 flex items-center gap-2">✨ Mensaje de cierre de semana ✨</h4>
+            <div id="weekly-message-text" class="text-sm font-medium text-gray-700 mt-3 leading-relaxed italic">💬 Cargando evaluación semanal...</div>
+        </div>
+
+        <!-- registro de progreso anterior (reporte print) -->
         <div id="seccion-captura" class="bg-white border-4 border-pink-100 rounded-[3rem] p-8 card-shadow text-center">
             <h3 class="font-800 text-xl text-gray-900 uppercase mb-2 tracking-tighter">Mi Progreso de Hoy</h3>
             <p class="text-[11px] text-pink-500 font-bold mb-6 italic">"amor, acá toma un pantallazo para yo ir registrando tu progreso"</p>
-            
             <div id="tabla-resumen" class="space-y-3 mb-8 text-left"></div>
-
             <div class="space-y-4 pt-6 border-t border-dashed border-pink-200">
-                <button onclick="window.print()" class="w-full bg-pink-500 text-white font-black py-4 rounded-2xl text-[12px] uppercase tracking-widest shadow-lg active:scale-95 transition-transform">
-                    📸 Generar Reporte
-                </button>
+                <button onclick="window.print()" class="w-full bg-pink-500 text-white font-black py-4 rounded-2xl text-[12px] uppercase tracking-widest shadow-lg active:scale-95 transition-transform">📸 Generar Reporte</button>
                 <div class="bg-pink-50 p-5 rounded-3xl border border-pink-100">
-                    <p class="text-[11px] text-pink-700 font-medium leading-relaxed italic">
-                        "Recuerda que esto es un regalo que tú te das, disfrútalo, y exígete, te amo."
-                    </p>
+                    <p class="text-[11px] text-pink-700 font-medium leading-relaxed italic">"Recuerda que esto es un regalo que tú te das, disfrútalo, y exígete, te amo."</p>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Modal con Detalle -->
+    <!-- MODAL (sin cambios en estructura) -->
     <div id="modal" class="fixed inset-0 bg-gray-900/95 backdrop-blur-md z-50 flex items-center justify-center hidden p-4 transition-all">
-        <div class="bg-white w-full max-w-sm rounded-[3.5rem] overflow-hidden shadow-2xl border border-pink-50 animate-scale-in">
-            <div class="p-8 pb-4 flex justify-between items-center border-b border-gray-50">
-                <h3 id="modal-title" class="font-800 text-xl text-gray-900 tracking-tighter uppercase"></h3>
-                <button onclick="closeModal()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 font-bold hover:bg-gray-200 transition-colors">✕</button>
-            </div>
-            
-            <div class="p-8 pt-4">
-                <div class="img-container mb-6 shadow-md bg-white border border-gray-100" id="modal-img-container">
-                    <img id="modal-img" src="" alt="Demostración del ejercicio" style="width:100%; height:100%; object-fit:contain;">
-                </div>
-
-                <div class="space-y-5 h-64 overflow-y-auto pr-3 custom-scrollbar text-left">
-                    <div>
-                        <h4 class="text-[10px] font-black text-pink-500 uppercase mb-2 tracking-widest">Guía de Movimiento</h4>
-                        <p id="modal-desc" class="text-[12px] text-gray-700 leading-relaxed font-medium"></p>
-                    </div>
-                    <div class="bg-indigo-50 p-5 rounded-[2rem]">
-                        <h4 class="text-[10px] font-black text-indigo-600 uppercase mb-2 tracking-widest">Tips de Danilo</h4>
-                        <ul id="modal-tips" class="text-[11px] text-gray-700 space-y-2 list-disc list-inside"></ul>
-                    </div>
-                </div>
-            </div>
+        <div class="bg-white w-full max-w-sm rounded-[3.5rem] overflow-hidden shadow-2xl border border-pink-50">
+            <div class="p-8 pb-4 flex justify-between items-center border-b border-gray-50"><h3 id="modal-title" class="font-800 text-xl text-gray-900 tracking-tighter uppercase"></h3><button onclick="closeModal()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 font-bold">✕</button></div>
+            <div class="p-8 pt-4"><div class="img-container mb-6 shadow-md bg-white border border-gray-100" id="modal-img-container"><img id="modal-img" src="" alt="Demostración del ejercicio" style="width:100%; height:100%; object-fit:contain;"></div>
+            <div class="space-y-5 h-64 overflow-y-auto pr-3 custom-scrollbar text-left">
+                <div><h4 class="text-[10px] font-black text-pink-500 uppercase mb-2">Guía de Movimiento</h4><p id="modal-desc" class="text-[12px] text-gray-700 leading-relaxed font-medium"></p></div>
+                <div class="bg-indigo-50 p-5 rounded-[2rem]"><h4 class="text-[10px] font-black text-indigo-600 uppercase mb-2">Tips de Danilo</h4><ul id="modal-tips" class="text-[11px] text-gray-700 space-y-2 list-disc list-inside"></ul></div>
+            </div></div>
         </div>
     </div>
 
     <script>
-        // ============================================================
-        // MAPA DE IMÁGENES REALES (Todas funcionales)
-        // ============================================================
-        const EXERCISE_IMAGES = {
-            "Hipthrust": "https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Bodyweight-Glute-Bridge_600x600.png?v=1655224288",   
-            "Deadbug Controlado": "https://www.gofitnessplan.com/images/exercises/mixed/dead-bug.jpg",
-            "Sentadilla a Silla": "https://cdn.shopify.com/s/files/1/0083/4630/4597/files/Fitness_-_Exercises_To_Strengthen_Glutes_Squats_1_1024x1024.jpg?v=1673232026",
-            "Bird-Dog": "https://scontent.feoh4-4.fna.fbcdn.net/v/t1.6435-9/62455439_1084684478385610_3620793585286250496_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=108&ccb=1-7&_nc_sid=0327a3&_nc_eui2=AeHIjWDMMjgEYFFZqRdY6LhF_X1YKTDOFTT9fVgpMM4VNDPz64stl-PQhdJPvsBGy7o-250nIZXsLIlne32eWEA-&_nc_ohc=I-KUeUE3PZoQ7kNvwHmhyKc&_nc_oc=AdqVFCQSelnLAbRm0gPG4W4VbR8bb60_--1WQnuUAfhXgeIYTOzVb4zwCxazMXh6PS3JYtAW15hxLo2jMHm21qYO&_nc_zt=23&_nc_ht=scontent.feoh4-4.fna&_nc_gid=8nbwD47HkoG_cDnQXbd42A&_nc_ss=7a32e&oh=00_AfwqcbV8V0x7Zy_rRcdTioYbLlYLAnl6-ykNTLzLZF7vcw&oe=69ED82B5",
-            "Acarreo (2 Mancuernas)": "https://www.hsefitness.com/wp-content/uploads/2024/11/Standing-Dumbbell-Farmers-Walk-600x230.png.webp",
-            "Acarreo (1 Mancuerna)": "https://i0.wp.com/menshealthlatam.com/wp-content/uploads/2023/05/rutina-Arnold-Schwarzenegger-1.jpg?resize=700%2C350&ssl=1",
-            "Paso Lateral": "https://thumbs.dreamstime.com/b/mujer-haciendo-ejercicio-de-pasos-laterales-banda-resistencia-ilustraci%C3%B3n-vectorial-plana-aislada-en-fondo-blanco-224774169.jpg?w=768",
-            "Wall Slides": "https://s3assets.skimble.com/assets/2412859/image_iphone.jpg",
-            "Remo con Banda": "https://assets.grooveapps.com/images/5f42b0507141fd00375f3799/1628159383_posici%C3%B3n%20correcta%20del%20remo%20con%20banda%20el%C3%A1stica.png",
-            "Escalón con MC": "https://mejorconsalud.as.com/wp-content/uploads/2026/01/step-up-frontal.jpg?auto=format%2Ccompress&quality=75&width=640&height=360&fit=cover&gravity=center&sharp=true&progressive=true",
-            "Copenhague Suave": "https://scontent.feoh4-3.fna.fbcdn.net/v/t39.30808-6/476754403_7816077278517154_3303775323210254560_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=100&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeG6GjbtQPXqUyBTCXnchBTL6SJraEJiTxXpImtoQmJPFZHxOX7ZRlEu2ndJJA-ZnRXkkYg4bJ0tMbl5rUMZTYC7&_nc_ohc=kbYXJHdFGj8Q7kNvwE9wT1d&_nc_oc=AdqZJOFqDTdluweQ_DI4ABAjRjxGFYuMYuRBJwXZZ0Lzus6odf7sY6kgFvH8xhtQ_kSli2fQBBx6rZQcw4k_-210&_nc_zt=23&_nc_ht=scontent.feoh4-3.fna&_nc_gid=v6JRL7X6QgG8R8vFtnG3vg&_nc_ss=7a32e&oh=00_Afwalg3KmrqXYZFDtN37rEJy1lznq22_cM6RCa-4NLA6oQ&oe=69CBC25D",
-            "Plancha Inclinada": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVv6ZLTiov_vib9nSdadqUSkfmCAS_TMM6zenFrG7pbw&s",
-            "Abducción de Cadera": "https://www.hsefitness.com/wp-content/uploads/2025/01/Resistance-Band-Hip-Abduction-600x415.png.webp",
-            "Facepull (Postural)": "https://www.cambiatufisico.com/wp-content/uploads/face-pull-musculos.webp",
-            "Elevación de Talones": "https://eresfitness.com/wp-content/uploads/Levantamiento-de-pantorrillas-en-maquina-Costurera.webp"
-        };
-
-        function getImageForExercise(exerciseName) {
-            const realUrl = EXERCISE_IMAGES[exerciseName];
-            if (realUrl && realUrl.trim() !== "") {
-                return realUrl;
-            }
-            let extraInfo = "";
-            if (exerciseName === "Hipthrust") extraInfo = " (peso corporal)";
-            if (exerciseName.includes("Acarreo")) extraInfo = " (dos mancuernas)";
-            const svg = `
-            <svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                <rect width="400" height="400" fill="#eef2ff" />
-                <text x="200" y="180" font-size="20" text-anchor="middle" fill="#4f46e5" font-weight="bold">${exerciseName}${extraInfo}</text>
-                <text x="200" y="240" font-size="14" text-anchor="middle" fill="#6366f1">🔜 Imagen próxima</text>
-                <text x="200" y="280" font-size="12" text-anchor="middle" fill="#6366f1">(reemplázala en el código)</text>
-            </svg>
-            `;
-            return "data:image/svg+xml," + encodeURIComponent(svg);
-        }
-
-        // Datos de la rutina (AHORA COINCIDEN EXACTAMENTE CON LA IMAGEN)
+        // ---------- DATOS DE RUTINA ORIGINAL (sin modificar ejercicios) ----------
         const routine = [
-            {
-                day: "Lunes",
-                type: "workout",
-                goal: "Glúteo / Core",
-                blocks: [
-                    { tag: "Biserie A", exercises: [ { name: "Hipthrust", sets: "3 x 12", desc: "Apoya la parte superior de tu espalda en un sofá o banca. Con los pies apoyados al ancho de hombros, baja la cadera y elévala empujando fuerte con los talones. Arriba debes formar una línea recta. Realízalo solo con peso corporal.", tips: ["No mires al techo, mira siempre hacia adelante", "Aprieta glúteos fuerte al subir", "Inhala al bajar, exhala al subir"] }, { name: "Deadbug Controlado", sets: "3 x 10", desc: "Boca arriba, levanta piernas y brazos. Baja brazo y pierna contraria lentamente hacia el suelo. El secreto es que tu espalda baja nunca se despegue del piso.", tips: ["Mueve las extremidades muy lento", "Mantén el abdomen apretado", "Si duele la espalda, no bajes tanto la pierna"] } ] },
-                    { tag: "Biserie B", exercises: [ { name: "Sentadilla a Silla", sets: "3 x 12", desc: "Párate derecha frente a una silla. Baja la cadera como si te fueras a sentar, manteniendo el pecho afuera. Toca la silla levemente y vuelve a subir.", tips: ["El peso va en los talones", "No dejes que las rodillas se cierren", "Saca el pecho siempre"] }, { name: "Bird-Dog", sets: "3 x 10", desc: "En cuatro apoyos, estira brazo y pierna contraria. Debes quedar como una mesa larga y recta. Vuelve al centro y cambia.", tips: ["Mira al piso para no lastimar el cuello", "No gires la cadera", "Mantén el equilibrio apretando el core"] } ] },
-                    { tag: "Fin", exercises: [ { name: "Acarreo (2 Mancuernas)", sets: "3 x 45 seg", desc: "Camina con una mancuerna en cada mano. Debes mantener una postura perfecta, como si te estuvieran halando de la cabeza hacia arriba.", tips: ["Aprieta glúteos y abdomen mientras caminas", "Cabeza levemente hacia atrás", "Pasos firmes y controlados"] } ] }
-                ]
-            },
-            {
-                day: "Martes",
-                type: "recovery",
-                title: "💖 Recuperación Activa",
-                message: "Amor, si algún día te sientes muy cansada, prioriza solo los videos de estiramiento. Lo importante es que te muevas un poquito cada día. ¡Tú puedes, confío en ti!",
-                links: [
-                    { name: "🦵 Dolor de Rodilla (Athlean-X)", url: "https://www.youtube.com/watch?v=OGJWlGhToWQ&t=2s" },
-                    { name: "🏃‍♀️ Cardio Postparto (20 min)", url: "https://www.youtube.com/watch?v=soX1YVo0Lf8&t=1026s" },
-                    { name: "🧘‍♀️ Estiramiento Completo", url: "https://www.youtube.com/watch?v=fZDo62H_bPw" }
-                ]
-            },
-            {
-                day: "Miércoles",
-                type: "workout",
-                goal: "Postura / Pierna",
-                blocks: [
-                    { tag: "Biserie A", exercises: [ { name: "Paso Lateral", sets: "3 x 15", desc: "Con rodillas un poco flexionadas, da pasos laterales controlados. Si tienes banda, ponla arriba de tus rodillas.", tips: ["No juntes los pies del todo para mantener tensión", "Puntas de pies siempre al frente", "No te endereces del todo"] }, { name: "Wall Slides", sets: "3 x 12", desc: "Pégate a la pared. Con codos y manos tocando la pared, deslízalos hacia arriba y abajo simulando una 'W' y una 'I'.", tips: ["Mantén toda la espalda contra la pared", "No dejes que los codos se despeguen", "Movimiento suave"] } ] },
-                    { tag: "Biserie B", exercises: [ { name: "Remo con Banda", sets: "3 x 15", desc: "Sujeta la banda y tira de ella llevando los codos hacia atrás, pegados a tus costados. Siente cómo se juntan las paletas de tu espalda.", tips: ["Hombros abajo, no los subas a las orejas", "Saca el pecho", "Aprieta la espalda atrás"] }, { name: "Escalón con MC", sets: "3 x 10", desc: "Sube un pie a un escalón. Sube todo tu cuerpo usando solo la fuerza de esa pierna. Baja con mucho control.", tips: ["Pisa con toda la planta del pie", "No te impulses con el pie de atrás", "Usa las mancuernas para equilibrio"] } ] },
-                    { tag: "Fin", exercises: [ { name: "Acarreo (1 Mancuerna)", sets: "3 x 45 seg", desc: "Camina con una mancuerna en una sola mano, manteniendo el cuerpo erguido y sin inclinarte.", tips: ["Aprieta glúteos y abdomen", "Cabeza atrás", "Pasos de reina"] } ] }
-                ]
-            },
-            {
-                day: "Jueves",
-                type: "recovery",
-                title: "💖 Recuperación Activa",
-                message: "Amor, si algún día te sientes muy cansada, prioriza solo los videos de estiramiento. Lo importante es que te muevas un poquito cada día. ¡Tú puedes, confío en ti!",
-                links: [
-                    { name: "🦵 Dolor de Rodilla (Athlean-X)", url: "https://www.youtube.com/watch?v=OGJWlGhToWQ&t=2s" },
-                    { name: "🏃‍♀️ Cardio Postparto (20 min)", url: "https://www.youtube.com/watch?v=NkPjgyIjXTU" },
-                    { name: "🧘‍♀️ Estiramiento Postparto (20 min)", url: "https://www.youtube.com/watch?v=s5ly73hyRhg" }
-                ]
-            },
-            {
-                day: "Viernes",
-                type: "workout",
-                goal: "Estabilidad",
-                blocks: [
-                    { tag: "Biserie A", exercises: [ { name: "Copenhague Suave", sets: "3 x 30 seg", desc: "Apoya la rodilla de la pierna superior en un sofá. Mantén tu cuerpo recto en el aire apoyada en tu antebrazo.", tips: ["Siente el trabajo en la parte interna del muslo", "Cuerpo recto como una flecha", "Respira lento"] }, { name: "Plancha Inclinada", sets: "3 x 45 seg", desc: "Apoya manos en una superficie alta. Mantén el cuerpo recto apretando abdomen y glúteos. Es una plancha pero más segura para tu abdomen.", tips: ["No dejes que la cadera se caiga", "Aprieta los glúteos fuerte", "Empuja el suelo con las manos"] } ] },
-                    { tag: "Biserie B", exercises: [ { name: "Abducción de Cadera", sets: "3 x 15", desc: "Tumbada de lado, sube la pierna recta hacia el techo sin girar la cadera.", tips: ["Mantén el cuerpo recto", "No te apoyes en la cadera de abajo", "Movimiento lento y controlado"] }, { name: "Facepull (Postural)", sets: "3 x 15", desc: "Tira de la banda hacia tu frente. Los codos deben quedar altos y hacia afuera al terminar el movimiento.", tips: ["Controla el regreso de la banda", "No uses el cuello, usa los hombros", "Párate derecha"] } ] },
-                    { tag: "Fin", exercises: [ { name: "Acarreo (2 Mancuernas)", sets: "3 x 45 seg", desc: "Último esfuerzo. Camina con tus mancuernas manteniendo la máxima estabilidad posible en tu abdomen.", tips: ["Pasos cortos", "Pecho inflado de orgullo", "Aprieta abdomen"] } ] }
-                ]
-            },
-            {
-                day: "Sábado / Domingo",
-                type: "recovery",
-                title: "💖 Movilidad y Descanso Activo",
-                message: "Amor, si algún día te sientes muy cansada, prioriza solo los videos de estiramiento. Lo importante es que te muevas un poquito cada día. ¡Tú puedes, confío en ti!",
-                links: [
-                    { name: "🦵 Dolor de Rodilla (Athlean-X)", url: "https://www.youtube.com/watch?v=OGJWlGhToWQ&t=2s" },
-                    { name: "🏃‍♀️ Cardio Postparto (20 min)", url: "https://www.youtube.com/watch?v=sgzue9v8vRc" },
-                    { name: "🧘‍♀️ Estiramiento Profundo (30 min)", url: "https://www.youtube.com/watch?v=j5Z7AongHC8" }
-                ]
-            }
+            { day: "Lunes", type: "workout", goal: "Glúteo / Core", blocks: [{ tag: "Biserie A", exercises: [ { name: "Hipthrust", sets: "3 x 12", desc: "Apoya la parte superior de tu espalda en un sofá o banca. Con los pies apoyados al ancho de hombros, baja la cadera y elévala empujando fuerte con los talones. Arriba debes formar una línea recta. Realízalo solo con peso corporal.", tips: ["No mires al techo, mira siempre hacia adelante", "Aprieta glúteos fuerte al subir", "Inhala al bajar, exhala al subir"] }, { name: "Deadbug Controlado", sets: "3 x 10", desc: "Boca arriba, levanta piernas y brazos. Baja brazo y pierna contraria lentamente hacia el suelo. El secreto es que tu espalda baja nunca se despegue del piso.", tips: ["Mueve las extremidades muy lento", "Mantén el abdomen apretado", "Si duele la espalda, no bajes tanto la pierna"] } ] },{ tag: "Biserie B", exercises: [ { name: "Sentadilla a Silla", sets: "3 x 12", desc: "Párate derecha frente a una silla. Baja la cadera como si te fueras a sentar, manteniendo el pecho afuera. Toca la silla levemente y vuelve a subir.", tips: ["El peso va en los talones", "No dejes que las rodillas se cierren", "Saca el pecho siempre"] }, { name: "Bird-Dog", sets: "3 x 10", desc: "En cuatro apoyos, estira brazo y pierna contraria. Debes quedar como una mesa larga y recta. Vuelve al centro y cambia.", tips: ["Mira al piso para no lastimar el cuello", "No gires la cadera", "Mantén el equilibrio apretando el core"] } ] },{ tag: "Fin", exercises: [ { name: "Acarreo (2 Mancuernas)", sets: "3 x 45 seg", desc: "Camina con una mancuerna en cada mano. Debes mantener una postura perfecta, como si te estuvieran halando de la cabeza hacia arriba.", tips: ["Aprieta glúteos y abdomen mientras caminas", "Cabeza levemente hacia atrás", "Pasos firmes y controlados"] } ] }] },
+            { day: "Martes", type: "recovery", title: "💖 Recuperación Activa", message: "Amor, si algún día te sientes muy cansada, prioriza solo los videos de estiramiento. Lo importante es que te muevas un poquito cada día. ¡Tú puedes, confío en ti!", links: [{ name: "🦵 Dolor de Rodilla (Athlean-X)", url: "https://www.youtube.com/watch?v=OGJWlGhToWQ&t=2s" },{ name: "🏃‍♀️ Cardio Postparto (20 min)", url: "https://www.youtube.com/watch?v=soX1YVo0Lf8&t=1026s" },{ name: "🧘‍♀️ Estiramiento Completo", url: "https://www.youtube.com/watch?v=fZDo62H_bPw" }] },
+            { day: "Miércoles", type: "workout", goal: "Postura / Pierna", blocks: [{ tag: "Biserie A", exercises: [ { name: "Paso Lateral", sets: "3 x 15", desc: "Con rodillas un poco flexionadas, da pasos laterales controlados. Si tienes banda, ponla arriba de tus rodillas.", tips: ["No juntes los pies del todo para mantener tensión", "Puntas de pies siempre al frente", "No te endereces del todo"] }, { name: "Wall Slides", sets: "3 x 12", desc: "Pégate a la pared. Con codos y manos tocando la pared, deslízalos hacia arriba y abajo simulando una 'W' y una 'I'.", tips: ["Mantén toda la espalda contra la pared", "No dejes que los codos se despeguen", "Movimiento suave"] } ] },{ tag: "Biserie B", exercises: [ { name: "Remo con Banda", sets: "3 x 15", desc: "Sujeta la banda y tira de ella llevando los codos hacia atrás, pegados a tus costados. Siente cómo se juntan las paletas de tu espalda.", tips: ["Hombros abajo, no los subas a las orejas", "Saca el pecho", "Aprieta la espalda atrás"] }, { name: "Escalón con MC", sets: "3 x 10", desc: "Sube un pie a un escalón. Sube todo tu cuerpo usando solo la fuerza de esa pierna. Baja con mucho control.", tips: ["Pisa con toda la planta del pie", "No te impulses con el pie de atrás", "Usa las mancuernas para equilibrio"] } ] },{ tag: "Fin", exercises: [ { name: "Acarreo (1 Mancuerna)", sets: "3 x 45 seg", desc: "Camina con una mancuerna en una sola mano, manteniendo el cuerpo erguido y sin inclinarte.", tips: ["Aprieta glúteos y abdomen", "Cabeza atrás", "Pasos de reina"] } ] }] },
+            { day: "Jueves", type: "recovery", title: "💖 Recuperación Activa", message: "Amor, si algún día te sientes muy cansada, prioriza solo los videos de estiramiento. Lo importante es que te muevas un poquito cada día. ¡Tú puedes, confío en ti!", links: [{ name: "🦵 Dolor de Rodilla (Athlean-X)", url: "https://www.youtube.com/watch?v=OGJWlGhToWQ&t=2s" },{ name: "🏃‍♀️ Cardio Postparto (20 min)", url: "https://www.youtube.com/watch?v=NkPjgyIjXTU" },{ name: "🧘‍♀️ Estiramiento Postparto (20 min)", url: "https://www.youtube.com/watch?v=s5ly73hyRhg" }] },
+            { day: "Viernes", type: "workout", goal: "Estabilidad", blocks: [{ tag: "Biserie A", exercises: [ { name: "Copenhague Suave", sets: "3 x 30 seg", desc: "Apoya la rodilla de la pierna superior en un sofá. Mantén tu cuerpo recto en el aire apoyada en tu antebrazo.", tips: ["Siente el trabajo en la parte interna del muslo", "Cuerpo recto como una flecha", "Respira lento"] }, { name: "Plancha Inclinada", sets: "3 x 45 seg", desc: "Apoya manos en una superficie alta. Mantén el cuerpo recto apretando abdomen y glúteos. Es una plancha pero más segura para tu abdomen.", tips: ["No dejes que la cadera se caiga", "Aprieta los glúteos fuerte", "Empuja el suelo con las manos"] } ] },{ tag: "Biserie B", exercises: [ { name: "Abducción de Cadera", sets: "3 x 15", desc: "Tumbada de lado, sube la pierna recta hacia el techo sin girar la cadera.", tips: ["Mantén el cuerpo recto", "No te apoyes en la cadera de abajo", "Movimiento lento y controlado"] }, { name: "Facepull (Postural)", sets: "3 x 15", desc: "Tira de la banda hacia tu frente. Los codos deben quedar altos y hacia afuera al terminar el movimiento.", tips: ["Controla el regreso de la banda", "No uses el cuello, usa los hombros", "Párate derecha"] } ] },{ tag: "Fin", exercises: [ { name: "Acarreo (2 Mancuernas)", sets: "3 x 45 seg", desc: "Último esfuerzo. Camina con tus mancuernas manteniendo la máxima estabilidad posible en tu abdomen.", tips: ["Pasos cortos", "Pecho inflado de orgullo", "Aprieta abdomen"] } ] }] },
+            { day: "Sábado / Domingo", type: "recovery", title: "💖 Movilidad y Descanso Activo", message: "Amor, si algún día te sientes muy cansada, prioriza solo los videos de estiramiento. Lo importante es que te muevas un poquito cada día. ¡Tú puedes, confío en ti!", links: [{ name: "🦵 Dolor de Rodilla (Athlean-X)", url: "https://www.youtube.com/watch?v=OGJWlGhToWQ&t=2s" },{ name: "🏃‍♀️ Cardio Postparto (20 min)", url: "https://www.youtube.com/watch?v=sgzue9v8vRc" },{ name: "🧘‍♀️ Estiramiento Profundo (30 min)", url: "https://www.youtube.com/watch?v=j5Z7AongHC8" }] }
         ];
 
-        function render() {
-            const container = document.getElementById('app-content');
-            container.innerHTML = '';
-            routine.forEach(day => {
-                if(day.type === 'workout') {
-                    let html = `
-                    <div class="bg-white rounded-[3.5rem] p-9 card-shadow border border-pink-50">
-                        <div class="mb-8 text-left">
-                            <h2 class="text-3xl font-800 text-gray-900 tracking-tighter">${day.day}</h2>
-                            <p class="text-[10px] text-pink-500 font-black uppercase tracking-widest">${day.goal}</p>
-                        </div>
-                        <div class="space-y-12">`;
-                    day.blocks.forEach(block => {
-                        html += `
-                        <div class="space-y-5 text-left">
-                            <span class="biserie-tag text-white text-[9px] font-black px-5 py-2 rounded-full uppercase tracking-tighter shadow-sm">${block.tag}</span>
-                            <div class="space-y-6 pt-2">`;
-                        block.exercises.forEach(ex => {
-                            html += `
-                            <div class="flex justify-between items-center pb-5 border-b border-gray-50 last:border-0 last:pb-0">
-                                <div class="exercise-item flex-1 text-left" onclick="openModalByName('${ex.name.replace(/['"]/g, "\\'")}')">
-                                    <h4 class="text-[14px] font-bold text-gray-800 group-hover:text-pink-500 transition-colors">${ex.name}</h4>
-                                    <span class="text-[10px] font-black text-pink-400 uppercase tracking-tighter">${ex.sets}</span>
-                                </div>
-                                <div class="flex gap-2">
-                                    <input type="number" placeholder="Kg" oninput="updateSummary()" data-ex="${ex.name}" class="w-14 bg-gray-50 rounded-2xl p-3 text-[11px] font-bold text-center border-none outline-none focus:ring-2 focus:ring-pink-100">
-                                    <input type="number" placeholder="Rps" oninput="updateSummary()" data-ex="${ex.name}" class="w-14 bg-gray-50 rounded-2xl p-3 text-[11px] font-bold text-center border-none outline-none focus:ring-2 focus:ring-pink-100">
-                                </div>
-                            </div>`;
-                        });
-                        html += `</div></div>`;
-                    });
-                    html += `</div></div>`;
-                    container.innerHTML += html;
-                } else {
-                    let html = `
-                    <div class="bg-gradient-to-br from-pink-700 to-pink-900 rounded-[3.5rem] p-8 shadow-xl text-white">
-                        <h2 class="text-3xl font-800 mb-2 text-left tracking-tighter">✨ ${day.day}</h2>
-                        <p class="text-[10px] text-pink-200 font-bold uppercase mb-4 tracking-widest text-left">${day.title}</p>
-                        <div class="bg-white/10 p-5 rounded-2xl mb-6">
-                            <p class="text-[13px] font-medium italic leading-relaxed">💬 "${day.message}"</p>
-                        </div>
-                        <div class="space-y-3">`;
-                    day.links.forEach(link => {
-                        html += `
-                        <a href="${link.url}" target="_blank" class="bg-white/10 flex items-center justify-between p-5 rounded-2xl no-underline border border-white/20 hover:bg-white/20 transition-all active:scale-95">
-                            <span class="text-[13px] font-bold">${link.name}</span>
-                            <span class="text-[9px] bg-pink-500 px-3 py-1.5 rounded-full font-black uppercase tracking-tighter">Ver</span>
-                        </a>`;
-                    });
-                    html += `</div></div>`;
-                    container.innerHTML += html;
-                }
-            });
-        }
+        // imágenes
+        const EXERCISE_IMAGES = { "Hipthrust": "https://cdn.shopify.com/s/files/1/0269/5551/3900/files/Bodyweight-Glute-Bridge_600x600.png?v=1655224288", "Deadbug Controlado": "https://www.gofitnessplan.com/images/exercises/mixed/dead-bug.jpg", "Sentadilla a Silla": "https://cdn.shopify.com/s/files/1/0083/4630/4597/files/Fitness_-_Exercises_To_Strengthen_Glutes_Squats_1_1024x1024.jpg?v=1673232026","Bird-Dog": "https://scontent.feoh4-4.fna.fbcdn.net/v/t1.6435-9/62455439_1084684478385610_3620793585286250496_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=108&ccb=1-7&_nc_sid=0327a3&_nc_eui2=AeHIjWDMMjgEYFFZqRdY6LhF_X1YKTDOFTT9fVgpMM4VNDPz64stl-PQhdJPvsBGy7o-250nIZXsLIlne32eWEA-&_nc_ohc=I-KUeUE3PZoQ7kNvwHmhyKc&_nc_oc=AdqVFCQSelnLAbRm0gPG4W4VbR8bb60_--1WQnuUAfhXgeIYTOzVb4zwCxazMXh6PS3JYtAW15hxLo2jMHm21qYO&_nc_zt=23&_nc_ht=scontent.feoh4-4.fna&_nc_gid=8nbwD47HkoG_cDnQXbd42A&_nc_ss=7a32e&oh=00_AfwqcbV8V0x7Zy_rRcdTioYbLlYLAnl6-ykNTLzLZF7vcw&oe=69ED82B5","Acarreo (2 Mancuernas)": "https://www.hsefitness.com/wp-content/uploads/2024/11/Standing-Dumbbell-Farmers-Walk-600x230.png.webp","Acarreo (1 Mancuerna)": "https://i0.wp.com/menshealthlatam.com/wp-content/uploads/2023/05/rutina-Arnold-Schwarzenegger-1.jpg?resize=700%2C350&ssl=1","Paso Lateral": "https://thumbs.dreamstime.com/b/mujer-haciendo-ejercicio-de-pasos-laterales-banda-resistencia-ilustraci%C3%B3n-vectorial-plana-aislada-en-fondo-blanco-224774169.jpg?w=768","Wall Slides": "https://s3assets.skimble.com/assets/2412859/image_iphone.jpg","Remo con Banda": "https://assets.grooveapps.com/images/5f42b0507141fd00375f3799/1628159383_posici%C3%B3n%20correcta%20del%20remo%20con%20banda%20el%C3%A1stica.png","Escalón con MC": "https://mejorconsalud.as.com/wp-content/uploads/2026/01/step-up-frontal.jpg?auto=format%2Ccompress&quality=75&width=640&height=360&fit=cover","Copenhague Suave": "https://scontent.feoh4-3.fna.fbcdn.net/v/t39.30808-6/476754403_7816077278517154_3303775323210254560_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=100&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeG6GjbtQPXqUyBTCXnchBTL6SJraEJiTxXpImtoQmJPFZHxOX7ZRlEu2ndJJA-ZnRXkkYg4bJ0tMbl5rUMZTYC7&_nc_ohc=kbYXJHdFGj8Q7kNvwE9wT1d&_nc_oc=AdqZJOFqDTdluweQ_DI4ABAjRjxGFYuMYuRBJwXZZ0Lzus6odf7sY6kgFvH8xhtQ_kSli2fQBBx6rZQcw4k_-210&_nc_zt=23&_nc_ht=scontent.feoh4-3.fna&_nc_gid=v6JRL7X6QgG8R8vFtnG3vg&_nc_ss=7a32e&oh=00_Afwalg3KmrqXYZFDtN37rEJy1lznq22_cM6RCa-4NLA6oQ&oe=69CBC25D","Plancha Inclinada": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVv6ZLTiov_vib9nSdadqUSkfmCAS_TMM6zenFrG7pbw&s","Abducción de Cadera": "https://www.hsefitness.com/wp-content/uploads/2025/01/Resistance-Band-Hip-Abduction-600x415.png.webp","Facepull (Postural)": "https://www.cambiatufisico.com/wp-content/uploads/face-pull-musculos.webp","Elevación de Talones": "https://eresfitness.com/wp-content/uploads/Levantamiento-de-pantorrillas-en-maquina-Costurera.webp"};
+        function getImageForExercise(name){ return EXERCISE_IMAGES[name] || `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Crect width='400' height='400' fill='%23eef2ff'/%3E%3Ctext x='200' y='180' text-anchor='middle' fill='%234f46e5' font-weight='bold' font-size='20'%3E${name}%3C/text%3E%3C/svg%3E`; }
 
-        function findExerciseByName(name) {
-            for (let day of routine) {
-                if (day.blocks) {
-                    for (let block of day.blocks) {
-                        for (let ex of block.exercises) {
-                            if (ex.name === name) return ex;
-                        }
-                    }
-                }
-            }
-            return null;
-        }
+        // ---- GESTIÓN LOCALSTORAGE (datos por mes + día) ----
+        const currentMonth = new Date().toISOString().slice(0,7); // "2025-03"
+        function getStorage() { let data = localStorage.getItem("cathe_fitness_data"); return data ? JSON.parse(data) : { months: {}, waterLog: {}, bodyMetrics: { weight: null, height: null, lastUpdate: "" } }; }
+        function saveStorage(data) { localStorage.setItem("cathe_fitness_data", JSON.stringify(data)); }
+        function getMonthData(month) { let store = getStorage(); if(!store.months[month]) store.months[month] = {}; return store.months[month]; }
+        function saveExerciseData(day, exerciseName, kg, reps, completed) { let store=getStorage(); if(!store.months[currentMonth]) store.months[currentMonth]={}; if(!store.months[currentMonth][day]) store.months[currentMonth][day]={ exercises:{}, recoveryVideos:{}}; if(!store.months[currentMonth][day].exercises) store.months[currentMonth][day].exercises={}; store.months[currentMonth][day].exercises[exerciseName] = { kg: kg, reps: reps, completed: completed }; saveStorage(store); }
+        function getExerciseData(day, exerciseName) { let month=getMonthData(currentMonth); if(month[day] && month[day].exercises && month[day].exercises[exerciseName]) return month[day].exercises[exerciseName]; return { kg: "", reps: "", completed: false }; }
+        function saveRecoveryVideo(day, videoName, completed) { let store=getStorage(); if(!store.months[currentMonth]) store.months[currentMonth]={}; if(!store.months[currentMonth][day]) store.months[currentMonth][day]={ exercises:{}, recoveryVideos:{}}; store.months[currentMonth][day].recoveryVideos[videoName]=completed; saveStorage(store); }
+        function getRecoveryVideo(day, videoName) { let month=getMonthData(currentMonth); return month[day]?.recoveryVideos?.[videoName] || false; }
 
-        window.openModalByName = function(exerciseName) {
-            const exercise = findExerciseByName(exerciseName);
-            if (!exercise) return;
-            document.getElementById('modal-title').innerText = exercise.name;
-            document.getElementById('modal-desc').innerText = exercise.desc;
-            const tipsList = document.getElementById('modal-tips');
-            tipsList.innerHTML = '';
-            exercise.tips.forEach(tip => {
-                const li = document.createElement('li');
-                li.textContent = tip;
-                tipsList.appendChild(li);
-            });
-            const imgUrl = getImageForExercise(exercise.name);
-            document.getElementById('modal-img').src = imgUrl;
-            document.getElementById('modal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        };
-
-        window.updateSummary = function() {
-            const inputs = document.querySelectorAll('input[data-ex]');
-            const summaryDiv = document.getElementById('tabla-resumen');
-            let data = {};
-            inputs.forEach(input => {
-                const name = input.getAttribute('data-ex');
-                if(!data[name]) data[name] = { kg: '', reps: '' };
-                if(input.placeholder === 'Kg') data[name].kg = input.value;
-                else if(input.placeholder === 'Rps') data[name].reps = input.value;
-            });
-            let html = '';
-            for(let ex in data) {
-                if(data[ex].kg || data[ex].reps) {
-                    html += `<div class="flex justify-between py-3 border-b border-pink-50 text-[12px]">
-                        <span class="font-bold text-gray-600">${ex}</span>
-                        <span class="font-black text-pink-500">${data[ex].kg || 0}kg x ${data[ex].reps || 0}</span>
-                    </div>`;
-                }
-            }
-            summaryDiv.innerHTML = html || '<p class="text-center text-xs text-gray-400 italic py-4">Tus pesos registrados aparecerán aquí...</p>';
-        };
-
-        window.closeModal = function() {
-            document.getElementById('modal').classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        };
-
-        document.getElementById('modal').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
-
-        render();
-        updateSummary();
+        // agua diaria
+        function getTodayWater() { let store=getStorage(); let todayKey=new Date().toISOString().slice(0,10); return store.waterLog?.[todayKey] || 0; }
+        function setTodayWater(amount) { let store=getStorage(); let todayKey=new Date().toISOString().slice(0,10); if(!store.waterLog) store.waterLog={}; store.waterLog[todayKey]=Math.max(0, amount); saveStorage(store); updateWaterUI(); }
+        
+        // IMC
+        function getBodyMetrics() { let s=getStorage(); return { weight: s.bodyMetrics.weight, height: s.bodyMetrics.height }; }
+        function saveBodyMetrics(weight, height) { let s=getStorage(); s.bodyMetrics={ weight, height, lastUpdate: new Date().toISOString() }; saveStorage(s); updateIMCUI(); }
+        
+        // render día actual (con checkboxes, kg, reps)
+        let currentDay = "Lunes";
+        function renderCurrentDay() { const container=document.getElementById('day-content'); const dayObj=routine.find(d=>d.day===currentDay); if(!dayObj) return; if(dayObj.type==='workout'){ let html=`<div class="bg-white rounded-[3.5rem] p-9 card-shadow border border-pink-50"><div class="mb-8"><h2 class="text-3xl font-800">${dayObj.day}</h2><p class="text-[10px] text-pink-500 font-black uppercase">${dayObj.goal}</p></div><div class="space-y-12">`; dayObj.blocks.forEach(block=>{ html+=`<div><span class="biserie-tag text-white text-[9px] font-black px-5 py-2 rounded-full">${block.tag}</span><div class="space-y-5 mt-4">`; block.exercises.forEach(ex=>{ let saved=getExerciseData(currentDay, ex.name); html+=`<div class="flex items-center gap-3 justify-between border-b border-gray-50 pb-4"><div class="flex items-center gap-2 flex-1"><input type="checkbox" data-ex-complete="${ex.name}" ${saved.completed ? 'checked' : ''} class="w-5 h-5 rounded-full accent-pink-500"><div class="exercise-item" onclick="openModalByName('${ex.name.replace(/'/g, "\\'")}')"><h4 class="text-[14px] font-bold">${ex.name}</h4><span class="text-[10px] text-pink-400">${ex.sets}</span></div></div><div class="flex gap-2"><input type="number" data-ex-kg="${ex.name}" value="${saved.kg}" placeholder="Kg" class="w-14 bg-gray-50 rounded-2xl p-2 text-center"><input type="number" data-ex-reps="${ex.name}" value="${saved.reps}" placeholder="Rps" class="w-14 bg-gray-50 rounded-2xl p-2 text-center"></div></div>`; }); html+=`</div></div>`; }); html+=`</div></div>`; container.innerHTML=html; attachWorkoutEvents();}
+        else if(dayObj.type==='recovery'){ let html=`<div class="bg-gradient-to-br from-pink-700 to-pink-900 rounded-[3.5rem] p-8 shadow-xl text-white"><h2 class="text-3xl font-800">✨ ${dayObj.day}</h2><p class="text-[10px] text-pink-200 uppercase">${dayObj.title}</p><div class="bg-white/10 p-5 rounded-2xl my-5"><p class="text-[13px] italic">💬 "${dayObj.message}"</p></div><div class="space-y-3">`; dayObj.links.forEach(link=>{ let completed=getRecoveryVideo(currentDay, link.name); html+=`<div class="bg-white/10 flex items-center justify-between p-4 rounded-2xl gap-3"><div class="flex items-center gap-3"><input type="checkbox" data-video="${link.name}" ${completed?'checked':''} class="w-5 h-5 accent-pink-300"><span class="text-[13px] font-bold">${link.name}</span></div><a href="${link.url}" target="_blank" class="bg-pink-500 px-4 py-2 rounded-full text-[9px] font-black">Ver</a></div>`; }); html+=`</div></div>`; container.innerHTML=html; attachRecoveryEvents();} updateSummaryTable();}
+        function attachWorkoutEvents(){ document.querySelectorAll('[data-ex-kg]').forEach(inp=>{ let exName=inp.getAttribute('data-ex-kg'); inp.addEventListener('change',()=>{ let kg=inp.value; let repsElem=document.querySelector(`[data-ex-reps="${exName}"]`); let reps=repsElem?.value||''; let check=document.querySelector(`[data-ex-complete="${exName}"]`); let completed=check?.checked||false; saveExerciseData(currentDay, exName, kg, reps, completed); updateSummaryTable(); generateWeeklyMessage(); }); }); document.querySelectorAll('[data-ex-reps]').forEach(inp=>{ let exName=inp.getAttribute('data-ex-reps'); inp.addEventListener('change',()=>{ let kgElem=document.querySelector(`[data-ex-kg="${exName}"]`); let kg=kgElem?.value||''; let reps=inp.value; let check=document.querySelector(`[data-ex-complete="${exName}"]`); let completed=check?.checked||false; saveExerciseData(currentDay, exName, kg, reps, completed); updateSummaryTable(); generateWeeklyMessage(); }); }); document.querySelectorAll('[data-ex-complete]').forEach(ch=>{ let exName=ch.getAttribute('data-ex-complete'); ch.addEventListener('change',()=>{ let kgElem=document.querySelector(`[data-ex-kg="${exName}"]`); let repsElem=document.querySelector(`[data-ex-reps="${exName}"]`); saveExerciseData(currentDay, exName, kgElem?.value||'', repsElem?.value||'', ch.checked); updateSummaryTable(); generateWeeklyMessage(); }); }); }
+        function attachRecoveryEvents(){ document.querySelectorAll('[data-video]').forEach(ch=>{ let videoName=ch.getAttribute('data-video'); ch.addEventListener('change',()=>{ saveRecoveryVideo(currentDay, videoName, ch.checked); generateWeeklyMessage(); }); }); }
+        function updateSummaryTable(){ let inputs=document.querySelectorAll('[data-ex-kg]'); let data={}; inputs.forEach(inp=>{ let name=inp.getAttribute('data-ex-kg'); let repsInp=document.querySelector(`[data-ex-reps="${name}"]`); if(!data[name]) data[name]={kg:'',reps:''}; data[name].kg=inp.value; if(repsInp) data[name].reps=repsInp.value;}); let html=''; for(let ex in data){ if(data[ex].kg||data[ex].reps){ html+=`<div class="flex justify-between py-2 border-b"><span class="font-bold">${ex}</span><span class="text-pink-500">${data[ex].kg||0}kg x ${data[ex].reps||0}</span></div>`;}} document.getElementById('tabla-resumen').innerHTML=html||'<p class="text-center text-xs text-gray-400 italic">Tus pesos registrados aparecerán aquí...</p>';}
+        
+        // AGUA
+        function updateWaterUI(){ let todayWater=getTodayWater(); let metrics=getBodyMetrics(); let peso=metrics.weight || 60; let goal=Math.floor(peso*0.035/0.25) || 8; goal=Math.max(6, Math.min(12, goal)); document.getElementById('water-goal-display').innerText=goal; document.getElementById('water-counter-display').innerText=todayWater; let percent=Math.min(100, (todayWater/goal)*100); document.getElementById('water-progress-bar').style.width=`${percent}%`; let msg=todayWater>=goal?"🎉 ¡Hidratación perfecta! sigue así ❤️":`Te faltan ${goal-todayWater} vasos para alcanzar la meta 💧`; document.getElementById('water-message').innerText=msg; }
+        function setupWater(){ updateWaterUI(); document.getElementById('water-plus').onclick=()=>{ let val=getTodayWater()+1; setTodayWater(val); }; document.getElementById('water-minus').onclick=()=>{ let val=Math.max(0, getTodayWater()-1); setTodayWater(val); }; }
+        
+        // IMC
+        function updateIMCUI(){ let metrics=getBodyMetrics(); if(metrics.weight && metrics.height){ let alturaM=metrics.height/100; let imc=metrics.weight/(alturaM*alturaM); let categoria= imc<18.5?"Bajo peso": imc<25?"Saludable": imc<30?"Sobrepeso":"Obesidad"; document.getElementById('imc-status').innerHTML=`<span class="font-black">IMC: ${imc.toFixed(1)} (${categoria})</span>`; let msj=imc<18.5?"💪 Enfócate en alimentación nutritiva, eres fuerte":imc<25?"✨ Excelente rango, sigue moviéndote con amor ✨":imc<30?"🌱 Cuidemos la alimentación, cada paso cuenta": "❤️ Tú puedes, mejora hábitos con pequeños cambios"; document.getElementById('imc-message').innerHTML=msj; }else{ document.getElementById('imc-status').innerHTML="📝 Ingresa tu peso y altura"; document.getElementById('imc-message').innerHTML="Completa los datos para consejos personalizados";} }
+        function setupIMC(){ let pesoInp=document.getElementById('peso-input'); let alturaInp=document.getElementById('altura-input'); let metrics=getBodyMetrics(); if(metrics.weight) pesoInp.value=metrics.weight; if(metrics.height) alturaInp.value=metrics.height; pesoInp.addEventListener('change',()=>{ let w=parseFloat(pesoInp.value); let h=parseFloat(alturaInp.value); if(w && h) saveBodyMetrics(w,h); else if(w) saveBodyMetrics(w, metrics.height); updateIMCUI(); generateWeeklyMessage(); }); alturaInp.addEventListener('change',()=>{ let w=parseFloat(pesoInp.value); let h=parseFloat(alturaInp.value); if(w && h) saveBodyMetrics(w,h); updateIMCUI(); generateWeeklyMessage();}); updateIMCUI();}
+        
+        // MENSAJE SEMANAL (evalúa lunes a viernes según datos guardados)
+        function generateWeeklyMessage(){ const weekDays=["Lunes","Martes","Miércoles","Jueves","Viernes"]; let totalCompleted=0, totalExercises=0; let totalKg=0, kgCount=0; let imcData=getBodyMetrics(); let imcValue=null; if(imcData.weight && imcData.height) imcValue=imcData.weight/((imcData.height/100)**2); weekDays.forEach(day=>{ let dayData=getMonthData(currentMonth)[day]; if(dayData && dayData.exercises){ let exes=Object.values(dayData.exercises); exes.forEach(ex=>{ totalExercises++; if(ex.completed) totalCompleted++; if(ex.kg && !isNaN(ex.kg)){ totalKg+=parseFloat(ex.kg); kgCount++; } }); } }); let avgKg=kgCount? (totalKg/kgCount).toFixed(1):0; let completionRate=totalExercises? (totalCompleted/totalExercises)*100:0; let messages=[]; if(completionRate>=80) messages.push("💖 ¡Increíble consistencia esta semana! Tu disciplina está transformando tu salud."); else if(completionRate>=50) messages.push("🌷 Buen trabajo, sigue sumando días, cada rutina cuenta para tu bienestar."); else messages.push("🌸 Cada pequeño paso suma. La próxima semana intenta completar al menos 3 días, ¡tú puedes!"); if(avgKg>=5) messages.push("🏋️‍♀️ Has aumentado fuerza, esos pesos reflejan tu progreso real. ¡Súper!"); if(imcValue && imcValue>27) messages.push("🍏 Recuerda combinar ejercicio con alimentación balanceada, eres poderosa."); if(imcValue && imcValue<22) messages.push("✨ Tu IMC está en rango saludable, sigue moviéndote con alegría."); if(totalCompleted===0 && totalExercises>0) messages.push("🌱 Esta semana puedes iniciar con 2 días suaves, el movimiento es autocuidado."); let finalMsg=messages.length? messages.slice(0,2).join(" "):"✨ Sigue honrando tu cuerpo, cada día es una victoria. Te amo."; document.getElementById('weekly-message-text').innerHTML=`💬 ${finalMsg}<br><span class="text-[10px] block mt-2">📊 Completados: ${totalCompleted}/${totalExercises} ejercicios | Promedio kg: ${avgKg}</span>`; }
+        
+        // progreso mensual
+        function loadMonthlyProgress(){ let selector=document.getElementById('mes-selector'); let store=getStorage(); let months=Object.keys(store.months).sort().reverse(); selector.innerHTML=''; months.forEach(m=>{ let opt=document.createElement('option'); opt.value=m; opt.textContent=m; if(m===currentMonth) opt.selected=true; selector.appendChild(opt);}); if(months.length===0) selector.innerHTML='<option>No hay datos</option>'; renderMonthSummary(selector.value); selector.addEventListener('change',()=>renderMonthSummary(selector.value));}
+        function renderMonthSummary(month){ let monthData=store.months?.[month]||{}; let html=''; for(let day in monthData){ if(monthData[day].exercises){ let exArr=Object.values(monthData[day].exercises); let done=exArr.filter(e=>e.completed).length; let total=exArr.length; html+=`<div class="flex justify-between border-b py-1"><span class="font-bold">${day}</span><span>✅ ${done}/${total} ejercicios</span><span>⚡ ${exArr.reduce((sum,e)=>sum+(parseFloat(e.kg)||0),0)}kg</span></div>`;}} if(!html) html='<p class="italic text-center">Aún no hay registros este mes 💪</p>'; document.getElementById('resumen-mensual').innerHTML=html; }
+        
+        // TABS
+        function initTabs(){ document.querySelectorAll('.day-tab').forEach(btn=>{ btn.addEventListener('click',()=>{ document.querySelectorAll('.day-tab').forEach(b=>{ b.classList.remove('tab-active'); b.classList.add('tab-inactive');}); btn.classList.remove('tab-inactive'); btn.classList.add('tab-active'); currentDay=btn.getAttribute('data-day'); renderCurrentDay(); }); }); renderCurrentDay(); }
+        
+        // modal
+        window.openModalByName=function(exName){ let ex=null; for(let d of routine){ if(d.blocks){ for(let b of d.blocks){ for(let e of b.exercises){ if(e.name===exName) ex=e; } } } } if(!ex) return; document.getElementById('modal-title').innerText=ex.name; document.getElementById('modal-desc').innerText=ex.desc; let tipsList=document.getElementById('modal-tips'); tipsList.innerHTML=''; ex.tips.forEach(t=>{let li=document.createElement('li'); li.textContent=t; tipsList.appendChild(li);}); document.getElementById('modal-img').src=getImageForExercise(ex.name); document.getElementById('modal').classList.remove('hidden'); document.body.style.overflow='hidden';};
+        window.closeModal=function(){ document.getElementById('modal').classList.add('hidden'); document.body.style.overflow='auto';};
+        document.getElementById('modal')?.addEventListener('click',(e)=>{if(e.target===document.getElementById('modal')) closeModal();});
+        
+        // reinicio listeners
+        window.updateSummary=updateSummaryTable;
+        function initAll(){ initTabs(); setupWater(); setupIMC(); loadMonthlyProgress(); generateWeeklyMessage(); setInterval(generateWeeklyMessage, 2000); }
+        let store; // para referencia
+        initAll();
     </script>
 </body>
 </html>
